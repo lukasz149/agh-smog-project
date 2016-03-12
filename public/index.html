@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smog</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="Chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+
+</head>
+
+    <body>
+        <div class="container">
+            <div class="section">
+                <div class="weather">
+                </div>
+                <br>
+                <label for="date">Data:</label>
+                <input id="date" type="date" class="datepicker" onchange="updateWeatherData()">
+                <h5>Temperatura</h5>
+                <canvas id="temperatureChart" width="1000" height="200"></canvas>
+                <h5>Zachmurzenie</h5>
+                <canvas id="cloudyChart" width="1000" height="200"></canvas>
+                <h5>Wilgotność</h5>
+                <canvas id="humidityChart" width="1000" height="200"></canvas>
+
+            </div>
+        </div>
+
+        <script src="weahterScripts.js"></script>
+        <script>
+            $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year
+            format: 'dd-mm-yyyy'
+        });
+        </script>
+    </body>
+</html>
