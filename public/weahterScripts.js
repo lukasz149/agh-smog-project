@@ -10,19 +10,11 @@ $(document).ready(function() {
     $.ajax({
         url: "/weather"
     }).then(function(data) {
-        var weatherData = getWeatherData(data);
+        var values = getWeatherData(data);
 
-        var temperatureData =  weatherData[0][0];
-        var cloudyData = weatherData[1][0];
-        var humidityData = weatherData[2][0];
-
-        var labelsTemperature = weatherData[0][1];
-        var labelsCloudy = weatherData[1][1];
-        var labelsHumidity = weatherData[2][1];
-
-        temperatureChart = createChart(labelsTemperature, temperatureData, "temperatureChart");
-        cloudyChart = createChart(labelsCloudy, cloudyData, "cloudyChart");
-        humidityChart = createChart(labelsHumidity, humidityData, "humidityChart");
+        temperatureChart = createChart(values.labels, values.temperature, "temperatureChart");
+        cloudyChart = createChart(values.labels, values.cloudy, "cloudyChart");
+        humidityChart = createChart(values.labels, values.humidity, "humidityChart");
     });
 });
 
@@ -84,57 +76,54 @@ function updateWeatherData() {
     $.ajax({
         url: "/weather?date=" + date
     }).then(function(data) {
-        var weatherData = getWeatherData(data);
+        if (data == "") {
+            return;
+        }
+        var values = getWeatherData(data);
 
-        var temperatureData =  weatherData[0][0];
-        var cloudyData = weatherData[1][0];
-        var humidityData = weatherData[2][0];
+        if (values.labels.length != temperatureChart.datasets[0].points.length) {
+            temperatureChart.destroy();
+            cloudyChart.destroy();
+            humidityChart.destroy();
 
-        var labelsTemperature = weatherData[0][1];
-        var labelsCloudy = weatherData[1][1];
-        var labelsHumidity = weatherData[2][1];
+            temperatureChart = createChart(values.labels, values.temperature, "temperatureChart");
+            cloudyChart = createChart(values.labels, values.cloudy, "cloudyChart");
+            humidityChart = createChart(values.labels, values.humidity, "humidityChart");
+        } else {
+            for (var v = 0; v < values.labels.length; ++v) {
+                temperatureChart.datasets[0].points[v].value = values.temperature[v];
+                cloudyChart.datasets[0].points[v].value = values.cloudy[v];
+                humidityChart.datasets[0].points[v].value = values.humidity[v];
+            }
 
-        temperatureChart.destroy();
-        humidityChart.destroy();
-        cloudyChart.destroy();
-
-        temperatureChart = createChart(labelsTemperature, temperatureData, "temperatureChart");
-        cloudyChart = createChart(labelsCloudy, cloudyData, "cloudyChart");
-        humidityChart = createChart(labelsHumidity, humidityData, "humidityChart");
+            temperatureChart.update();
+            humidityChart.update();
+            cloudyChart.update();
+        }
     });
 }
 
+function stringOrNull(x) {
+    return x == "" ? null : x;
+}
+
 function getWeatherData(data) {
+    var labels = [];
     var temperatureData = [];
-    var labelsTemperature = [];
-    var countTemperatureData = 0;
-
     var cloudyData = [];
-    var labelsCloudy = [];
-    var countCloudyData = 0;
-
     var humidityData = [];
-    var labelsHumidity = [];
-    var countHumidityData = 0;
 
     for (var i = 0; i < data.length; i++) {
-        if(!(data[i].temperature === "")) {
-            temperatureData[countTemperatureData] = data[i].temperature;
-            labelsTemperature[countTemperatureData] = data[i].time;
-            countTemperatureData += 1;
-        }
-
-        if(!(data[i].cloudy === "")) {
-            cloudyData[countCloudyData] = data[i].cloudy;
-            labelsCloudy[countCloudyData] = data[i].time;
-            countCloudyData += 1;
-        }
-
-        if(!(data[i].humidity === "")) {
-            humidityData[countHumidityData] = data[i].humidity;
-            labelsHumidity[countHumidityData] = data[i].time;
-            countHumidityData += 1;
-        }
+        labels[i] = stringOrNull(data[i].time);
+        temperatureData[i] = stringOrNull(data[i].temperature);
+        cloudyData[i] = stringOrNull(data[i].cloudy);
+        humidityData[i] = stringOrNull(data[i].humidity);
     }
-    return [[temperatureData, labelsTemperature],[cloudyData, labelsCloudy],[humidityData, labelsHumidity]]
+
+    return {
+        'labels': labels,
+        'temperature': temperatureData,
+        'cloudy': cloudyData,
+        'humidity': humidityData
+    };
 }
