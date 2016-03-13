@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @RestController
 public class WeatherController {
     @RequestMapping("/weather")
-    public @ResponseBody List<Weather> weather(@RequestParam(value="date", defaultValue="01-01-2014") String date) throws ParseException {
+    public @ResponseBody List<Weather> weather(@RequestParam(value="date", defaultValue="02-03-2014") String date) throws ParseException {
         String time;
         String temperature;
         String cloudy;
@@ -28,19 +28,19 @@ public class WeatherController {
 
         try {
             lines = Files.readAllLines(Paths.get(String.format("data/weather/%s.csv", date)));
+            List<String[]> separated = lines.stream().map(l -> l.split(";")).collect(Collectors.toList());
+
+            for (String[] line : separated.subList(1, separated.size())) {
+                time = line[0];
+                temperature = line[1];
+                cloudy = line[3];
+                humidity = line[4];
+                weathers.add(new Weather(time, temperature, cloudy, humidity));
+            }
+            return weathers;
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        List<String[]> separated = lines.stream().map(l -> l.split(";")).collect(Collectors.toList());
-
-        for (String[] line : separated.subList(1, separated.size())) {
-            time = !line[0].equals("") ? line[0] : "";
-            temperature = !line[1].equals("") ? line[1] : "";
-            cloudy = !line[3].equals("") ? line[3] : "";
-            humidity = !line[4].equals("") ? line[4] : "";
-            weathers.add(new Weather(time, temperature, cloudy, humidity));
-        }
-        return weathers;
+        return null;
     }
 }

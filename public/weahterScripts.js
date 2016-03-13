@@ -10,25 +10,19 @@ $(document).ready(function() {
     $.ajax({
         url: "http://localhost:8080/weather"
     }).then(function(data) {
-        //$('.greeting-id').append(data[2].time);
-        //$('.greeting-content').append(data[0].time);
-        var labels = [];
-        var temperatureData = [];
-        var cloudyData = [];
-        var humidityData = [];
+        var weatherData = getWeatherData(data);
 
-        for (var i = 0; i < data.length; i++) {
-            //$('.weather').append(data[i].time + " ");
-            //$('.weather').append(data[i].temperature + " ");
-            labels[i] = data[i].time;
-            temperatureData[i] = data[i].temperature;
-            cloudyData[i] = data[i].cloudy;
-            humidityData[i] = data[i].humidity;
-        }
+        var temperatureData =  weatherData[0][0];
+        var cloudyData = weatherData[1][0];
+        var humidityData = weatherData[2][0];
 
-        temperatureChart = createChart(labels, temperatureData, "temperatureChart");
-        cloudyChart = createChart(labels, cloudyData, "cloudyChart");
-        humidityChart = createChart(labels, humidityData, "humidityChart");
+        var labelsTemperature = weatherData[0][1];
+        var labelsCloudy = weatherData[1][1];
+        var labelsHumidity = weatherData[2][1];
+
+        temperatureChart = createChart(labelsTemperature, temperatureData, "temperatureChart");
+        cloudyChart = createChart(labelsCloudy, cloudyData, "cloudyChart");
+        humidityChart = createChart(labelsHumidity, humidityData, "humidityChart");
     });
 });
 
@@ -84,33 +78,81 @@ function createChart(_labels, _data, _name) {
     return new Chart(ctx).Line(data, options);
 }
 
+function removeChart(chart) {
+    var chartLength =  chart.datasets[0].points.length;
+    for (var i = 0; i < chartLength; i++) {
+        chart.removeData( )
+    }
+}
+
+function addDataToChart(chart, data, labels) {
+    for (var l = 0; l<data.length; l++) {
+        chart.addData([data[l]], labels[l]);
+    }
+}
+
 function updateWeatherData() {
     var x = document.getElementById("date");
     var date = x.value;
     $.ajax({
         url: "http://localhost:8080/weather?date="+date
     }).then(function(data) {
-        //$('.greeting-id').append(data[2].time);
-        //$('.greeting-content').append(data[0].time);
-        var labels = [];
-        var cloudyData = [];
-        var temperatureData = [];
-        var humidityData = [];
+        var weatherData = getWeatherData(data);
 
-        for (var i = 0; i < data.length; i++) {
-            //$('.weather').append(data[i].time + " ");
-            //$('.weather').append(data[i].temperature + " ");
-            labels[i] = data[i].time;
-            temperatureData[i] = data[i].temperature;
-            cloudyData[i] = data[i].cloudy;
-            humidityData[i] = data[i].humidity;
+        var temperatureData =  weatherData[0][0];
+        var cloudyData = weatherData[1][0];
+        var humidityData = weatherData[2][0];
 
-            temperatureChart.datasets[0].points[i].value = data[i].temperature;
-            cloudyChart.datasets[0].points[i].value = data[i].cloudy;
-            humidityChart.datasets[0].points[i].value = data[i].humidity;
-        }
+        var labelsTemperature = weatherData[0][1];
+        var labelsCloudy = weatherData[1][1];
+        var labelsHumidity = weatherData[2][1];
+
+        removeChart(temperatureChart);
+        addDataToChart(temperatureChart, temperatureData, labelsTemperature);
+
+        removeChart(cloudyChart);
+        addDataToChart(cloudyChart, cloudyData, labelsCloudy);
+
+        removeChart(humidityChart);
+        addDataToChart(humidityChart, humidityData, labelsHumidity);
+
         temperatureChart.update();
-        cloudyChart.update();
         humidityChart.update();
+        cloudyChart.update();
     });
+}
+
+function getWeatherData(data) {
+    var temperatureData = [];
+    var labelsTemperature = [];
+    var countTemperatureData = 0;
+
+    var cloudyData = [];
+    var labelsCloudy = [];
+    var countCloudyData = 0;
+
+    var humidityData = [];
+    var labelsHumidity = [];
+    var countHumidityData = 0;
+
+    for (var i = 0; i < data.length; i++) {
+        if(!(data[i].temperature === "")) {
+            temperatureData[countTemperatureData] = data[i].temperature;
+            labelsTemperature[countTemperatureData] = data[i].time;
+            countTemperatureData += 1;
+        }
+
+        if(!(data[i].cloudy === "")) {
+            cloudyData[countCloudyData] = data[i].cloudy;
+            labelsCloudy[countCloudyData] = data[i].time;
+            countCloudyData += 1;
+        }
+
+        if(!(data[i].humidity === "")) {
+            humidityData[countHumidityData] = data[i].humidity;
+            labelsHumidity[countHumidityData] = data[i].time;
+            countHumidityData += 1;
+        }
+    }
+    return [[temperatureData, labelsTemperature],[cloudyData, labelsCloudy],[humidityData, labelsHumidity]]
 }
