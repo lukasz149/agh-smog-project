@@ -78,19 +78,6 @@ function createChart(_labels, _data, _name) {
     return new Chart(ctx).Line(data, options);
 }
 
-function removeChart(chart) {
-    var chartLength =  chart.datasets[0].points.length;
-    for (var i = 0; i < chartLength; i++) {
-        chart.removeData( )
-    }
-}
-
-function addDataToChart(chart, data, labels) {
-    for (var l = 0; l<data.length; l++) {
-        chart.addData([data[l]], labels[l]);
-    }
-}
-
 function updateWeatherData() {
     var x = document.getElementById("date");
     var date = x.value;
@@ -107,18 +94,13 @@ function updateWeatherData() {
         var labelsCloudy = weatherData[1][1];
         var labelsHumidity = weatherData[2][1];
 
-        removeChart(temperatureChart);
-        addDataToChart(temperatureChart, temperatureData, labelsTemperature);
+        temperatureChart.destroy();
+        humidityChart.destroy();
+        cloudyChart.destroy();
 
-        removeChart(cloudyChart);
-        addDataToChart(cloudyChart, cloudyData, labelsCloudy);
-
-        removeChart(humidityChart);
-        addDataToChart(humidityChart, humidityData, labelsHumidity);
-
-        temperatureChart.update();
-        humidityChart.update();
-        cloudyChart.update();
+        temperatureChart = createChart(labelsTemperature, temperatureData, "temperatureChart");
+        cloudyChart = createChart(labelsCloudy, cloudyData, "cloudyChart");
+        humidityChart = createChart(labelsHumidity, humidityData, "humidityChart");
     });
 }
 
