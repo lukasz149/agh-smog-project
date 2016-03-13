@@ -33,12 +33,16 @@ public class WeatherController {
             for (String[] line : separated.subList(1, separated.size())) {
                 time = line[0];
                 temperature = line[1];
-                cloudy = line[3];
-                humidity = line[4];
+                // Kierunek wiatru -> 2, Predkosc wiatru -> 3
+                // wind_dir = line[2];
+                // wind_speed = line[3];
+                cloudy = line[4];
+                humidity = line[5];
                 weathers.add(new Weather(time, temperature, cloudy, humidity));
             }
             return weathers;
         } catch (IOException e) {
+            System.err.println("Probably no file was found.");
             e.printStackTrace();
         }
         return null;

@@ -8,7 +8,7 @@ var humidityChart;
 
 $(document).ready(function() {
     $.ajax({
-        url: "http://localhost:8080/weather"
+        url: "/weather"
     }).then(function(data) {
         var weatherData = getWeatherData(data);
 
@@ -95,7 +95,7 @@ function updateWeatherData() {
     var x = document.getElementById("date");
     var date = x.value;
     $.ajax({
-        url: "http://localhost:8080/weather?date="+date
+        url: "/weather?date=" + date
     }).then(function(data) {
         var weatherData = getWeatherData(data);
 
