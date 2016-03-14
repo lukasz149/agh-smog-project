@@ -5,6 +5,7 @@ document.getElementById("date").addEventListener("change", updateWeatherData);
 var temperatureChart;
 var cloudyChart;
 var humidityChart;
+var windSpeedChart;
 
 $(document).ready(function() {
     $.ajax({
@@ -15,6 +16,7 @@ $(document).ready(function() {
         temperatureChart = createChart(values.labels, values.temperature, "temperatureChart");
         cloudyChart = createChart(values.labels, values.cloudy, "cloudyChart");
         humidityChart = createChart(values.labels, values.humidity, "humidityChart");
+        windSpeedChart = createChart(values.labels, values.windSpeed, "windSpeedChart");
     });
 });
 
@@ -85,20 +87,25 @@ function updateWeatherData() {
             temperatureChart.destroy();
             cloudyChart.destroy();
             humidityChart.destroy();
+            windSpeedChart.destroy();
 
             temperatureChart = createChart(values.labels, values.temperature, "temperatureChart");
             cloudyChart = createChart(values.labels, values.cloudy, "cloudyChart");
             humidityChart = createChart(values.labels, values.humidity, "humidityChart");
+            windSpeedChart = createChart(values.labels, values.windSpeed, "windSpeedChart");
         } else {
             for (var v = 0; v < values.labels.length; ++v) {
                 temperatureChart.datasets[0].points[v].value = values.temperature[v];
                 cloudyChart.datasets[0].points[v].value = values.cloudy[v];
                 humidityChart.datasets[0].points[v].value = values.humidity[v];
+                windSpeedChart.datasets[0].points[v].value = values.windSpeed[v];
+
             }
 
             temperatureChart.update();
             humidityChart.update();
             cloudyChart.update();
+            windSpeedChart.update();
         }
     });
 }
@@ -112,18 +119,21 @@ function getWeatherData(data) {
     var temperatureData = [];
     var cloudyData = [];
     var humidityData = [];
+    var windSpeedData = [];
 
     for (var i = 0; i < data.length; i++) {
         labels[i] = stringOrNull(data[i].time);
         temperatureData[i] = stringOrNull(data[i].temperature);
         cloudyData[i] = stringOrNull(data[i].cloudy);
         humidityData[i] = stringOrNull(data[i].humidity);
+        windSpeedData[i] = stringOrNull(data[i].windSpeed);
     }
 
     return {
         'labels': labels,
         'temperature': temperatureData,
         'cloudy': cloudyData,
-        'humidity': humidityData
+        'humidity': humidityData,
+        'windSpeed': windSpeedData
     };
 }

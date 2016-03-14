@@ -23,6 +23,8 @@ public class WeatherController {
         String temperature;
         String cloudy;
         String humidity;
+        String windSpeed;
+        String windDirection;
         List<Weather> weathers = new ArrayList<>();
         List<String> lines = null;
 
@@ -34,11 +36,11 @@ public class WeatherController {
                 time = line[0];
                 temperature = line[1];
                 // Kierunek wiatru -> 2, Predkosc wiatru -> 3
-                // wind_dir = line[2];
-                // wind_speed = line[3];
+                windDirection = line[2];
+                windSpeed = line[3];
                 cloudy = line[4];
                 humidity = line[5];
-                weathers.add(new Weather(time, temperature, cloudy, humidity));
+                weathers.add(new Weather(time, temperature, cloudy, humidity, windSpeed, windDirection));
             }
             return weathers;
         } catch (IOException e) {
