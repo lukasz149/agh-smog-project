@@ -1,6 +1,5 @@
 CZAS;Dwutlenek azotu;Dwutlenek siarki;Ozon;Ozon 8h;Pył zawieszony PM10;Pył zawieszony PM2.5;Tlenek azotu;Tlenki azotu
-23:00;14;7;50;22.375;15;12;2;16
-00:00;8;5;56;27.5;13;8;0;8
+00:00;11;4;62;52.625;12;11;1;12
 01:00;7;4;55;33.75;13;10;0;7
 02:00;7;4;51;39.5;12;11;0;7
 03:00;8;4;47;43.875;13;8;0;8
@@ -24,4 +23,3 @@ CZAS;Dwutlenek azotu;Dwutlenek siarki;Ozon;Ozon 8h;Pył zawieszony PM10;Pył zaw
 21:00;16;3;52;47.125;6;3;3;20
 22:00;18;3;59;48.5;7;3;4;24
 23:00;15;3;61;50.625;9;3;3;19
-00:00;11;4;62;52.625;12;11;1;12

@@ -1,6 +1,5 @@
-CZAS;Benzen;Dwutlenek azotu;Dwutlenek siarki;Pył zawieszony PM10;Pył zawieszony PM2.5;Tlenek azotu;Tlenek węgla;Tlenek węgla;Tlenki azotu
-23:00;1.4;18;13;40;32;2;530;843.75;21
-00:00;2.1;14;12;32;25;1;450;802.5;16
+CZAS;Benzen;Dwutlenek azotu;Dwutlenek siarki;Pył zawieszony PM10;Pył zawieszony PM2.5;Tlenek azotu;Tlenek węgla;Tlenek węgla 8h;Tlenki azotu
+00:00;4.7;27;16;32;25;7;700;1367.5;37
 01:00;1.4;18;12;38;30;2;460;727.5;21
 02:00;1.2;20;11;36;30;2;500;632.5;23
 03:00;1.2;24;11;35;28;8;460;570;35
@@ -19,3 +18,8 @@ CZAS;Benzen;Dwutlenek azotu;Dwutlenek siarki;Pył zawieszony PM10;Pył zawieszon
 16:00;1.4;51;20;54;24;31;610;537.5;98
 17:00;2;71;13;68;36;64;910;580;169
 18:00;3.8;85;12;124;88;170;1630;715;345
+19:00;6.6;84;12;;;204;1840;863.75;397
+20:00;6.4;66;11;;;168;1610;1011.25;323
+21:00;8.6;65;12;;;154;1740;1172.5;301
+22:00;11.4;55;16;;;68;1480;1300;160
+23:00;10.2;41;18;40;32;12;1030;1356.25;59
