@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:sqlite:C:/Users/grzeg/Documents/Projects/SP1/projektsmog/data/database/db</property>
+    <property name="connection.driver_class">org.sqlite.JDBC</property>
+    <property name="hibernate.dialect">SmogProject.SQLiteDialect</property>
+    <mapping class="SmogProject.PogodaEntity"/>
+    <mapping class="SmogProject.SmogEntity"/>
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>
