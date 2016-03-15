@@ -26,7 +26,7 @@ public class WeatherController {
         String windSpeed;
         String windDirection;
         List<Weather> weathers = new ArrayList<>();
-        List<String> lines = null;
+        List<String> lines;
 
         try {
             lines = Files.readAllLines(Paths.get(String.format("data/weather/%s.csv", date)));
@@ -45,7 +45,7 @@ public class WeatherController {
             return weathers;
         } catch (IOException e) {
             System.err.println("Probably no file was found.");
-            e.printStackTrace();
+            // e.printStackTrace();
         }
         return null;
     }
