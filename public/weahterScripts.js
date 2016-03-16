@@ -118,6 +118,11 @@ function updateWeatherData() {
 }
 
 
+function valueOrNull(x) {
+    return x != "" ? x : null;
+}
+
+
 function getWeatherData(data) {
     var labels = [];
     var temperatureData = [];
@@ -127,11 +132,11 @@ function getWeatherData(data) {
 
     for (var i = 0; i < data.length; i++) {
         console.log(data[i]);
-        labels[i] = data[i].godzina;
-        temperatureData[i] = data[i].temperatura;
-        cloudyData[i] = data[i].zachmurzenie;
-        humidityData[i] = data[i].wilgotnosc;
-        windSpeedData[i] = data[i].predkosc;
+        labels[i] = valueOrNull(data[i].godzina);
+        temperatureData[i] = valueOrNull(data[i].temperatura);
+        cloudyData[i] = valueOrNull(data[i].zachmurzenie);
+        humidityData[i] = valueOrNull(data[i].wilgotnosc);
+        windSpeedData[i] = valueOrNull(data[i].predkosc);
     }
 
     return {
