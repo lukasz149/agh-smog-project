@@ -43,7 +43,7 @@ public class SmogController {
 
         } catch (IOException e) {
             System.err.println("Probably no file was found.");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return null;
 

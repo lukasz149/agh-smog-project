@@ -111,7 +111,7 @@ function updateWeatherData() {
 }
 
 function stringOrNull(x) {
-    return x == "" ? null : x;
+    return x === "" ? null : x;
 }
 
 function getWeatherData(data) {
