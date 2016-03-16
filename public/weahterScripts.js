@@ -99,7 +99,6 @@ function updateWeatherData() {
                 cloudyChart.datasets[0].points[v].value = values.cloudy[v];
                 humidityChart.datasets[0].points[v].value = values.humidity[v];
                 windSpeedChart.datasets[0].points[v].value = values.windSpeed[v];
-
             }
 
             temperatureChart.update();

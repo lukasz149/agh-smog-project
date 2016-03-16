@@ -4,15 +4,28 @@
 document.getElementById("date").addEventListener("change", updateSmogData);
 document.getElementById("station").addEventListener("change", updateSmogData);
 
-var charts = [];
-var canvas = [];
-var titles = [];
+function Plot(title) {
+    var div = document.createElement("div");
+    var canvas = document.createElement("canvas");
+    canvas.width = 1000;
+    canvas.height = 200;
 
-var chartsSet = {
-    'charts' : charts,
-    'canvas' : canvas,
-    'titles' : titles
-};
+    var titleOfChart = document.createElement("h5");
+    titleOfChart.innerHTML = title;
+
+    div.appendChild(titleOfChart);
+    div.appendChild(canvas);
+
+    document.getElementById("smog").appendChild(div);
+
+    return {
+        'div': div,
+        'canvas': canvas
+    }
+}
+
+var chartsSet = {};
+
 //var canvasSet = {};
 //var idCount = 0;
 $(document).ready(function() {
@@ -22,39 +35,20 @@ $(document).ready(function() {
         var labels = createLabels(data);
         for (var name in data) {
             if (name != "CZAS") {
-                var canvas = document.createElement("canvas");
-                canvas.width = 1000;
-                canvas.height = 200;
-                canvas.id = "chart" + chartsSet.charts.length;
+                var div = Plot(name);
+                var chart = createChartSmog(labels, data[name], div.canvas);
 
-                var titleOfChart = document.createElement("h5");
-                titleOfChart.id = "chartTitle" + chartsSet.charts.length;
-                titleOfChart.innerHTML = name;
-
-                var smogTab = document.getElementById("smog");
-                smogTab.appendChild(titleOfChart);
-                smogTab.appendChild(canvas);
-
-                var chart = createChart(labels, stringOrNull(data[name]), canvas.id);
-                //charts.push(chart);
-                chartsSet.charts.push(chart);
-                chartsSet.canvas.push(canvas.id);
-                chartsSet.titles.push(titleOfChart.id);
-
-                //canvasSet[canvas.id] = [chart, name];
-                //idCount++;
+                chartsSet[name] = {
+                    'elem': div,
+                    'chart': chart
+                };
             }
         }
     });
 });
 
 function createLabels(data) {
-    for (var name in data) {
-        if (name == "CZAS") {
-            return data[name].slice();
-        }
-    }
-    return null;
+    return data["CZAS"].slice();
 }
 
 function updateSmogData() {
@@ -70,54 +64,101 @@ function updateSmogData() {
         if (data == "") {
             return;
         }
+        console.log(data);
+        console.log(chartsSet);
 
-        for (var i=0; i<chartsSet.charts.length; i++) {
-            chartsSet.charts[i].destroy();
+        for (var i in chartsSet) {
+            if (!(i in data)) {
+                chartsSet[i].chart.destroy();
+                document.getElementById("smog").removeChild(chartsSet[i].elem.div);
+                delete chartsSet[i];
+            }
         }
-        chartsSet.charts = [].slice();
-        //alert(chartsSet.charts.toString());
 
-        for (var i=0; i<chartsSet.canvas.length; i++) {
-            var canvasToDelete = document.getElementById(chartsSet.canvas[i]);
-            var smogTab = document.getElementById("smog");
-            smogTab.removeChild(canvasToDelete);
-        }
-        chartsSet.canvas = [].slice();
-        //alert(chartsSet.canvas.toString());
+        for (var i in data) {
+            if (i == "CZAS") continue;
+            if (i in chartsSet) {
+                // update
+                if (data[i].length != chartsSet[i].chart.datasets[0].points.length) {
+                    chartsSet[i].chart.destroy();
+                    chartsSet[i].chart = createChartSmog(data["CZAS"], data[i], chartsSet[i].elem.canvas);
+                } else {
+                    console.log('update');
+                    updateChartSmog(chartsSet[i].chart, data["CZAS"], data[i])
+                }
+            } else {
+                var div = Plot(i);
+                var chart = createChartSmog(data["CZAS"], data[i], div.canvas);
 
-        for (var i=0; i<chartsSet.titles.length; i++) {
-            var titleToDelete = document.getElementById(chartsSet.titles[i]);
-            var smogTab = document.getElementById("smog");
-            smogTab.removeChild(titleToDelete);
-        }
-        chartsSet.titles = [].slice();
-        //alert(chartsSet.titles.toString());
-        var labels = createLabels(data);
-        for (var name in data) {
-            if (name != "CZAS") {
-                var canvas = document.createElement("canvas");
-                canvas.width = 1000;
-                canvas.height = 200;
-                canvas.id = "chart" + chartsSet.charts.length;
-
-                var titleOfChart = document.createElement("h5");
-                titleOfChart.id = "chartTitle" + chartsSet.charts.length;
-                titleOfChart.innerHTML = name;
-
-                var smogTab = document.getElementById("smog");
-                smogTab.appendChild(titleOfChart);
-                smogTab.appendChild(canvas);
-
-                var chart = createChart(labels, stringOrNull(data[name]), canvas.id);
-                //charts.push(chart);
-                chartsSet.charts.push(chart);
-                chartsSet.canvas.push(canvas.id);
-                chartsSet.titles.push(titleOfChart.id);
-
-                //canvasSet[canvas.id] = [chart, name];
-                //idCount++;
+                chartsSet[i] = {
+                    'elem': div,
+                    'chart': chart
+                };
             }
         }
     });
 }
 
+// -----
+
+function createChartSmog(_labels, _data, _element) {
+    var data = {
+        labels: _labels,
+        datasets: [
+            {
+                label: "My First dataset",
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: _data
+            }
+        ]
+    };
+    var options = {
+        ///Boolean - Whether grid lines are shown across the chart
+        scaleShowGridLines: true,
+        //String - Colour of the grid lines
+        scaleGridLineColor: "rgba(0,0,0,.05)",
+        //Number - Width of the grid lines
+        scaleGridLineWidth: 1,
+        //Boolean - Whether to show horizontal lines (except X axis)
+        scaleShowHorizontalLines: true,
+        //Boolean - Whether to show vertical lines (except Y axis)
+        scaleShowVerticalLines: true,
+        //Boolean - Whether the line is curved between points
+        bezierCurve: true,
+        //Number - Tension of the bezier curve between points
+        bezierCurveTension: 0.4,
+        //Boolean - Whether to show a dot for each point
+        pointDot: true,
+        //Number - Radius of each point dot in pixels
+        pointDotRadius: 4,
+        //Number - Pixel width of point dot stroke
+        pointDotStrokeWidth: 1,
+        //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+        pointHitDetectionRadius: 20,
+        //Boolean - Whether to show a stroke for datasets
+        datasetStroke: true,
+        //Number - Pixel width of dataset stroke
+        datasetStrokeWidth: 2,
+        //Boolean - Whether to fill the dataset with a colour
+        datasetFill: true,
+        //String - A legend template
+        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+    };
+    var ctx = _element.getContext("2d");
+    return new Chart(ctx).Line(data, options);
+}
+
+
+function updateChartSmog(_chart, _labels, _data) {
+    for (var v = 0; v < _labels.length; ++v) {
+        _chart.datasets[0].points[v].value = _data[v];
+        _chart.datasets[0].label = _labels[v];
+    }
+
+    _chart.update();
+}
