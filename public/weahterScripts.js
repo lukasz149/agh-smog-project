@@ -81,10 +81,8 @@ function updateWeatherData() {
         if (data == "") {
             return;
         }
-        console.log(data);
-        var values = getWeatherData(data);
 
-        console.log(values);
+        var values = getWeatherData(data);
 
         if (values.labels.length != temperatureChart.datasets[0].points.length) {
             temperatureChart.destroy();
@@ -119,7 +117,7 @@ function updateWeatherData() {
 
 
 function valueOrNull(x) {
-    return x != "" ? x : null;
+    return x !== "" ? x : null;
 }
 
 
@@ -131,7 +129,6 @@ function getWeatherData(data) {
     var windSpeedData = [];
 
     for (var i = 0; i < data.length; i++) {
-        console.log(data[i]);
         labels[i] = valueOrNull(data[i].godzina);
         temperatureData[i] = valueOrNull(data[i].temperatura);
         cloudyData[i] = valueOrNull(data[i].zachmurzenie);
