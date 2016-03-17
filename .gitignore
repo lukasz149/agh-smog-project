@@ -45,6 +45,5 @@ crashlytics-build.properties
 fabric.properties
 
 # WTF
-projektsmog.iml
 SmogProject.iml
 .idea/modules.xml
