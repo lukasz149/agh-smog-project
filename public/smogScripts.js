@@ -62,6 +62,7 @@ function updateSmogData() {
         url: "/smog?date=" + date + "&station=" + station
     }).then(function(data) {
         if (data == "") {
+            Materialize.toast("Brak danych o smogu", 1000);
             return;
         }
         console.log(data);

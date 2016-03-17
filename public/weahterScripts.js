@@ -79,6 +79,7 @@ function updateWeatherData() {
         url: "/weather?date=" + date
     }).then(function(data) {
         if (data == "") {
+            Materialize.toast("Brak danych o pogodzie", 1000);
             return;
         }
         var values = getWeatherData(data);
