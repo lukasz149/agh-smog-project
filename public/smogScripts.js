@@ -26,17 +26,14 @@ function Plot(title) {
 
 var chartsSet = {};
 
-//var canvasSet = {};
-//var idCount = 0;
 $(document).ready(function() {
     $.ajax({
         url: "/smog"
     }).then(function(data) {
-        var labels = createLabels(data);
         for (var name in data) {
             if (name != "CZAS") {
                 var div = Plot(name);
-                var chart = createChartSmog(labels, data[name], div.canvas);
+                var chart = createChartSmog(data["CZAS"], data[name], div.canvas);
 
                 chartsSet[name] = {
                     'elem': div,
@@ -46,10 +43,6 @@ $(document).ready(function() {
         }
     });
 });
-
-function createLabels(data) {
-    return data["CZAS"].slice();
-}
 
 function updateSmogData() {
     var dateValue = document.getElementById("date");
