@@ -12,11 +12,31 @@
     <body>
         <div class="container">
             <div class="section">
-                <div class="weather">
+                <div class="row">
+                    <div class="col s6">
+                        <label for="date">Data:</label>
+                        <input id="date" type="date" class="datepicker" placeholder="02-03-2014" onchange="updateWeatherData(); updateSmogData();">
+                    </div>
+
+                    <div class="input-field col s6">
+                        <select id="station" onchange="updateSmogData()">
+                            <option value="" disabled>Wybierz stację</option>
+                            <option selected value="6">Stacja 6</option>
+                            <option value="7">Stacja 7</option>
+                            <option value="16">Stacja 16</option>
+                            <option value="149">Stacja 149</option>
+                            <option value="152">Stacja 152</option>
+                            <option value="153">Stacja 153</option>
+                        </select>
+                        <label for="station">Stacja:</label>
+                    </div>
                 </div>
-                <br>
-                <label for="date">Data:</label>
-                <input id="date" type="date" class="datepicker" onchange="updateWeatherData()">
+            </div>
+            <ul class="tabs">
+                <li class="tab col s2"><a href="#weather">Pogoda</a></li>
+                <li class="tab col s2"><a class="active" href="#smog">Smog</a></li>
+            </ul>
+            <div id="weather" class="col s12">
                 <h5>Temperatura</h5>
                 <canvas id="temperatureChart" width="1000" height="200"></canvas>
                 <h5>Zachmurzenie</h5>
@@ -26,15 +46,24 @@
                 <h5>Prędkość wiatru</h5>
                 <canvas id="windSpeedChart" width="1000" height="200"></canvas>
             </div>
+
+            <div id="smog" class="col s12">
+            </div>
         </div>
 
         <script src="weahterScripts.js"></script>
+        <script src="smogScripts.js"></script>
+
         <script>
             $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
             selectYears: 15, // Creates a dropdown of 15 years to control year
             format: 'dd-mm-yyyy'
         });
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+
         </script>
     </body>
 </html>

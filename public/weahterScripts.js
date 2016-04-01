@@ -79,6 +79,7 @@ function updateWeatherData() {
         url: "/weather?date=" + date
     }).then(function(data) {
         if (data == "") {
+            Materialize.toast("Brak danych o pogodzie", 1000);
             return;
         }
 
@@ -115,11 +116,9 @@ function updateWeatherData() {
     });
 }
 
-
-function valueOrNull(x) {
-    return x !== "" ? x : null;
+function stringOrNull(x) {
+    return x === "" ? null : x;
 }
-
 
 function getWeatherData(data) {
     var labels = [];
@@ -129,11 +128,11 @@ function getWeatherData(data) {
     var windSpeedData = [];
 
     for (var i = 0; i < data.length; i++) {
-        labels[i] = valueOrNull(data[i].godzina);
-        temperatureData[i] = valueOrNull(data[i].temperatura);
-        cloudyData[i] = valueOrNull(data[i].zachmurzenie);
-        humidityData[i] = valueOrNull(data[i].wilgotnosc);
-        windSpeedData[i] = valueOrNull(data[i].predkosc);
+        labels[i] = stringOrNull(data[i].time);
+        temperatureData[i] = stringOrNull(data[i].temperature);
+        cloudyData[i] = stringOrNull(data[i].cloudy);
+        humidityData[i] = stringOrNull(data[i].humidity);
+        windSpeedData[i] = stringOrNull(data[i].windSpeed);
     }
 
     return {
