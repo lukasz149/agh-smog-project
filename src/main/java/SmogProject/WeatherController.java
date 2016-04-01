@@ -3,50 +3,27 @@ package SmogProject;
 /**
  * Created by lukas on 12.03.2016.
  */
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.text.ParseException;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.ArrayList;
+
+import java.text.ParseException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class WeatherController {
     @RequestMapping("/weather")
-    public @ResponseBody List<Weather> weather(@RequestParam(value="date", defaultValue="02-03-2014") String date) throws ParseException {
-        String time;
-        String temperature;
-        String cloudy;
-        String humidity;
-        String windSpeed;
-        String windDirection;
-        List<Weather> weathers = new ArrayList<>();
-        List<String> lines = null;
+    public @ResponseBody List<PogodaEntity> weather(@RequestParam(value="date", defaultValue="2015-01-01") String date) throws ParseException {
 
-        try {
-            lines = Files.readAllLines(Paths.get(String.format("data/weather/%s.csv", date)));
-            List<String[]> separated = lines.stream().map(l -> l.split(";")).collect(Collectors.toList());
+        Session s = HibernateSession.getSessionFactory().openSession();
+        Query q = s.createQuery("from PogodaEntity where Data = \'" + date + "\'");
+        List<PogodaEntity> result = q.list();
+        s.close();
 
-            for (String[] line : separated.subList(1, separated.size())) {
-                time = line[0];
-                temperature = line[1];
-                // Kierunek wiatru -> 2, Predkosc wiatru -> 3
-                windDirection = line[2];
-                windSpeed = line[3];
-                cloudy = line[4];
-                humidity = line[5];
-                weathers.add(new Weather(time, temperature, cloudy, humidity, windSpeed, windDirection));
-            }
-            return weathers;
-        } catch (IOException e) {
-            System.err.println("Probably no file was found.");
-            e.printStackTrace();
-        }
-        return null;
+        return result;
     }
 }

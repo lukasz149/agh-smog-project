@@ -3,6 +3,8 @@ from htmldom import htmldom
 import datetime
 import codecs
 import os
+import sqlite3
+
 
 
 # in date: formatted string %d-%m-%Y
@@ -20,14 +22,14 @@ def get_weather(d):
 def parse_line(node):
     inner = htmldom.HtmlDom().createDom(node.html())
     hour = inner.find("span.hour").text().strip()
-    minutes = inner.find("span.minutes").text().strip()
+    # minutes = inner.find("span.minutes").text().strip()
     temp = inner.find("span.forecast-temp").text().strip()[:-2]
     wind_dir = inner.find("span.wind-direction").text().strip()
     wind_speed = inner.find("span.speed-value").text().strip()
     prec_value = inner.find("span.entry-precipitation-value").text().replace("%", "").strip()
     humidity = inner.find("div.entry-humidity").text().strip()[:-1]
 
-    return "%s:%s;%s;%s;%s;%s;%s" % (hour, minutes, temp, wind_dir, wind_speed, prec_value, humidity)
+    return hour, temp, wind_dir, wind_speed, prec_value, humidity
 
 
 def daterange(start_date, end_date):
@@ -35,23 +37,41 @@ def daterange(start_date, end_date):
         yield start_date + datetime.timedelta(n)
 
 
+
+def value_or_null(x):
+    return str(x) if x != '' else 'null'
+
+
+def check_if_exist(conn, c, date):
+    c.execute("select * from Pogoda where Data = \'%s\'" % date)
+    if len(c.fetchall()):
+        return True
+    return False
+
+
 def main():
-    weather_path = '../data/weather/'
+    db_path = '../data/'
+
+    conn = sqlite3.connect(db_path + 'database/db')
+    c = conn.cursor()
+
     start_date = datetime.date(2013, 5, 1)
     end_date = datetime.datetime.date(datetime.datetime.now())
     for single_date in daterange(start_date, end_date):
         d = single_date.strftime("%d-%m-%Y")
+        # -- zakladamy ze jesli nie pobrano danych z danego dnia to nie bedzie go w ogole w bazie
         try:
-            if not os.path.isfile(weather_path + d + '.csv') or \
-                            datetime.datetime.fromtimestamp(os.path.getctime(weather_path + d + '.csv')).strftime(
-                                "%d-%m-%Y") == d:
+            if not check_if_exist(conn, c, d):
                 print("Downloading " + d + "... ", end="")
-                with codecs.open(weather_path + d + '.csv', 'w', 'utf-8') as csv:
-                    dom = htmldom.HtmlDom().createDom(get_weather(d))
-                    csv.write("Godzina[hh:mm];Temperatura[C];Wiatr[Kier];Wiatr[km/h];Zachmurzenie[%];Wilgotność[%]\n")
-                    for node in dom.find('li.weather-entry'):
-                        csv.write(parse_line(node) + '\n')
+                dom = htmldom.HtmlDom().createDom(get_weather(d))
+                for node in dom.find('li.weather-entry'):
+                    godz, temp, kier, pred, zach, wilg = parse_line(node)
+                    # data, godz, temp, kier, pred, zach, wilg
+                    c.execute("insert or ignore into Pogoda values ('%s', %s, %s, '%s', %s, %s, %s)" % (
+                        d, godz, value_or_null(temp), value_or_null(kier), value_or_null(pred),
+                        value_or_null(zach), value_or_null(wilg)))
                 print("done.")
+                conn.commit()
         except:
             print("Could not download and parse -> " + d)
     print("Updated.")

@@ -81,6 +81,7 @@ function updateWeatherData() {
         if (data == "") {
             return;
         }
+
         var values = getWeatherData(data);
 
         if (values.labels.length != temperatureChart.datasets[0].points.length) {
@@ -100,6 +101,10 @@ function updateWeatherData() {
                 humidityChart.datasets[0].points[v].value = values.humidity[v];
                 windSpeedChart.datasets[0].points[v].value = values.windSpeed[v];
 
+                temperatureChart.datasets[0].label = values.labels[v];
+                cloudyChart.datasets[0].label = values.labels[v];
+                humidityChart.datasets[0].label = values.labels[v];
+                windSpeedChart.datasets[0].label = values.labels[v];
             }
 
             temperatureChart.update();
@@ -110,9 +115,11 @@ function updateWeatherData() {
     });
 }
 
-function stringOrNull(x) {
-    return x == "" ? null : x;
+
+function valueOrNull(x) {
+    return x !== "" ? x : null;
 }
+
 
 function getWeatherData(data) {
     var labels = [];
@@ -122,11 +129,11 @@ function getWeatherData(data) {
     var windSpeedData = [];
 
     for (var i = 0; i < data.length; i++) {
-        labels[i] = stringOrNull(data[i].time);
-        temperatureData[i] = stringOrNull(data[i].temperature);
-        cloudyData[i] = stringOrNull(data[i].cloudy);
-        humidityData[i] = stringOrNull(data[i].humidity);
-        windSpeedData[i] = stringOrNull(data[i].windSpeed);
+        labels[i] = valueOrNull(data[i].godzina);
+        temperatureData[i] = valueOrNull(data[i].temperatura);
+        cloudyData[i] = valueOrNull(data[i].zachmurzenie);
+        humidityData[i] = valueOrNull(data[i].wilgotnosc);
+        windSpeedData[i] = valueOrNull(data[i].predkosc);
     }
 
     return {
