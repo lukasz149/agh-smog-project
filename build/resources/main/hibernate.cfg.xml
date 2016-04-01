@@ -7,8 +7,8 @@
     <property name="connection.url">jdbc:sqlite:C:/Users/grzeg/Documents/Projects/SP1/projektsmog/data/database/db</property>
     <property name="connection.driver_class">org.sqlite.JDBC</property>
     <property name="hibernate.dialect">SmogProject.SQLiteDialect</property>
-    <mapping class="SmogProject.PogodaEntity"/>
     <mapping class="SmogProject.SmogEntity"/>
+    <mapping class="SmogProject.PogodaEntity"/>
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>

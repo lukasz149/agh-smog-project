@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 public class WeatherController {
     @RequestMapping("/weather")
-    public @ResponseBody List<PogodaEntity> weather(@RequestParam(value="date", defaultValue="01-01-2014") String date) throws ParseException {
+    public @ResponseBody List<PogodaEntity> weather(@RequestParam(value="date", defaultValue="2015-01-01") String date) throws ParseException {
 
         Session s = HibernateSession.getSessionFactory().openSession();
         Query q = s.createQuery("from PogodaEntity where Data = \'" + date + "\'");
