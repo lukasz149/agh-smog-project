@@ -3,11 +3,11 @@ package SmogProject;
 import javax.persistence.*;
 
 /**
- * Created by grzeg on 01.04.2016.
+ * Created by grzeg on 02.04.2016.
  */
 @Entity
 @IdClass(PogodaEntityPK.class)
-@Table(name = "Pogoda", schema = "", catalog = "")
+@javax.persistence.Table(name = "Pogoda", schema = "", catalog = "")
 public class PogodaEntity {
     @Id
     private String data;
@@ -35,940 +35,940 @@ public class PogodaEntity {
         this.godzina = godzina;
     }
 
-    private Double minPredkoscWiatruMin;
+    private Double minPredkoscWiatrumin;
 
     @Basic
-    @Column(name = "MinPredkoscWiatru_min")
-    public Double getMinPredkoscWiatruMin() {
-        return minPredkoscWiatruMin;
+    @Column(name = "MinPredkoscWiatrumin")
+    public Double getMinPredkoscWiatrumin() {
+        return minPredkoscWiatrumin;
     }
 
-    public void setMinPredkoscWiatruMin(Double minPredkoscWiatruMin) {
-        this.minPredkoscWiatruMin = minPredkoscWiatruMin;
+    public void setMinPredkoscWiatrumin(Double minPredkoscWiatrumin) {
+        this.minPredkoscWiatrumin = minPredkoscWiatrumin;
     }
 
-    private Double minPredkoscWiatruAvg;
+    private Double minPredkoscWiatruavg;
 
     @Basic
-    @Column(name = "MinPredkoscWiatru_avg")
-    public Double getMinPredkoscWiatruAvg() {
-        return minPredkoscWiatruAvg;
+    @Column(name = "MinPredkoscWiatruavg")
+    public Double getMinPredkoscWiatruavg() {
+        return minPredkoscWiatruavg;
     }
 
-    public void setMinPredkoscWiatruAvg(Double minPredkoscWiatruAvg) {
-        this.minPredkoscWiatruAvg = minPredkoscWiatruAvg;
+    public void setMinPredkoscWiatruavg(Double minPredkoscWiatruavg) {
+        this.minPredkoscWiatruavg = minPredkoscWiatruavg;
     }
 
-    private Double minPredkoscWiatruMax;
+    private Double minPredkoscWiatrumax;
 
     @Basic
-    @Column(name = "MinPredkoscWiatru_max")
-    public Double getMinPredkoscWiatruMax() {
-        return minPredkoscWiatruMax;
+    @Column(name = "MinPredkoscWiatrumax")
+    public Double getMinPredkoscWiatrumax() {
+        return minPredkoscWiatrumax;
     }
 
-    public void setMinPredkoscWiatruMax(Double minPredkoscWiatruMax) {
-        this.minPredkoscWiatruMax = minPredkoscWiatruMax;
+    public void setMinPredkoscWiatrumax(Double minPredkoscWiatrumax) {
+        this.minPredkoscWiatrumax = minPredkoscWiatrumax;
     }
 
-    private Double avgPredkoscWiatruMin;
+    private Double avgPredkoscWiatrumin;
 
     @Basic
-    @Column(name = "AvgPredkoscWiatru_min")
-    public Double getAvgPredkoscWiatruMin() {
-        return avgPredkoscWiatruMin;
+    @Column(name = "AvgPredkoscWiatrumin")
+    public Double getAvgPredkoscWiatrumin() {
+        return avgPredkoscWiatrumin;
     }
 
-    public void setAvgPredkoscWiatruMin(Double avgPredkoscWiatruMin) {
-        this.avgPredkoscWiatruMin = avgPredkoscWiatruMin;
+    public void setAvgPredkoscWiatrumin(Double avgPredkoscWiatrumin) {
+        this.avgPredkoscWiatrumin = avgPredkoscWiatrumin;
     }
 
-    private Double avgPredkoscWiatruAvg;
+    private Double avgPredkoscWiatruavg;
 
     @Basic
-    @Column(name = "AvgPredkoscWiatru_avg")
-    public Double getAvgPredkoscWiatruAvg() {
-        return avgPredkoscWiatruAvg;
+    @Column(name = "AvgPredkoscWiatruavg")
+    public Double getAvgPredkoscWiatruavg() {
+        return avgPredkoscWiatruavg;
     }
 
-    public void setAvgPredkoscWiatruAvg(Double avgPredkoscWiatruAvg) {
-        this.avgPredkoscWiatruAvg = avgPredkoscWiatruAvg;
+    public void setAvgPredkoscWiatruavg(Double avgPredkoscWiatruavg) {
+        this.avgPredkoscWiatruavg = avgPredkoscWiatruavg;
     }
 
-    private Double avgPredkoscWiatruMax;
+    private Double avgPredkoscWiatrumax;
 
     @Basic
-    @Column(name = "AvgPredkoscWiatru_max")
-    public Double getAvgPredkoscWiatruMax() {
-        return avgPredkoscWiatruMax;
+    @Column(name = "AvgPredkoscWiatrumax")
+    public Double getAvgPredkoscWiatrumax() {
+        return avgPredkoscWiatrumax;
     }
 
-    public void setAvgPredkoscWiatruMax(Double avgPredkoscWiatruMax) {
-        this.avgPredkoscWiatruMax = avgPredkoscWiatruMax;
+    public void setAvgPredkoscWiatrumax(Double avgPredkoscWiatrumax) {
+        this.avgPredkoscWiatrumax = avgPredkoscWiatrumax;
     }
 
-    private Double maxPredkoscWiatruMin;
+    private Double maxPredkoscWiatrumin;
 
     @Basic
-    @Column(name = "MaxPredkoscWiatru_min")
-    public Double getMaxPredkoscWiatruMin() {
-        return maxPredkoscWiatruMin;
+    @Column(name = "MaxPredkoscWiatrumin")
+    public Double getMaxPredkoscWiatrumin() {
+        return maxPredkoscWiatrumin;
     }
 
-    public void setMaxPredkoscWiatruMin(Double maxPredkoscWiatruMin) {
-        this.maxPredkoscWiatruMin = maxPredkoscWiatruMin;
+    public void setMaxPredkoscWiatrumin(Double maxPredkoscWiatrumin) {
+        this.maxPredkoscWiatrumin = maxPredkoscWiatrumin;
     }
 
-    private Double maxPredkoscWiatruAvg;
+    private Double maxPredkoscWiatruavg;
 
     @Basic
-    @Column(name = "MaxPredkoscWiatru_avg")
-    public Double getMaxPredkoscWiatruAvg() {
-        return maxPredkoscWiatruAvg;
+    @Column(name = "MaxPredkoscWiatruavg")
+    public Double getMaxPredkoscWiatruavg() {
+        return maxPredkoscWiatruavg;
     }
 
-    public void setMaxPredkoscWiatruAvg(Double maxPredkoscWiatruAvg) {
-        this.maxPredkoscWiatruAvg = maxPredkoscWiatruAvg;
+    public void setMaxPredkoscWiatruavg(Double maxPredkoscWiatruavg) {
+        this.maxPredkoscWiatruavg = maxPredkoscWiatruavg;
     }
 
-    private Double maxPredkoscWiatruMax;
+    private Double maxPredkoscWiatrumax;
 
     @Basic
-    @Column(name = "MaxPredkoscWiatru_max")
-    public Double getMaxPredkoscWiatruMax() {
-        return maxPredkoscWiatruMax;
+    @Column(name = "MaxPredkoscWiatrumax")
+    public Double getMaxPredkoscWiatrumax() {
+        return maxPredkoscWiatrumax;
     }
 
-    public void setMaxPredkoscWiatruMax(Double maxPredkoscWiatruMax) {
-        this.maxPredkoscWiatruMax = maxPredkoscWiatruMax;
+    public void setMaxPredkoscWiatrumax(Double maxPredkoscWiatrumax) {
+        this.maxPredkoscWiatrumax = maxPredkoscWiatrumax;
     }
 
-    private Double minKierunekWiatruMin;
+    private Double minKierunekWiatrumin;
 
     @Basic
-    @Column(name = "MinKierunekWiatru_min")
-    public Double getMinKierunekWiatruMin() {
-        return minKierunekWiatruMin;
+    @Column(name = "MinKierunekWiatrumin")
+    public Double getMinKierunekWiatrumin() {
+        return minKierunekWiatrumin;
     }
 
-    public void setMinKierunekWiatruMin(Double minKierunekWiatruMin) {
-        this.minKierunekWiatruMin = minKierunekWiatruMin;
+    public void setMinKierunekWiatrumin(Double minKierunekWiatrumin) {
+        this.minKierunekWiatrumin = minKierunekWiatrumin;
     }
 
-    private Double minKierunekWiatruAvg;
+    private Double minKierunekWiatruavg;
 
     @Basic
-    @Column(name = "MinKierunekWiatru_avg")
-    public Double getMinKierunekWiatruAvg() {
-        return minKierunekWiatruAvg;
+    @Column(name = "MinKierunekWiatruavg")
+    public Double getMinKierunekWiatruavg() {
+        return minKierunekWiatruavg;
     }
 
-    public void setMinKierunekWiatruAvg(Double minKierunekWiatruAvg) {
-        this.minKierunekWiatruAvg = minKierunekWiatruAvg;
+    public void setMinKierunekWiatruavg(Double minKierunekWiatruavg) {
+        this.minKierunekWiatruavg = minKierunekWiatruavg;
     }
 
-    private Double minKierunekWiatruMax;
+    private Double minKierunekWiatrumax;
 
     @Basic
-    @Column(name = "MinKierunekWiatru_max")
-    public Double getMinKierunekWiatruMax() {
-        return minKierunekWiatruMax;
+    @Column(name = "MinKierunekWiatrumax")
+    public Double getMinKierunekWiatrumax() {
+        return minKierunekWiatrumax;
     }
 
-    public void setMinKierunekWiatruMax(Double minKierunekWiatruMax) {
-        this.minKierunekWiatruMax = minKierunekWiatruMax;
+    public void setMinKierunekWiatrumax(Double minKierunekWiatrumax) {
+        this.minKierunekWiatrumax = minKierunekWiatrumax;
     }
 
-    private Double avgKierunekWiatruMin;
+    private Double avgKierunekWiatrumin;
 
     @Basic
-    @Column(name = "AvgKierunekWiatru_min")
-    public Double getAvgKierunekWiatruMin() {
-        return avgKierunekWiatruMin;
+    @Column(name = "AvgKierunekWiatrumin")
+    public Double getAvgKierunekWiatrumin() {
+        return avgKierunekWiatrumin;
     }
 
-    public void setAvgKierunekWiatruMin(Double avgKierunekWiatruMin) {
-        this.avgKierunekWiatruMin = avgKierunekWiatruMin;
+    public void setAvgKierunekWiatrumin(Double avgKierunekWiatrumin) {
+        this.avgKierunekWiatrumin = avgKierunekWiatrumin;
     }
 
-    private Double avgKierunekWiatruAvg;
+    private Double avgKierunekWiatruavg;
 
     @Basic
-    @Column(name = "AvgKierunekWiatru_avg")
-    public Double getAvgKierunekWiatruAvg() {
-        return avgKierunekWiatruAvg;
+    @Column(name = "AvgKierunekWiatruavg")
+    public Double getAvgKierunekWiatruavg() {
+        return avgKierunekWiatruavg;
     }
 
-    public void setAvgKierunekWiatruAvg(Double avgKierunekWiatruAvg) {
-        this.avgKierunekWiatruAvg = avgKierunekWiatruAvg;
+    public void setAvgKierunekWiatruavg(Double avgKierunekWiatruavg) {
+        this.avgKierunekWiatruavg = avgKierunekWiatruavg;
     }
 
-    private Double avgKierunekWiatruMax;
+    private Double avgKierunekWiatrumax;
 
     @Basic
-    @Column(name = "AvgKierunekWiatru_max")
-    public Double getAvgKierunekWiatruMax() {
-        return avgKierunekWiatruMax;
+    @Column(name = "AvgKierunekWiatrumax")
+    public Double getAvgKierunekWiatrumax() {
+        return avgKierunekWiatrumax;
     }
 
-    public void setAvgKierunekWiatruMax(Double avgKierunekWiatruMax) {
-        this.avgKierunekWiatruMax = avgKierunekWiatruMax;
+    public void setAvgKierunekWiatrumax(Double avgKierunekWiatrumax) {
+        this.avgKierunekWiatrumax = avgKierunekWiatrumax;
     }
 
-    private Double maxKierunekWiatruMin;
+    private Double maxKierunekWiatrumin;
 
     @Basic
-    @Column(name = "MaxKierunekWiatru_min")
-    public Double getMaxKierunekWiatruMin() {
-        return maxKierunekWiatruMin;
+    @Column(name = "MaxKierunekWiatrumin")
+    public Double getMaxKierunekWiatrumin() {
+        return maxKierunekWiatrumin;
     }
 
-    public void setMaxKierunekWiatruMin(Double maxKierunekWiatruMin) {
-        this.maxKierunekWiatruMin = maxKierunekWiatruMin;
+    public void setMaxKierunekWiatrumin(Double maxKierunekWiatrumin) {
+        this.maxKierunekWiatrumin = maxKierunekWiatrumin;
     }
 
-    private Double maxKierunekWiatruAvg;
+    private Double maxKierunekWiatruavg;
 
     @Basic
-    @Column(name = "MaxKierunekWiatru_avg")
-    public Double getMaxKierunekWiatruAvg() {
-        return maxKierunekWiatruAvg;
+    @Column(name = "MaxKierunekWiatruavg")
+    public Double getMaxKierunekWiatruavg() {
+        return maxKierunekWiatruavg;
     }
 
-    public void setMaxKierunekWiatruAvg(Double maxKierunekWiatruAvg) {
-        this.maxKierunekWiatruAvg = maxKierunekWiatruAvg;
+    public void setMaxKierunekWiatruavg(Double maxKierunekWiatruavg) {
+        this.maxKierunekWiatruavg = maxKierunekWiatruavg;
     }
 
-    private Double maxKierunekWiatruMax;
+    private Double maxKierunekWiatrumax;
 
     @Basic
-    @Column(name = "MaxKierunekWiatru_max")
-    public Double getMaxKierunekWiatruMax() {
-        return maxKierunekWiatruMax;
+    @Column(name = "MaxKierunekWiatrumax")
+    public Double getMaxKierunekWiatrumax() {
+        return maxKierunekWiatrumax;
     }
 
-    public void setMaxKierunekWiatruMax(Double maxKierunekWiatruMax) {
-        this.maxKierunekWiatruMax = maxKierunekWiatruMax;
+    public void setMaxKierunekWiatrumax(Double maxKierunekWiatrumax) {
+        this.maxKierunekWiatrumax = maxKierunekWiatrumax;
     }
 
-    private Double tempPowietrzaMin;
+    private Double tempPowietrzamin;
 
     @Basic
-    @Column(name = "TempPowietrza_min")
-    public Double getTempPowietrzaMin() {
-        return tempPowietrzaMin;
+    @Column(name = "TempPowietrzamin")
+    public Double getTempPowietrzamin() {
+        return tempPowietrzamin;
     }
 
-    public void setTempPowietrzaMin(Double tempPowietrzaMin) {
-        this.tempPowietrzaMin = tempPowietrzaMin;
+    public void setTempPowietrzamin(Double tempPowietrzamin) {
+        this.tempPowietrzamin = tempPowietrzamin;
     }
 
-    private Double tempPowietrzaAvg;
+    private Double tempPowietrzaavg;
 
     @Basic
-    @Column(name = "TempPowietrza_avg")
-    public Double getTempPowietrzaAvg() {
-        return tempPowietrzaAvg;
+    @Column(name = "TempPowietrzaavg")
+    public Double getTempPowietrzaavg() {
+        return tempPowietrzaavg;
     }
 
-    public void setTempPowietrzaAvg(Double tempPowietrzaAvg) {
-        this.tempPowietrzaAvg = tempPowietrzaAvg;
+    public void setTempPowietrzaavg(Double tempPowietrzaavg) {
+        this.tempPowietrzaavg = tempPowietrzaavg;
     }
 
-    private Double tempPowietrzaMax;
+    private Double tempPowietrzamax;
 
     @Basic
-    @Column(name = "TempPowietrza_max")
-    public Double getTempPowietrzaMax() {
-        return tempPowietrzaMax;
+    @Column(name = "TempPowietrzamax")
+    public Double getTempPowietrzamax() {
+        return tempPowietrzamax;
     }
 
-    public void setTempPowietrzaMax(Double tempPowietrzaMax) {
-        this.tempPowietrzaMax = tempPowietrzaMax;
+    public void setTempPowietrzamax(Double tempPowietrzamax) {
+        this.tempPowietrzamax = tempPowietrzamax;
     }
 
-    private Double cisnienieMin;
+    private Double cisnieniemin;
 
     @Basic
-    @Column(name = "Cisnienie_min")
-    public Double getCisnienieMin() {
-        return cisnienieMin;
+    @Column(name = "Cisnieniemin")
+    public Double getCisnieniemin() {
+        return cisnieniemin;
     }
 
-    public void setCisnienieMin(Double cisnienieMin) {
-        this.cisnienieMin = cisnienieMin;
+    public void setCisnieniemin(Double cisnieniemin) {
+        this.cisnieniemin = cisnieniemin;
     }
 
-    private Double cisnienieAvg;
+    private Double cisnienieavg;
 
     @Basic
-    @Column(name = "Cisnienie_avg")
-    public Double getCisnienieAvg() {
-        return cisnienieAvg;
+    @Column(name = "Cisnienieavg")
+    public Double getCisnienieavg() {
+        return cisnienieavg;
     }
 
-    public void setCisnienieAvg(Double cisnienieAvg) {
-        this.cisnienieAvg = cisnienieAvg;
+    public void setCisnienieavg(Double cisnienieavg) {
+        this.cisnienieavg = cisnienieavg;
     }
 
-    private Double cisnienieMax;
+    private Double cisnieniemax;
 
     @Basic
-    @Column(name = "Cisnienie_max")
-    public Double getCisnienieMax() {
-        return cisnienieMax;
+    @Column(name = "Cisnieniemax")
+    public Double getCisnieniemax() {
+        return cisnieniemax;
     }
 
-    public void setCisnienieMax(Double cisnienieMax) {
-        this.cisnienieMax = cisnienieMax;
+    public void setCisnieniemax(Double cisnieniemax) {
+        this.cisnieniemax = cisnieniemax;
     }
 
-    private Double tempStacjiMin;
+    private Double tempStacjimin;
 
     @Basic
-    @Column(name = "TempStacji_min")
-    public Double getTempStacjiMin() {
-        return tempStacjiMin;
+    @Column(name = "TempStacjimin")
+    public Double getTempStacjimin() {
+        return tempStacjimin;
     }
 
-    public void setTempStacjiMin(Double tempStacjiMin) {
-        this.tempStacjiMin = tempStacjiMin;
+    public void setTempStacjimin(Double tempStacjimin) {
+        this.tempStacjimin = tempStacjimin;
     }
 
-    private Double tempStacjiAvg;
+    private Double tempStacjiavg;
 
     @Basic
-    @Column(name = "TempStacji_avg")
-    public Double getTempStacjiAvg() {
-        return tempStacjiAvg;
+    @Column(name = "TempStacjiavg")
+    public Double getTempStacjiavg() {
+        return tempStacjiavg;
     }
 
-    public void setTempStacjiAvg(Double tempStacjiAvg) {
-        this.tempStacjiAvg = tempStacjiAvg;
+    public void setTempStacjiavg(Double tempStacjiavg) {
+        this.tempStacjiavg = tempStacjiavg;
     }
 
-    private Double tempStacjiMax;
+    private Double tempStacjimax;
 
     @Basic
-    @Column(name = "TempStacji_max")
-    public Double getTempStacjiMax() {
-        return tempStacjiMax;
+    @Column(name = "TempStacjimax")
+    public Double getTempStacjimax() {
+        return tempStacjimax;
     }
 
-    public void setTempStacjiMax(Double tempStacjiMax) {
-        this.tempStacjiMax = tempStacjiMax;
+    public void setTempStacjimax(Double tempStacjimax) {
+        this.tempStacjimax = tempStacjimax;
     }
 
-    private Double wilgotnoscMin;
+    private Double wilgotnoscmin;
 
     @Basic
-    @Column(name = "Wilgotnosc_min")
-    public Double getWilgotnoscMin() {
-        return wilgotnoscMin;
+    @Column(name = "Wilgotnoscmin")
+    public Double getWilgotnoscmin() {
+        return wilgotnoscmin;
     }
 
-    public void setWilgotnoscMin(Double wilgotnoscMin) {
-        this.wilgotnoscMin = wilgotnoscMin;
+    public void setWilgotnoscmin(Double wilgotnoscmin) {
+        this.wilgotnoscmin = wilgotnoscmin;
     }
 
-    private Double wilgotnoscAvg;
+    private Double wilgotnoscavg;
 
     @Basic
-    @Column(name = "Wilgotnosc_avg")
-    public Double getWilgotnoscAvg() {
-        return wilgotnoscAvg;
+    @Column(name = "Wilgotnoscavg")
+    public Double getWilgotnoscavg() {
+        return wilgotnoscavg;
     }
 
-    public void setWilgotnoscAvg(Double wilgotnoscAvg) {
-        this.wilgotnoscAvg = wilgotnoscAvg;
+    public void setWilgotnoscavg(Double wilgotnoscavg) {
+        this.wilgotnoscavg = wilgotnoscavg;
     }
 
-    private Double wilgotnoscMax;
+    private Double wilgotnoscmax;
 
     @Basic
-    @Column(name = "Wilgotnosc_max")
-    public Double getWilgotnoscMax() {
-        return wilgotnoscMax;
+    @Column(name = "Wilgotnoscmax")
+    public Double getWilgotnoscmax() {
+        return wilgotnoscmax;
     }
 
-    public void setWilgotnoscMax(Double wilgotnoscMax) {
-        this.wilgotnoscMax = wilgotnoscMax;
+    public void setWilgotnoscmax(Double wilgotnoscmax) {
+        this.wilgotnoscmax = wilgotnoscmax;
     }
 
-    private Double opadMin;
+    private Double opadmin;
 
     @Basic
-    @Column(name = "Opad_min")
-    public Double getOpadMin() {
-        return opadMin;
+    @Column(name = "Opadmin")
+    public Double getOpadmin() {
+        return opadmin;
     }
 
-    public void setOpadMin(Double opadMin) {
-        this.opadMin = opadMin;
+    public void setOpadmin(Double opadmin) {
+        this.opadmin = opadmin;
     }
 
-    private Double opadAvg;
+    private Double opadavg;
 
     @Basic
-    @Column(name = "Opad_avg")
-    public Double getOpadAvg() {
-        return opadAvg;
+    @Column(name = "Opadavg")
+    public Double getOpadavg() {
+        return opadavg;
     }
 
-    public void setOpadAvg(Double opadAvg) {
-        this.opadAvg = opadAvg;
+    public void setOpadavg(Double opadavg) {
+        this.opadavg = opadavg;
     }
 
-    private Double opadMax;
+    private Double opadmax;
 
     @Basic
-    @Column(name = "Opad_max")
-    public Double getOpadMax() {
-        return opadMax;
+    @Column(name = "Opadmax")
+    public Double getOpadmax() {
+        return opadmax;
     }
 
-    public void setOpadMax(Double opadMax) {
-        this.opadMax = opadMax;
+    public void setOpadmax(Double opadmax) {
+        this.opadmax = opadmax;
     }
 
-    private Double opadCzasMin;
+    private Double opadCzasmin;
 
     @Basic
-    @Column(name = "OpadCzas_min")
-    public Double getOpadCzasMin() {
-        return opadCzasMin;
+    @Column(name = "OpadCzasmin")
+    public Double getOpadCzasmin() {
+        return opadCzasmin;
     }
 
-    public void setOpadCzasMin(Double opadCzasMin) {
-        this.opadCzasMin = opadCzasMin;
+    public void setOpadCzasmin(Double opadCzasmin) {
+        this.opadCzasmin = opadCzasmin;
     }
 
-    private Double opadCzasAvg;
+    private Double opadCzasavg;
 
     @Basic
-    @Column(name = "OpadCzas_avg")
-    public Double getOpadCzasAvg() {
-        return opadCzasAvg;
+    @Column(name = "OpadCzasavg")
+    public Double getOpadCzasavg() {
+        return opadCzasavg;
     }
 
-    public void setOpadCzasAvg(Double opadCzasAvg) {
-        this.opadCzasAvg = opadCzasAvg;
+    public void setOpadCzasavg(Double opadCzasavg) {
+        this.opadCzasavg = opadCzasavg;
     }
 
-    private Double opadCzasMax;
+    private Double opadCzasmax;
 
     @Basic
-    @Column(name = "OpadCzas_max")
-    public Double getOpadCzasMax() {
-        return opadCzasMax;
+    @Column(name = "OpadCzasmax")
+    public Double getOpadCzasmax() {
+        return opadCzasmax;
     }
 
-    public void setOpadCzasMax(Double opadCzasMax) {
-        this.opadCzasMax = opadCzasMax;
+    public void setOpadCzasmax(Double opadCzasmax) {
+        this.opadCzasmax = opadCzasmax;
     }
 
-    private Double opadIntenMin;
+    private Double opadIntenmin;
 
     @Basic
-    @Column(name = "OpadInten_min")
-    public Double getOpadIntenMin() {
-        return opadIntenMin;
+    @Column(name = "OpadIntenmin")
+    public Double getOpadIntenmin() {
+        return opadIntenmin;
     }
 
-    public void setOpadIntenMin(Double opadIntenMin) {
-        this.opadIntenMin = opadIntenMin;
+    public void setOpadIntenmin(Double opadIntenmin) {
+        this.opadIntenmin = opadIntenmin;
     }
 
-    private Double opadIntenAvg;
+    private Double opadIntenavg;
 
     @Basic
-    @Column(name = "OpadInten_avg")
-    public Double getOpadIntenAvg() {
-        return opadIntenAvg;
+    @Column(name = "OpadIntenavg")
+    public Double getOpadIntenavg() {
+        return opadIntenavg;
     }
 
-    public void setOpadIntenAvg(Double opadIntenAvg) {
-        this.opadIntenAvg = opadIntenAvg;
+    public void setOpadIntenavg(Double opadIntenavg) {
+        this.opadIntenavg = opadIntenavg;
     }
 
-    private Double opadIntenMax;
+    private Double opadIntenmax;
 
     @Basic
-    @Column(name = "OpadInten_max")
-    public Double getOpadIntenMax() {
-        return opadIntenMax;
+    @Column(name = "OpadIntenmax")
+    public Double getOpadIntenmax() {
+        return opadIntenmax;
     }
 
-    public void setOpadIntenMax(Double opadIntenMax) {
-        this.opadIntenMax = opadIntenMax;
+    public void setOpadIntenmax(Double opadIntenmax) {
+        this.opadIntenmax = opadIntenmax;
     }
 
-    private Double maxOpadIntenMin;
+    private Double maxOpadIntenmin;
 
     @Basic
-    @Column(name = "MaxOpadInten_min")
-    public Double getMaxOpadIntenMin() {
-        return maxOpadIntenMin;
+    @Column(name = "MaxOpadIntenmin")
+    public Double getMaxOpadIntenmin() {
+        return maxOpadIntenmin;
     }
 
-    public void setMaxOpadIntenMin(Double maxOpadIntenMin) {
-        this.maxOpadIntenMin = maxOpadIntenMin;
+    public void setMaxOpadIntenmin(Double maxOpadIntenmin) {
+        this.maxOpadIntenmin = maxOpadIntenmin;
     }
 
-    private Double maxOpadIntenAvg;
+    private Double maxOpadIntenavg;
 
     @Basic
-    @Column(name = "MaxOpadInten_avg")
-    public Double getMaxOpadIntenAvg() {
-        return maxOpadIntenAvg;
+    @Column(name = "MaxOpadIntenavg")
+    public Double getMaxOpadIntenavg() {
+        return maxOpadIntenavg;
     }
 
-    public void setMaxOpadIntenAvg(Double maxOpadIntenAvg) {
-        this.maxOpadIntenAvg = maxOpadIntenAvg;
+    public void setMaxOpadIntenavg(Double maxOpadIntenavg) {
+        this.maxOpadIntenavg = maxOpadIntenavg;
     }
 
-    private Double maxOpadIntenMax;
+    private Double maxOpadIntenmax;
 
     @Basic
-    @Column(name = "MaxOpadInten_max")
-    public Double getMaxOpadIntenMax() {
-        return maxOpadIntenMax;
+    @Column(name = "MaxOpadIntenmax")
+    public Double getMaxOpadIntenmax() {
+        return maxOpadIntenmax;
     }
 
-    public void setMaxOpadIntenMax(Double maxOpadIntenMax) {
-        this.maxOpadIntenMax = maxOpadIntenMax;
+    public void setMaxOpadIntenmax(Double maxOpadIntenmax) {
+        this.maxOpadIntenmax = maxOpadIntenmax;
     }
 
-    private Double gradMin;
+    private Double gradmin;
 
     @Basic
-    @Column(name = "Grad_min")
-    public Double getGradMin() {
-        return gradMin;
+    @Column(name = "Gradmin")
+    public Double getGradmin() {
+        return gradmin;
     }
 
-    public void setGradMin(Double gradMin) {
-        this.gradMin = gradMin;
+    public void setGradmin(Double gradmin) {
+        this.gradmin = gradmin;
     }
 
-    private Double gradAvg;
+    private Double gradavg;
 
     @Basic
-    @Column(name = "Grad_avg")
-    public Double getGradAvg() {
-        return gradAvg;
+    @Column(name = "Gradavg")
+    public Double getGradavg() {
+        return gradavg;
     }
 
-    public void setGradAvg(Double gradAvg) {
-        this.gradAvg = gradAvg;
+    public void setGradavg(Double gradavg) {
+        this.gradavg = gradavg;
     }
 
-    private Double gradMax;
+    private Double gradmax;
 
     @Basic
-    @Column(name = "Grad_max")
-    public Double getGradMax() {
-        return gradMax;
+    @Column(name = "Gradmax")
+    public Double getGradmax() {
+        return gradmax;
     }
 
-    public void setGradMax(Double gradMax) {
-        this.gradMax = gradMax;
+    public void setGradmax(Double gradmax) {
+        this.gradmax = gradmax;
     }
 
-    private Double gradCzasMin;
+    private Double gradCzasmin;
 
     @Basic
-    @Column(name = "GradCzas_min")
-    public Double getGradCzasMin() {
-        return gradCzasMin;
+    @Column(name = "GradCzasmin")
+    public Double getGradCzasmin() {
+        return gradCzasmin;
     }
 
-    public void setGradCzasMin(Double gradCzasMin) {
-        this.gradCzasMin = gradCzasMin;
+    public void setGradCzasmin(Double gradCzasmin) {
+        this.gradCzasmin = gradCzasmin;
     }
 
-    private Double gradCzasAvg;
+    private Double gradCzasavg;
 
     @Basic
-    @Column(name = "GradCzas_avg")
-    public Double getGradCzasAvg() {
-        return gradCzasAvg;
+    @Column(name = "GradCzasavg")
+    public Double getGradCzasavg() {
+        return gradCzasavg;
     }
 
-    public void setGradCzasAvg(Double gradCzasAvg) {
-        this.gradCzasAvg = gradCzasAvg;
+    public void setGradCzasavg(Double gradCzasavg) {
+        this.gradCzasavg = gradCzasavg;
     }
 
-    private Double gradCzasMax;
+    private Double gradCzasmax;
 
     @Basic
-    @Column(name = "GradCzas_max")
-    public Double getGradCzasMax() {
-        return gradCzasMax;
+    @Column(name = "GradCzasmax")
+    public Double getGradCzasmax() {
+        return gradCzasmax;
     }
 
-    public void setGradCzasMax(Double gradCzasMax) {
-        this.gradCzasMax = gradCzasMax;
+    public void setGradCzasmax(Double gradCzasmax) {
+        this.gradCzasmax = gradCzasmax;
     }
 
-    private Double gradIntenMin;
+    private Double gradIntenmin;
 
     @Basic
-    @Column(name = "GradInten_min")
-    public Double getGradIntenMin() {
-        return gradIntenMin;
+    @Column(name = "GradIntenmin")
+    public Double getGradIntenmin() {
+        return gradIntenmin;
     }
 
-    public void setGradIntenMin(Double gradIntenMin) {
-        this.gradIntenMin = gradIntenMin;
+    public void setGradIntenmin(Double gradIntenmin) {
+        this.gradIntenmin = gradIntenmin;
     }
 
-    private Double gradIntenAvg;
+    private Double gradIntenavg;
 
     @Basic
-    @Column(name = "GradInten_avg")
-    public Double getGradIntenAvg() {
-        return gradIntenAvg;
+    @Column(name = "GradIntenavg")
+    public Double getGradIntenavg() {
+        return gradIntenavg;
     }
 
-    public void setGradIntenAvg(Double gradIntenAvg) {
-        this.gradIntenAvg = gradIntenAvg;
+    public void setGradIntenavg(Double gradIntenavg) {
+        this.gradIntenavg = gradIntenavg;
     }
 
-    private Double gradIntenMax;
+    private Double gradIntenmax;
 
     @Basic
-    @Column(name = "GradInten_max")
-    public Double getGradIntenMax() {
-        return gradIntenMax;
+    @Column(name = "GradIntenmax")
+    public Double getGradIntenmax() {
+        return gradIntenmax;
     }
 
-    public void setGradIntenMax(Double gradIntenMax) {
-        this.gradIntenMax = gradIntenMax;
+    public void setGradIntenmax(Double gradIntenmax) {
+        this.gradIntenmax = gradIntenmax;
     }
 
-    private Double maxGradIntenMin;
+    private Double maxGradIntenmin;
 
     @Basic
-    @Column(name = "MaxGradInten_min")
-    public Double getMaxGradIntenMin() {
-        return maxGradIntenMin;
+    @Column(name = "MaxGradIntenmin")
+    public Double getMaxGradIntenmin() {
+        return maxGradIntenmin;
     }
 
-    public void setMaxGradIntenMin(Double maxGradIntenMin) {
-        this.maxGradIntenMin = maxGradIntenMin;
+    public void setMaxGradIntenmin(Double maxGradIntenmin) {
+        this.maxGradIntenmin = maxGradIntenmin;
     }
 
-    private Double maxGradIntenAvg;
+    private Double maxGradIntenavg;
 
     @Basic
-    @Column(name = "MaxGradInten_avg")
-    public Double getMaxGradIntenAvg() {
-        return maxGradIntenAvg;
+    @Column(name = "MaxGradIntenavg")
+    public Double getMaxGradIntenavg() {
+        return maxGradIntenavg;
     }
 
-    public void setMaxGradIntenAvg(Double maxGradIntenAvg) {
-        this.maxGradIntenAvg = maxGradIntenAvg;
+    public void setMaxGradIntenavg(Double maxGradIntenavg) {
+        this.maxGradIntenavg = maxGradIntenavg;
     }
 
-    private Double maxGradIntenMax;
+    private Double maxGradIntenmax;
 
     @Basic
-    @Column(name = "MaxGradInten_max")
-    public Double getMaxGradIntenMax() {
-        return maxGradIntenMax;
+    @Column(name = "MaxGradIntenmax")
+    public Double getMaxGradIntenmax() {
+        return maxGradIntenmax;
     }
 
-    public void setMaxGradIntenMax(Double maxGradIntenMax) {
-        this.maxGradIntenMax = maxGradIntenMax;
+    public void setMaxGradIntenmax(Double maxGradIntenmax) {
+        this.maxGradIntenmax = maxGradIntenmax;
     }
 
-    private Double heatingTempMin;
+    private Double heatingTempmin;
 
     @Basic
-    @Column(name = "HeatingTemp_min")
-    public Double getHeatingTempMin() {
-        return heatingTempMin;
+    @Column(name = "HeatingTempmin")
+    public Double getHeatingTempmin() {
+        return heatingTempmin;
     }
 
-    public void setHeatingTempMin(Double heatingTempMin) {
-        this.heatingTempMin = heatingTempMin;
+    public void setHeatingTempmin(Double heatingTempmin) {
+        this.heatingTempmin = heatingTempmin;
     }
 
-    private Double heatingTempAvg;
+    private Double heatingTempavg;
 
     @Basic
-    @Column(name = "HeatingTemp_avg")
-    public Double getHeatingTempAvg() {
-        return heatingTempAvg;
+    @Column(name = "HeatingTempavg")
+    public Double getHeatingTempavg() {
+        return heatingTempavg;
     }
 
-    public void setHeatingTempAvg(Double heatingTempAvg) {
-        this.heatingTempAvg = heatingTempAvg;
+    public void setHeatingTempavg(Double heatingTempavg) {
+        this.heatingTempavg = heatingTempavg;
     }
 
-    private Double heatingTempMax;
+    private Double heatingTempmax;
 
     @Basic
-    @Column(name = "HeatingTemp_max")
-    public Double getHeatingTempMax() {
-        return heatingTempMax;
+    @Column(name = "HeatingTempmax")
+    public Double getHeatingTempmax() {
+        return heatingTempmax;
     }
 
-    public void setHeatingTempMax(Double heatingTempMax) {
-        this.heatingTempMax = heatingTempMax;
+    public void setHeatingTempmax(Double heatingTempmax) {
+        this.heatingTempmax = heatingTempmax;
     }
 
-    private Double heatingVoltMin;
+    private Double heatingVoltmin;
 
     @Basic
-    @Column(name = "HeatingVolt_min")
-    public Double getHeatingVoltMin() {
-        return heatingVoltMin;
+    @Column(name = "HeatingVoltmin")
+    public Double getHeatingVoltmin() {
+        return heatingVoltmin;
     }
 
-    public void setHeatingVoltMin(Double heatingVoltMin) {
-        this.heatingVoltMin = heatingVoltMin;
+    public void setHeatingVoltmin(Double heatingVoltmin) {
+        this.heatingVoltmin = heatingVoltmin;
     }
 
-    private Double heatingVoltAvg;
+    private Double heatingVoltavg;
 
     @Basic
-    @Column(name = "HeatingVolt_avg")
-    public Double getHeatingVoltAvg() {
-        return heatingVoltAvg;
+    @Column(name = "HeatingVoltavg")
+    public Double getHeatingVoltavg() {
+        return heatingVoltavg;
     }
 
-    public void setHeatingVoltAvg(Double heatingVoltAvg) {
-        this.heatingVoltAvg = heatingVoltAvg;
+    public void setHeatingVoltavg(Double heatingVoltavg) {
+        this.heatingVoltavg = heatingVoltavg;
     }
 
-    private Double heatingVoltMax;
+    private Double heatingVoltmax;
 
     @Basic
-    @Column(name = "HeatingVolt_max")
-    public Double getHeatingVoltMax() {
-        return heatingVoltMax;
+    @Column(name = "HeatingVoltmax")
+    public Double getHeatingVoltmax() {
+        return heatingVoltmax;
     }
 
-    public void setHeatingVoltMax(Double heatingVoltMax) {
-        this.heatingVoltMax = heatingVoltMax;
+    public void setHeatingVoltmax(Double heatingVoltmax) {
+        this.heatingVoltmax = heatingVoltmax;
     }
 
-    private Double supplyVoltMin;
+    private Double supplyVoltmin;
 
     @Basic
-    @Column(name = "SupplyVolt_min")
-    public Double getSupplyVoltMin() {
-        return supplyVoltMin;
+    @Column(name = "SupplyVoltmin")
+    public Double getSupplyVoltmin() {
+        return supplyVoltmin;
     }
 
-    public void setSupplyVoltMin(Double supplyVoltMin) {
-        this.supplyVoltMin = supplyVoltMin;
+    public void setSupplyVoltmin(Double supplyVoltmin) {
+        this.supplyVoltmin = supplyVoltmin;
     }
 
-    private Double supplyVoltAvg;
+    private Double supplyVoltavg;
 
     @Basic
-    @Column(name = "SupplyVolt_avg")
-    public Double getSupplyVoltAvg() {
-        return supplyVoltAvg;
+    @Column(name = "SupplyVoltavg")
+    public Double getSupplyVoltavg() {
+        return supplyVoltavg;
     }
 
-    public void setSupplyVoltAvg(Double supplyVoltAvg) {
-        this.supplyVoltAvg = supplyVoltAvg;
+    public void setSupplyVoltavg(Double supplyVoltavg) {
+        this.supplyVoltavg = supplyVoltavg;
     }
 
-    private Double supplyVoltMax;
+    private Double supplyVoltmax;
 
     @Basic
-    @Column(name = "SupplyVolt_max")
-    public Double getSupplyVoltMax() {
-        return supplyVoltMax;
+    @Column(name = "SupplyVoltmax")
+    public Double getSupplyVoltmax() {
+        return supplyVoltmax;
     }
 
-    public void setSupplyVoltMax(Double supplyVoltMax) {
-        this.supplyVoltMax = supplyVoltMax;
+    public void setSupplyVoltmax(Double supplyVoltmax) {
+        this.supplyVoltmax = supplyVoltmax;
     }
 
-    private Double refVoltMin;
+    private Double refVoltmin;
 
     @Basic
-    @Column(name = "RefVolt_min")
-    public Double getRefVoltMin() {
-        return refVoltMin;
+    @Column(name = "RefVoltmin")
+    public Double getRefVoltmin() {
+        return refVoltmin;
     }
 
-    public void setRefVoltMin(Double refVoltMin) {
-        this.refVoltMin = refVoltMin;
+    public void setRefVoltmin(Double refVoltmin) {
+        this.refVoltmin = refVoltmin;
     }
 
-    private Double refVoltAvg;
+    private Double refVoltavg;
 
     @Basic
-    @Column(name = "RefVolt_avg")
-    public Double getRefVoltAvg() {
-        return refVoltAvg;
+    @Column(name = "RefVoltavg")
+    public Double getRefVoltavg() {
+        return refVoltavg;
     }
 
-    public void setRefVoltAvg(Double refVoltAvg) {
-        this.refVoltAvg = refVoltAvg;
+    public void setRefVoltavg(Double refVoltavg) {
+        this.refVoltavg = refVoltavg;
     }
 
-    private Double refVoltMax;
+    private Double refVoltmax;
 
     @Basic
-    @Column(name = "RefVolt_max")
-    public Double getRefVoltMax() {
-        return refVoltMax;
+    @Column(name = "RefVoltmax")
+    public Double getRefVoltmax() {
+        return refVoltmax;
     }
 
-    public void setRefVoltMax(Double refVoltMax) {
-        this.refVoltMax = refVoltMax;
+    public void setRefVoltmax(Double refVoltmax) {
+        this.refVoltmax = refVoltmax;
     }
 
-    private Double tempPktRosyMin;
+    private Double tempPktRosymin;
 
     @Basic
-    @Column(name = "TempPktRosy_min")
-    public Double getTempPktRosyMin() {
-        return tempPktRosyMin;
+    @Column(name = "TempPktRosymin")
+    public Double getTempPktRosymin() {
+        return tempPktRosymin;
     }
 
-    public void setTempPktRosyMin(Double tempPktRosyMin) {
-        this.tempPktRosyMin = tempPktRosyMin;
+    public void setTempPktRosymin(Double tempPktRosymin) {
+        this.tempPktRosymin = tempPktRosymin;
     }
 
-    private Double tempPktRosyAvg;
+    private Double tempPktRosyavg;
 
     @Basic
-    @Column(name = "TempPktRosy_avg")
-    public Double getTempPktRosyAvg() {
-        return tempPktRosyAvg;
+    @Column(name = "TempPktRosyavg")
+    public Double getTempPktRosyavg() {
+        return tempPktRosyavg;
     }
 
-    public void setTempPktRosyAvg(Double tempPktRosyAvg) {
-        this.tempPktRosyAvg = tempPktRosyAvg;
+    public void setTempPktRosyavg(Double tempPktRosyavg) {
+        this.tempPktRosyavg = tempPktRosyavg;
     }
 
-    private Double tempPktRosyMax;
+    private Double tempPktRosymax;
 
     @Basic
-    @Column(name = "TempPktRosy_max")
-    public Double getTempPktRosyMax() {
-        return tempPktRosyMax;
+    @Column(name = "TempPktRosymax")
+    public Double getTempPktRosymax() {
+        return tempPktRosymax;
     }
 
-    public void setTempPktRosyMax(Double tempPktRosyMax) {
-        this.tempPktRosyMax = tempPktRosyMax;
+    public void setTempPktRosymax(Double tempPktRosymax) {
+        this.tempPktRosymax = tempPktRosymax;
     }
 
-    private Double cisBaromMin;
+    private Double cisBarommin;
 
     @Basic
-    @Column(name = "CisBarom_min")
-    public Double getCisBaromMin() {
-        return cisBaromMin;
+    @Column(name = "CisBarommin")
+    public Double getCisBarommin() {
+        return cisBarommin;
     }
 
-    public void setCisBaromMin(Double cisBaromMin) {
-        this.cisBaromMin = cisBaromMin;
+    public void setCisBarommin(Double cisBarommin) {
+        this.cisBarommin = cisBarommin;
     }
 
-    private Double cisBaromAvg;
+    private Double cisBaromavg;
 
     @Basic
-    @Column(name = "CisBarom_avg")
-    public Double getCisBaromAvg() {
-        return cisBaromAvg;
+    @Column(name = "CisBaromavg")
+    public Double getCisBaromavg() {
+        return cisBaromavg;
     }
 
-    public void setCisBaromAvg(Double cisBaromAvg) {
-        this.cisBaromAvg = cisBaromAvg;
+    public void setCisBaromavg(Double cisBaromavg) {
+        this.cisBaromavg = cisBaromavg;
     }
 
-    private Double cisBaromMax;
+    private Double cisBarommax;
 
     @Basic
-    @Column(name = "CisBarom_max")
-    public Double getCisBaromMax() {
-        return cisBaromMax;
+    @Column(name = "CisBarommax")
+    public Double getCisBarommax() {
+        return cisBarommax;
     }
 
-    public void setCisBaromMax(Double cisBaromMax) {
-        this.cisBaromMax = cisBaromMax;
+    public void setCisBarommax(Double cisBarommax) {
+        this.cisBarommax = cisBarommax;
     }
 
-    private Double windchillTempMin;
+    private Double windchillTempmin;
 
     @Basic
-    @Column(name = "WindchillTemp_min")
-    public Double getWindchillTempMin() {
-        return windchillTempMin;
+    @Column(name = "WindchillTempmin")
+    public Double getWindchillTempmin() {
+        return windchillTempmin;
     }
 
-    public void setWindchillTempMin(Double windchillTempMin) {
-        this.windchillTempMin = windchillTempMin;
+    public void setWindchillTempmin(Double windchillTempmin) {
+        this.windchillTempmin = windchillTempmin;
     }
 
-    private Double windchillTempAvg;
+    private Double windchillTempavg;
 
     @Basic
-    @Column(name = "WindchillTemp_avg")
-    public Double getWindchillTempAvg() {
-        return windchillTempAvg;
+    @Column(name = "WindchillTempavg")
+    public Double getWindchillTempavg() {
+        return windchillTempavg;
     }
 
-    public void setWindchillTempAvg(Double windchillTempAvg) {
-        this.windchillTempAvg = windchillTempAvg;
+    public void setWindchillTempavg(Double windchillTempavg) {
+        this.windchillTempavg = windchillTempavg;
     }
 
-    private Double windchillTempMax;
+    private Double windchillTempmax;
 
     @Basic
-    @Column(name = "WindchillTemp_max")
-    public Double getWindchillTempMax() {
-        return windchillTempMax;
+    @Column(name = "WindchillTempmax")
+    public Double getWindchillTempmax() {
+        return windchillTempmax;
     }
 
-    public void setWindchillTempMax(Double windchillTempMax) {
-        this.windchillTempMax = windchillTempMax;
+    public void setWindchillTempmax(Double windchillTempmax) {
+        this.windchillTempmax = windchillTempmax;
     }
 
-    private Double heatindexTempMin;
+    private Double heatindexTempmin;
 
     @Basic
-    @Column(name = "HeatindexTemp_min")
-    public Double getHeatindexTempMin() {
-        return heatindexTempMin;
+    @Column(name = "HeatindexTempmin")
+    public Double getHeatindexTempmin() {
+        return heatindexTempmin;
     }
 
-    public void setHeatindexTempMin(Double heatindexTempMin) {
-        this.heatindexTempMin = heatindexTempMin;
+    public void setHeatindexTempmin(Double heatindexTempmin) {
+        this.heatindexTempmin = heatindexTempmin;
     }
 
-    private Double heatindexTempAvg;
+    private Double heatindexTempavg;
 
     @Basic
-    @Column(name = "HeatindexTemp_avg")
-    public Double getHeatindexTempAvg() {
-        return heatindexTempAvg;
+    @Column(name = "HeatindexTempavg")
+    public Double getHeatindexTempavg() {
+        return heatindexTempavg;
     }
 
-    public void setHeatindexTempAvg(Double heatindexTempAvg) {
-        this.heatindexTempAvg = heatindexTempAvg;
+    public void setHeatindexTempavg(Double heatindexTempavg) {
+        this.heatindexTempavg = heatindexTempavg;
     }
 
-    private Double heatindexTempMax;
+    private Double heatindexTempmax;
 
     @Basic
-    @Column(name = "HeatindexTemp_max")
-    public Double getHeatindexTempMax() {
-        return heatindexTempMax;
+    @Column(name = "HeatindexTempmax")
+    public Double getHeatindexTempmax() {
+        return heatindexTempmax;
     }
 
-    public void setHeatindexTempMax(Double heatindexTempMax) {
-        this.heatindexTempMax = heatindexTempMax;
+    public void setHeatindexTempmax(Double heatindexTempmax) {
+        this.heatindexTempmax = heatindexTempmax;
     }
 
     @Override
@@ -980,134 +980,134 @@ public class PogodaEntity {
 
         if (data != null ? !data.equals(that.data) : that.data != null) return false;
         if (godzina != null ? !godzina.equals(that.godzina) : that.godzina != null) return false;
-        if (minPredkoscWiatruMin != null ? !minPredkoscWiatruMin.equals(that.minPredkoscWiatruMin) : that.minPredkoscWiatruMin != null)
+        if (minPredkoscWiatrumin != null ? !minPredkoscWiatrumin.equals(that.minPredkoscWiatrumin) : that.minPredkoscWiatrumin != null)
             return false;
-        if (minPredkoscWiatruAvg != null ? !minPredkoscWiatruAvg.equals(that.minPredkoscWiatruAvg) : that.minPredkoscWiatruAvg != null)
+        if (minPredkoscWiatruavg != null ? !minPredkoscWiatruavg.equals(that.minPredkoscWiatruavg) : that.minPredkoscWiatruavg != null)
             return false;
-        if (minPredkoscWiatruMax != null ? !minPredkoscWiatruMax.equals(that.minPredkoscWiatruMax) : that.minPredkoscWiatruMax != null)
+        if (minPredkoscWiatrumax != null ? !minPredkoscWiatrumax.equals(that.minPredkoscWiatrumax) : that.minPredkoscWiatrumax != null)
             return false;
-        if (avgPredkoscWiatruMin != null ? !avgPredkoscWiatruMin.equals(that.avgPredkoscWiatruMin) : that.avgPredkoscWiatruMin != null)
+        if (avgPredkoscWiatrumin != null ? !avgPredkoscWiatrumin.equals(that.avgPredkoscWiatrumin) : that.avgPredkoscWiatrumin != null)
             return false;
-        if (avgPredkoscWiatruAvg != null ? !avgPredkoscWiatruAvg.equals(that.avgPredkoscWiatruAvg) : that.avgPredkoscWiatruAvg != null)
+        if (avgPredkoscWiatruavg != null ? !avgPredkoscWiatruavg.equals(that.avgPredkoscWiatruavg) : that.avgPredkoscWiatruavg != null)
             return false;
-        if (avgPredkoscWiatruMax != null ? !avgPredkoscWiatruMax.equals(that.avgPredkoscWiatruMax) : that.avgPredkoscWiatruMax != null)
+        if (avgPredkoscWiatrumax != null ? !avgPredkoscWiatrumax.equals(that.avgPredkoscWiatrumax) : that.avgPredkoscWiatrumax != null)
             return false;
-        if (maxPredkoscWiatruMin != null ? !maxPredkoscWiatruMin.equals(that.maxPredkoscWiatruMin) : that.maxPredkoscWiatruMin != null)
+        if (maxPredkoscWiatrumin != null ? !maxPredkoscWiatrumin.equals(that.maxPredkoscWiatrumin) : that.maxPredkoscWiatrumin != null)
             return false;
-        if (maxPredkoscWiatruAvg != null ? !maxPredkoscWiatruAvg.equals(that.maxPredkoscWiatruAvg) : that.maxPredkoscWiatruAvg != null)
+        if (maxPredkoscWiatruavg != null ? !maxPredkoscWiatruavg.equals(that.maxPredkoscWiatruavg) : that.maxPredkoscWiatruavg != null)
             return false;
-        if (maxPredkoscWiatruMax != null ? !maxPredkoscWiatruMax.equals(that.maxPredkoscWiatruMax) : that.maxPredkoscWiatruMax != null)
+        if (maxPredkoscWiatrumax != null ? !maxPredkoscWiatrumax.equals(that.maxPredkoscWiatrumax) : that.maxPredkoscWiatrumax != null)
             return false;
-        if (minKierunekWiatruMin != null ? !minKierunekWiatruMin.equals(that.minKierunekWiatruMin) : that.minKierunekWiatruMin != null)
+        if (minKierunekWiatrumin != null ? !minKierunekWiatrumin.equals(that.minKierunekWiatrumin) : that.minKierunekWiatrumin != null)
             return false;
-        if (minKierunekWiatruAvg != null ? !minKierunekWiatruAvg.equals(that.minKierunekWiatruAvg) : that.minKierunekWiatruAvg != null)
+        if (minKierunekWiatruavg != null ? !minKierunekWiatruavg.equals(that.minKierunekWiatruavg) : that.minKierunekWiatruavg != null)
             return false;
-        if (minKierunekWiatruMax != null ? !minKierunekWiatruMax.equals(that.minKierunekWiatruMax) : that.minKierunekWiatruMax != null)
+        if (minKierunekWiatrumax != null ? !minKierunekWiatrumax.equals(that.minKierunekWiatrumax) : that.minKierunekWiatrumax != null)
             return false;
-        if (avgKierunekWiatruMin != null ? !avgKierunekWiatruMin.equals(that.avgKierunekWiatruMin) : that.avgKierunekWiatruMin != null)
+        if (avgKierunekWiatrumin != null ? !avgKierunekWiatrumin.equals(that.avgKierunekWiatrumin) : that.avgKierunekWiatrumin != null)
             return false;
-        if (avgKierunekWiatruAvg != null ? !avgKierunekWiatruAvg.equals(that.avgKierunekWiatruAvg) : that.avgKierunekWiatruAvg != null)
+        if (avgKierunekWiatruavg != null ? !avgKierunekWiatruavg.equals(that.avgKierunekWiatruavg) : that.avgKierunekWiatruavg != null)
             return false;
-        if (avgKierunekWiatruMax != null ? !avgKierunekWiatruMax.equals(that.avgKierunekWiatruMax) : that.avgKierunekWiatruMax != null)
+        if (avgKierunekWiatrumax != null ? !avgKierunekWiatrumax.equals(that.avgKierunekWiatrumax) : that.avgKierunekWiatrumax != null)
             return false;
-        if (maxKierunekWiatruMin != null ? !maxKierunekWiatruMin.equals(that.maxKierunekWiatruMin) : that.maxKierunekWiatruMin != null)
+        if (maxKierunekWiatrumin != null ? !maxKierunekWiatrumin.equals(that.maxKierunekWiatrumin) : that.maxKierunekWiatrumin != null)
             return false;
-        if (maxKierunekWiatruAvg != null ? !maxKierunekWiatruAvg.equals(that.maxKierunekWiatruAvg) : that.maxKierunekWiatruAvg != null)
+        if (maxKierunekWiatruavg != null ? !maxKierunekWiatruavg.equals(that.maxKierunekWiatruavg) : that.maxKierunekWiatruavg != null)
             return false;
-        if (maxKierunekWiatruMax != null ? !maxKierunekWiatruMax.equals(that.maxKierunekWiatruMax) : that.maxKierunekWiatruMax != null)
+        if (maxKierunekWiatrumax != null ? !maxKierunekWiatrumax.equals(that.maxKierunekWiatrumax) : that.maxKierunekWiatrumax != null)
             return false;
-        if (tempPowietrzaMin != null ? !tempPowietrzaMin.equals(that.tempPowietrzaMin) : that.tempPowietrzaMin != null)
+        if (tempPowietrzamin != null ? !tempPowietrzamin.equals(that.tempPowietrzamin) : that.tempPowietrzamin != null)
             return false;
-        if (tempPowietrzaAvg != null ? !tempPowietrzaAvg.equals(that.tempPowietrzaAvg) : that.tempPowietrzaAvg != null)
+        if (tempPowietrzaavg != null ? !tempPowietrzaavg.equals(that.tempPowietrzaavg) : that.tempPowietrzaavg != null)
             return false;
-        if (tempPowietrzaMax != null ? !tempPowietrzaMax.equals(that.tempPowietrzaMax) : that.tempPowietrzaMax != null)
+        if (tempPowietrzamax != null ? !tempPowietrzamax.equals(that.tempPowietrzamax) : that.tempPowietrzamax != null)
             return false;
-        if (cisnienieMin != null ? !cisnienieMin.equals(that.cisnienieMin) : that.cisnienieMin != null) return false;
-        if (cisnienieAvg != null ? !cisnienieAvg.equals(that.cisnienieAvg) : that.cisnienieAvg != null) return false;
-        if (cisnienieMax != null ? !cisnienieMax.equals(that.cisnienieMax) : that.cisnienieMax != null) return false;
-        if (tempStacjiMin != null ? !tempStacjiMin.equals(that.tempStacjiMin) : that.tempStacjiMin != null)
+        if (cisnieniemin != null ? !cisnieniemin.equals(that.cisnieniemin) : that.cisnieniemin != null) return false;
+        if (cisnienieavg != null ? !cisnienieavg.equals(that.cisnienieavg) : that.cisnienieavg != null) return false;
+        if (cisnieniemax != null ? !cisnieniemax.equals(that.cisnieniemax) : that.cisnieniemax != null) return false;
+        if (tempStacjimin != null ? !tempStacjimin.equals(that.tempStacjimin) : that.tempStacjimin != null)
             return false;
-        if (tempStacjiAvg != null ? !tempStacjiAvg.equals(that.tempStacjiAvg) : that.tempStacjiAvg != null)
+        if (tempStacjiavg != null ? !tempStacjiavg.equals(that.tempStacjiavg) : that.tempStacjiavg != null)
             return false;
-        if (tempStacjiMax != null ? !tempStacjiMax.equals(that.tempStacjiMax) : that.tempStacjiMax != null)
+        if (tempStacjimax != null ? !tempStacjimax.equals(that.tempStacjimax) : that.tempStacjimax != null)
             return false;
-        if (wilgotnoscMin != null ? !wilgotnoscMin.equals(that.wilgotnoscMin) : that.wilgotnoscMin != null)
+        if (wilgotnoscmin != null ? !wilgotnoscmin.equals(that.wilgotnoscmin) : that.wilgotnoscmin != null)
             return false;
-        if (wilgotnoscAvg != null ? !wilgotnoscAvg.equals(that.wilgotnoscAvg) : that.wilgotnoscAvg != null)
+        if (wilgotnoscavg != null ? !wilgotnoscavg.equals(that.wilgotnoscavg) : that.wilgotnoscavg != null)
             return false;
-        if (wilgotnoscMax != null ? !wilgotnoscMax.equals(that.wilgotnoscMax) : that.wilgotnoscMax != null)
+        if (wilgotnoscmax != null ? !wilgotnoscmax.equals(that.wilgotnoscmax) : that.wilgotnoscmax != null)
             return false;
-        if (opadMin != null ? !opadMin.equals(that.opadMin) : that.opadMin != null) return false;
-        if (opadAvg != null ? !opadAvg.equals(that.opadAvg) : that.opadAvg != null) return false;
-        if (opadMax != null ? !opadMax.equals(that.opadMax) : that.opadMax != null) return false;
-        if (opadCzasMin != null ? !opadCzasMin.equals(that.opadCzasMin) : that.opadCzasMin != null) return false;
-        if (opadCzasAvg != null ? !opadCzasAvg.equals(that.opadCzasAvg) : that.opadCzasAvg != null) return false;
-        if (opadCzasMax != null ? !opadCzasMax.equals(that.opadCzasMax) : that.opadCzasMax != null) return false;
-        if (opadIntenMin != null ? !opadIntenMin.equals(that.opadIntenMin) : that.opadIntenMin != null) return false;
-        if (opadIntenAvg != null ? !opadIntenAvg.equals(that.opadIntenAvg) : that.opadIntenAvg != null) return false;
-        if (opadIntenMax != null ? !opadIntenMax.equals(that.opadIntenMax) : that.opadIntenMax != null) return false;
-        if (maxOpadIntenMin != null ? !maxOpadIntenMin.equals(that.maxOpadIntenMin) : that.maxOpadIntenMin != null)
+        if (opadmin != null ? !opadmin.equals(that.opadmin) : that.opadmin != null) return false;
+        if (opadavg != null ? !opadavg.equals(that.opadavg) : that.opadavg != null) return false;
+        if (opadmax != null ? !opadmax.equals(that.opadmax) : that.opadmax != null) return false;
+        if (opadCzasmin != null ? !opadCzasmin.equals(that.opadCzasmin) : that.opadCzasmin != null) return false;
+        if (opadCzasavg != null ? !opadCzasavg.equals(that.opadCzasavg) : that.opadCzasavg != null) return false;
+        if (opadCzasmax != null ? !opadCzasmax.equals(that.opadCzasmax) : that.opadCzasmax != null) return false;
+        if (opadIntenmin != null ? !opadIntenmin.equals(that.opadIntenmin) : that.opadIntenmin != null) return false;
+        if (opadIntenavg != null ? !opadIntenavg.equals(that.opadIntenavg) : that.opadIntenavg != null) return false;
+        if (opadIntenmax != null ? !opadIntenmax.equals(that.opadIntenmax) : that.opadIntenmax != null) return false;
+        if (maxOpadIntenmin != null ? !maxOpadIntenmin.equals(that.maxOpadIntenmin) : that.maxOpadIntenmin != null)
             return false;
-        if (maxOpadIntenAvg != null ? !maxOpadIntenAvg.equals(that.maxOpadIntenAvg) : that.maxOpadIntenAvg != null)
+        if (maxOpadIntenavg != null ? !maxOpadIntenavg.equals(that.maxOpadIntenavg) : that.maxOpadIntenavg != null)
             return false;
-        if (maxOpadIntenMax != null ? !maxOpadIntenMax.equals(that.maxOpadIntenMax) : that.maxOpadIntenMax != null)
+        if (maxOpadIntenmax != null ? !maxOpadIntenmax.equals(that.maxOpadIntenmax) : that.maxOpadIntenmax != null)
             return false;
-        if (gradMin != null ? !gradMin.equals(that.gradMin) : that.gradMin != null) return false;
-        if (gradAvg != null ? !gradAvg.equals(that.gradAvg) : that.gradAvg != null) return false;
-        if (gradMax != null ? !gradMax.equals(that.gradMax) : that.gradMax != null) return false;
-        if (gradCzasMin != null ? !gradCzasMin.equals(that.gradCzasMin) : that.gradCzasMin != null) return false;
-        if (gradCzasAvg != null ? !gradCzasAvg.equals(that.gradCzasAvg) : that.gradCzasAvg != null) return false;
-        if (gradCzasMax != null ? !gradCzasMax.equals(that.gradCzasMax) : that.gradCzasMax != null) return false;
-        if (gradIntenMin != null ? !gradIntenMin.equals(that.gradIntenMin) : that.gradIntenMin != null) return false;
-        if (gradIntenAvg != null ? !gradIntenAvg.equals(that.gradIntenAvg) : that.gradIntenAvg != null) return false;
-        if (gradIntenMax != null ? !gradIntenMax.equals(that.gradIntenMax) : that.gradIntenMax != null) return false;
-        if (maxGradIntenMin != null ? !maxGradIntenMin.equals(that.maxGradIntenMin) : that.maxGradIntenMin != null)
+        if (gradmin != null ? !gradmin.equals(that.gradmin) : that.gradmin != null) return false;
+        if (gradavg != null ? !gradavg.equals(that.gradavg) : that.gradavg != null) return false;
+        if (gradmax != null ? !gradmax.equals(that.gradmax) : that.gradmax != null) return false;
+        if (gradCzasmin != null ? !gradCzasmin.equals(that.gradCzasmin) : that.gradCzasmin != null) return false;
+        if (gradCzasavg != null ? !gradCzasavg.equals(that.gradCzasavg) : that.gradCzasavg != null) return false;
+        if (gradCzasmax != null ? !gradCzasmax.equals(that.gradCzasmax) : that.gradCzasmax != null) return false;
+        if (gradIntenmin != null ? !gradIntenmin.equals(that.gradIntenmin) : that.gradIntenmin != null) return false;
+        if (gradIntenavg != null ? !gradIntenavg.equals(that.gradIntenavg) : that.gradIntenavg != null) return false;
+        if (gradIntenmax != null ? !gradIntenmax.equals(that.gradIntenmax) : that.gradIntenmax != null) return false;
+        if (maxGradIntenmin != null ? !maxGradIntenmin.equals(that.maxGradIntenmin) : that.maxGradIntenmin != null)
             return false;
-        if (maxGradIntenAvg != null ? !maxGradIntenAvg.equals(that.maxGradIntenAvg) : that.maxGradIntenAvg != null)
+        if (maxGradIntenavg != null ? !maxGradIntenavg.equals(that.maxGradIntenavg) : that.maxGradIntenavg != null)
             return false;
-        if (maxGradIntenMax != null ? !maxGradIntenMax.equals(that.maxGradIntenMax) : that.maxGradIntenMax != null)
+        if (maxGradIntenmax != null ? !maxGradIntenmax.equals(that.maxGradIntenmax) : that.maxGradIntenmax != null)
             return false;
-        if (heatingTempMin != null ? !heatingTempMin.equals(that.heatingTempMin) : that.heatingTempMin != null)
+        if (heatingTempmin != null ? !heatingTempmin.equals(that.heatingTempmin) : that.heatingTempmin != null)
             return false;
-        if (heatingTempAvg != null ? !heatingTempAvg.equals(that.heatingTempAvg) : that.heatingTempAvg != null)
+        if (heatingTempavg != null ? !heatingTempavg.equals(that.heatingTempavg) : that.heatingTempavg != null)
             return false;
-        if (heatingTempMax != null ? !heatingTempMax.equals(that.heatingTempMax) : that.heatingTempMax != null)
+        if (heatingTempmax != null ? !heatingTempmax.equals(that.heatingTempmax) : that.heatingTempmax != null)
             return false;
-        if (heatingVoltMin != null ? !heatingVoltMin.equals(that.heatingVoltMin) : that.heatingVoltMin != null)
+        if (heatingVoltmin != null ? !heatingVoltmin.equals(that.heatingVoltmin) : that.heatingVoltmin != null)
             return false;
-        if (heatingVoltAvg != null ? !heatingVoltAvg.equals(that.heatingVoltAvg) : that.heatingVoltAvg != null)
+        if (heatingVoltavg != null ? !heatingVoltavg.equals(that.heatingVoltavg) : that.heatingVoltavg != null)
             return false;
-        if (heatingVoltMax != null ? !heatingVoltMax.equals(that.heatingVoltMax) : that.heatingVoltMax != null)
+        if (heatingVoltmax != null ? !heatingVoltmax.equals(that.heatingVoltmax) : that.heatingVoltmax != null)
             return false;
-        if (supplyVoltMin != null ? !supplyVoltMin.equals(that.supplyVoltMin) : that.supplyVoltMin != null)
+        if (supplyVoltmin != null ? !supplyVoltmin.equals(that.supplyVoltmin) : that.supplyVoltmin != null)
             return false;
-        if (supplyVoltAvg != null ? !supplyVoltAvg.equals(that.supplyVoltAvg) : that.supplyVoltAvg != null)
+        if (supplyVoltavg != null ? !supplyVoltavg.equals(that.supplyVoltavg) : that.supplyVoltavg != null)
             return false;
-        if (supplyVoltMax != null ? !supplyVoltMax.equals(that.supplyVoltMax) : that.supplyVoltMax != null)
+        if (supplyVoltmax != null ? !supplyVoltmax.equals(that.supplyVoltmax) : that.supplyVoltmax != null)
             return false;
-        if (refVoltMin != null ? !refVoltMin.equals(that.refVoltMin) : that.refVoltMin != null) return false;
-        if (refVoltAvg != null ? !refVoltAvg.equals(that.refVoltAvg) : that.refVoltAvg != null) return false;
-        if (refVoltMax != null ? !refVoltMax.equals(that.refVoltMax) : that.refVoltMax != null) return false;
-        if (tempPktRosyMin != null ? !tempPktRosyMin.equals(that.tempPktRosyMin) : that.tempPktRosyMin != null)
+        if (refVoltmin != null ? !refVoltmin.equals(that.refVoltmin) : that.refVoltmin != null) return false;
+        if (refVoltavg != null ? !refVoltavg.equals(that.refVoltavg) : that.refVoltavg != null) return false;
+        if (refVoltmax != null ? !refVoltmax.equals(that.refVoltmax) : that.refVoltmax != null) return false;
+        if (tempPktRosymin != null ? !tempPktRosymin.equals(that.tempPktRosymin) : that.tempPktRosymin != null)
             return false;
-        if (tempPktRosyAvg != null ? !tempPktRosyAvg.equals(that.tempPktRosyAvg) : that.tempPktRosyAvg != null)
+        if (tempPktRosyavg != null ? !tempPktRosyavg.equals(that.tempPktRosyavg) : that.tempPktRosyavg != null)
             return false;
-        if (tempPktRosyMax != null ? !tempPktRosyMax.equals(that.tempPktRosyMax) : that.tempPktRosyMax != null)
+        if (tempPktRosymax != null ? !tempPktRosymax.equals(that.tempPktRosymax) : that.tempPktRosymax != null)
             return false;
-        if (cisBaromMin != null ? !cisBaromMin.equals(that.cisBaromMin) : that.cisBaromMin != null) return false;
-        if (cisBaromAvg != null ? !cisBaromAvg.equals(that.cisBaromAvg) : that.cisBaromAvg != null) return false;
-        if (cisBaromMax != null ? !cisBaromMax.equals(that.cisBaromMax) : that.cisBaromMax != null) return false;
-        if (windchillTempMin != null ? !windchillTempMin.equals(that.windchillTempMin) : that.windchillTempMin != null)
+        if (cisBarommin != null ? !cisBarommin.equals(that.cisBarommin) : that.cisBarommin != null) return false;
+        if (cisBaromavg != null ? !cisBaromavg.equals(that.cisBaromavg) : that.cisBaromavg != null) return false;
+        if (cisBarommax != null ? !cisBarommax.equals(that.cisBarommax) : that.cisBarommax != null) return false;
+        if (windchillTempmin != null ? !windchillTempmin.equals(that.windchillTempmin) : that.windchillTempmin != null)
             return false;
-        if (windchillTempAvg != null ? !windchillTempAvg.equals(that.windchillTempAvg) : that.windchillTempAvg != null)
+        if (windchillTempavg != null ? !windchillTempavg.equals(that.windchillTempavg) : that.windchillTempavg != null)
             return false;
-        if (windchillTempMax != null ? !windchillTempMax.equals(that.windchillTempMax) : that.windchillTempMax != null)
+        if (windchillTempmax != null ? !windchillTempmax.equals(that.windchillTempmax) : that.windchillTempmax != null)
             return false;
-        if (heatindexTempMin != null ? !heatindexTempMin.equals(that.heatindexTempMin) : that.heatindexTempMin != null)
+        if (heatindexTempmin != null ? !heatindexTempmin.equals(that.heatindexTempmin) : that.heatindexTempmin != null)
             return false;
-        if (heatindexTempAvg != null ? !heatindexTempAvg.equals(that.heatindexTempAvg) : that.heatindexTempAvg != null)
+        if (heatindexTempavg != null ? !heatindexTempavg.equals(that.heatindexTempavg) : that.heatindexTempavg != null)
             return false;
-        if (heatindexTempMax != null ? !heatindexTempMax.equals(that.heatindexTempMax) : that.heatindexTempMax != null)
+        if (heatindexTempmax != null ? !heatindexTempmax.equals(that.heatindexTempmax) : that.heatindexTempmax != null)
             return false;
 
         return true;
@@ -1117,84 +1117,84 @@ public class PogodaEntity {
     public int hashCode() {
         int result = data != null ? data.hashCode() : 0;
         result = 31 * result + (godzina != null ? godzina.hashCode() : 0);
-        result = 31 * result + (minPredkoscWiatruMin != null ? minPredkoscWiatruMin.hashCode() : 0);
-        result = 31 * result + (minPredkoscWiatruAvg != null ? minPredkoscWiatruAvg.hashCode() : 0);
-        result = 31 * result + (minPredkoscWiatruMax != null ? minPredkoscWiatruMax.hashCode() : 0);
-        result = 31 * result + (avgPredkoscWiatruMin != null ? avgPredkoscWiatruMin.hashCode() : 0);
-        result = 31 * result + (avgPredkoscWiatruAvg != null ? avgPredkoscWiatruAvg.hashCode() : 0);
-        result = 31 * result + (avgPredkoscWiatruMax != null ? avgPredkoscWiatruMax.hashCode() : 0);
-        result = 31 * result + (maxPredkoscWiatruMin != null ? maxPredkoscWiatruMin.hashCode() : 0);
-        result = 31 * result + (maxPredkoscWiatruAvg != null ? maxPredkoscWiatruAvg.hashCode() : 0);
-        result = 31 * result + (maxPredkoscWiatruMax != null ? maxPredkoscWiatruMax.hashCode() : 0);
-        result = 31 * result + (minKierunekWiatruMin != null ? minKierunekWiatruMin.hashCode() : 0);
-        result = 31 * result + (minKierunekWiatruAvg != null ? minKierunekWiatruAvg.hashCode() : 0);
-        result = 31 * result + (minKierunekWiatruMax != null ? minKierunekWiatruMax.hashCode() : 0);
-        result = 31 * result + (avgKierunekWiatruMin != null ? avgKierunekWiatruMin.hashCode() : 0);
-        result = 31 * result + (avgKierunekWiatruAvg != null ? avgKierunekWiatruAvg.hashCode() : 0);
-        result = 31 * result + (avgKierunekWiatruMax != null ? avgKierunekWiatruMax.hashCode() : 0);
-        result = 31 * result + (maxKierunekWiatruMin != null ? maxKierunekWiatruMin.hashCode() : 0);
-        result = 31 * result + (maxKierunekWiatruAvg != null ? maxKierunekWiatruAvg.hashCode() : 0);
-        result = 31 * result + (maxKierunekWiatruMax != null ? maxKierunekWiatruMax.hashCode() : 0);
-        result = 31 * result + (tempPowietrzaMin != null ? tempPowietrzaMin.hashCode() : 0);
-        result = 31 * result + (tempPowietrzaAvg != null ? tempPowietrzaAvg.hashCode() : 0);
-        result = 31 * result + (tempPowietrzaMax != null ? tempPowietrzaMax.hashCode() : 0);
-        result = 31 * result + (cisnienieMin != null ? cisnienieMin.hashCode() : 0);
-        result = 31 * result + (cisnienieAvg != null ? cisnienieAvg.hashCode() : 0);
-        result = 31 * result + (cisnienieMax != null ? cisnienieMax.hashCode() : 0);
-        result = 31 * result + (tempStacjiMin != null ? tempStacjiMin.hashCode() : 0);
-        result = 31 * result + (tempStacjiAvg != null ? tempStacjiAvg.hashCode() : 0);
-        result = 31 * result + (tempStacjiMax != null ? tempStacjiMax.hashCode() : 0);
-        result = 31 * result + (wilgotnoscMin != null ? wilgotnoscMin.hashCode() : 0);
-        result = 31 * result + (wilgotnoscAvg != null ? wilgotnoscAvg.hashCode() : 0);
-        result = 31 * result + (wilgotnoscMax != null ? wilgotnoscMax.hashCode() : 0);
-        result = 31 * result + (opadMin != null ? opadMin.hashCode() : 0);
-        result = 31 * result + (opadAvg != null ? opadAvg.hashCode() : 0);
-        result = 31 * result + (opadMax != null ? opadMax.hashCode() : 0);
-        result = 31 * result + (opadCzasMin != null ? opadCzasMin.hashCode() : 0);
-        result = 31 * result + (opadCzasAvg != null ? opadCzasAvg.hashCode() : 0);
-        result = 31 * result + (opadCzasMax != null ? opadCzasMax.hashCode() : 0);
-        result = 31 * result + (opadIntenMin != null ? opadIntenMin.hashCode() : 0);
-        result = 31 * result + (opadIntenAvg != null ? opadIntenAvg.hashCode() : 0);
-        result = 31 * result + (opadIntenMax != null ? opadIntenMax.hashCode() : 0);
-        result = 31 * result + (maxOpadIntenMin != null ? maxOpadIntenMin.hashCode() : 0);
-        result = 31 * result + (maxOpadIntenAvg != null ? maxOpadIntenAvg.hashCode() : 0);
-        result = 31 * result + (maxOpadIntenMax != null ? maxOpadIntenMax.hashCode() : 0);
-        result = 31 * result + (gradMin != null ? gradMin.hashCode() : 0);
-        result = 31 * result + (gradAvg != null ? gradAvg.hashCode() : 0);
-        result = 31 * result + (gradMax != null ? gradMax.hashCode() : 0);
-        result = 31 * result + (gradCzasMin != null ? gradCzasMin.hashCode() : 0);
-        result = 31 * result + (gradCzasAvg != null ? gradCzasAvg.hashCode() : 0);
-        result = 31 * result + (gradCzasMax != null ? gradCzasMax.hashCode() : 0);
-        result = 31 * result + (gradIntenMin != null ? gradIntenMin.hashCode() : 0);
-        result = 31 * result + (gradIntenAvg != null ? gradIntenAvg.hashCode() : 0);
-        result = 31 * result + (gradIntenMax != null ? gradIntenMax.hashCode() : 0);
-        result = 31 * result + (maxGradIntenMin != null ? maxGradIntenMin.hashCode() : 0);
-        result = 31 * result + (maxGradIntenAvg != null ? maxGradIntenAvg.hashCode() : 0);
-        result = 31 * result + (maxGradIntenMax != null ? maxGradIntenMax.hashCode() : 0);
-        result = 31 * result + (heatingTempMin != null ? heatingTempMin.hashCode() : 0);
-        result = 31 * result + (heatingTempAvg != null ? heatingTempAvg.hashCode() : 0);
-        result = 31 * result + (heatingTempMax != null ? heatingTempMax.hashCode() : 0);
-        result = 31 * result + (heatingVoltMin != null ? heatingVoltMin.hashCode() : 0);
-        result = 31 * result + (heatingVoltAvg != null ? heatingVoltAvg.hashCode() : 0);
-        result = 31 * result + (heatingVoltMax != null ? heatingVoltMax.hashCode() : 0);
-        result = 31 * result + (supplyVoltMin != null ? supplyVoltMin.hashCode() : 0);
-        result = 31 * result + (supplyVoltAvg != null ? supplyVoltAvg.hashCode() : 0);
-        result = 31 * result + (supplyVoltMax != null ? supplyVoltMax.hashCode() : 0);
-        result = 31 * result + (refVoltMin != null ? refVoltMin.hashCode() : 0);
-        result = 31 * result + (refVoltAvg != null ? refVoltAvg.hashCode() : 0);
-        result = 31 * result + (refVoltMax != null ? refVoltMax.hashCode() : 0);
-        result = 31 * result + (tempPktRosyMin != null ? tempPktRosyMin.hashCode() : 0);
-        result = 31 * result + (tempPktRosyAvg != null ? tempPktRosyAvg.hashCode() : 0);
-        result = 31 * result + (tempPktRosyMax != null ? tempPktRosyMax.hashCode() : 0);
-        result = 31 * result + (cisBaromMin != null ? cisBaromMin.hashCode() : 0);
-        result = 31 * result + (cisBaromAvg != null ? cisBaromAvg.hashCode() : 0);
-        result = 31 * result + (cisBaromMax != null ? cisBaromMax.hashCode() : 0);
-        result = 31 * result + (windchillTempMin != null ? windchillTempMin.hashCode() : 0);
-        result = 31 * result + (windchillTempAvg != null ? windchillTempAvg.hashCode() : 0);
-        result = 31 * result + (windchillTempMax != null ? windchillTempMax.hashCode() : 0);
-        result = 31 * result + (heatindexTempMin != null ? heatindexTempMin.hashCode() : 0);
-        result = 31 * result + (heatindexTempAvg != null ? heatindexTempAvg.hashCode() : 0);
-        result = 31 * result + (heatindexTempMax != null ? heatindexTempMax.hashCode() : 0);
+        result = 31 * result + (minPredkoscWiatrumin != null ? minPredkoscWiatrumin.hashCode() : 0);
+        result = 31 * result + (minPredkoscWiatruavg != null ? minPredkoscWiatruavg.hashCode() : 0);
+        result = 31 * result + (minPredkoscWiatrumax != null ? minPredkoscWiatrumax.hashCode() : 0);
+        result = 31 * result + (avgPredkoscWiatrumin != null ? avgPredkoscWiatrumin.hashCode() : 0);
+        result = 31 * result + (avgPredkoscWiatruavg != null ? avgPredkoscWiatruavg.hashCode() : 0);
+        result = 31 * result + (avgPredkoscWiatrumax != null ? avgPredkoscWiatrumax.hashCode() : 0);
+        result = 31 * result + (maxPredkoscWiatrumin != null ? maxPredkoscWiatrumin.hashCode() : 0);
+        result = 31 * result + (maxPredkoscWiatruavg != null ? maxPredkoscWiatruavg.hashCode() : 0);
+        result = 31 * result + (maxPredkoscWiatrumax != null ? maxPredkoscWiatrumax.hashCode() : 0);
+        result = 31 * result + (minKierunekWiatrumin != null ? minKierunekWiatrumin.hashCode() : 0);
+        result = 31 * result + (minKierunekWiatruavg != null ? minKierunekWiatruavg.hashCode() : 0);
+        result = 31 * result + (minKierunekWiatrumax != null ? minKierunekWiatrumax.hashCode() : 0);
+        result = 31 * result + (avgKierunekWiatrumin != null ? avgKierunekWiatrumin.hashCode() : 0);
+        result = 31 * result + (avgKierunekWiatruavg != null ? avgKierunekWiatruavg.hashCode() : 0);
+        result = 31 * result + (avgKierunekWiatrumax != null ? avgKierunekWiatrumax.hashCode() : 0);
+        result = 31 * result + (maxKierunekWiatrumin != null ? maxKierunekWiatrumin.hashCode() : 0);
+        result = 31 * result + (maxKierunekWiatruavg != null ? maxKierunekWiatruavg.hashCode() : 0);
+        result = 31 * result + (maxKierunekWiatrumax != null ? maxKierunekWiatrumax.hashCode() : 0);
+        result = 31 * result + (tempPowietrzamin != null ? tempPowietrzamin.hashCode() : 0);
+        result = 31 * result + (tempPowietrzaavg != null ? tempPowietrzaavg.hashCode() : 0);
+        result = 31 * result + (tempPowietrzamax != null ? tempPowietrzamax.hashCode() : 0);
+        result = 31 * result + (cisnieniemin != null ? cisnieniemin.hashCode() : 0);
+        result = 31 * result + (cisnienieavg != null ? cisnienieavg.hashCode() : 0);
+        result = 31 * result + (cisnieniemax != null ? cisnieniemax.hashCode() : 0);
+        result = 31 * result + (tempStacjimin != null ? tempStacjimin.hashCode() : 0);
+        result = 31 * result + (tempStacjiavg != null ? tempStacjiavg.hashCode() : 0);
+        result = 31 * result + (tempStacjimax != null ? tempStacjimax.hashCode() : 0);
+        result = 31 * result + (wilgotnoscmin != null ? wilgotnoscmin.hashCode() : 0);
+        result = 31 * result + (wilgotnoscavg != null ? wilgotnoscavg.hashCode() : 0);
+        result = 31 * result + (wilgotnoscmax != null ? wilgotnoscmax.hashCode() : 0);
+        result = 31 * result + (opadmin != null ? opadmin.hashCode() : 0);
+        result = 31 * result + (opadavg != null ? opadavg.hashCode() : 0);
+        result = 31 * result + (opadmax != null ? opadmax.hashCode() : 0);
+        result = 31 * result + (opadCzasmin != null ? opadCzasmin.hashCode() : 0);
+        result = 31 * result + (opadCzasavg != null ? opadCzasavg.hashCode() : 0);
+        result = 31 * result + (opadCzasmax != null ? opadCzasmax.hashCode() : 0);
+        result = 31 * result + (opadIntenmin != null ? opadIntenmin.hashCode() : 0);
+        result = 31 * result + (opadIntenavg != null ? opadIntenavg.hashCode() : 0);
+        result = 31 * result + (opadIntenmax != null ? opadIntenmax.hashCode() : 0);
+        result = 31 * result + (maxOpadIntenmin != null ? maxOpadIntenmin.hashCode() : 0);
+        result = 31 * result + (maxOpadIntenavg != null ? maxOpadIntenavg.hashCode() : 0);
+        result = 31 * result + (maxOpadIntenmax != null ? maxOpadIntenmax.hashCode() : 0);
+        result = 31 * result + (gradmin != null ? gradmin.hashCode() : 0);
+        result = 31 * result + (gradavg != null ? gradavg.hashCode() : 0);
+        result = 31 * result + (gradmax != null ? gradmax.hashCode() : 0);
+        result = 31 * result + (gradCzasmin != null ? gradCzasmin.hashCode() : 0);
+        result = 31 * result + (gradCzasavg != null ? gradCzasavg.hashCode() : 0);
+        result = 31 * result + (gradCzasmax != null ? gradCzasmax.hashCode() : 0);
+        result = 31 * result + (gradIntenmin != null ? gradIntenmin.hashCode() : 0);
+        result = 31 * result + (gradIntenavg != null ? gradIntenavg.hashCode() : 0);
+        result = 31 * result + (gradIntenmax != null ? gradIntenmax.hashCode() : 0);
+        result = 31 * result + (maxGradIntenmin != null ? maxGradIntenmin.hashCode() : 0);
+        result = 31 * result + (maxGradIntenavg != null ? maxGradIntenavg.hashCode() : 0);
+        result = 31 * result + (maxGradIntenmax != null ? maxGradIntenmax.hashCode() : 0);
+        result = 31 * result + (heatingTempmin != null ? heatingTempmin.hashCode() : 0);
+        result = 31 * result + (heatingTempavg != null ? heatingTempavg.hashCode() : 0);
+        result = 31 * result + (heatingTempmax != null ? heatingTempmax.hashCode() : 0);
+        result = 31 * result + (heatingVoltmin != null ? heatingVoltmin.hashCode() : 0);
+        result = 31 * result + (heatingVoltavg != null ? heatingVoltavg.hashCode() : 0);
+        result = 31 * result + (heatingVoltmax != null ? heatingVoltmax.hashCode() : 0);
+        result = 31 * result + (supplyVoltmin != null ? supplyVoltmin.hashCode() : 0);
+        result = 31 * result + (supplyVoltavg != null ? supplyVoltavg.hashCode() : 0);
+        result = 31 * result + (supplyVoltmax != null ? supplyVoltmax.hashCode() : 0);
+        result = 31 * result + (refVoltmin != null ? refVoltmin.hashCode() : 0);
+        result = 31 * result + (refVoltavg != null ? refVoltavg.hashCode() : 0);
+        result = 31 * result + (refVoltmax != null ? refVoltmax.hashCode() : 0);
+        result = 31 * result + (tempPktRosymin != null ? tempPktRosymin.hashCode() : 0);
+        result = 31 * result + (tempPktRosyavg != null ? tempPktRosyavg.hashCode() : 0);
+        result = 31 * result + (tempPktRosymax != null ? tempPktRosymax.hashCode() : 0);
+        result = 31 * result + (cisBarommin != null ? cisBarommin.hashCode() : 0);
+        result = 31 * result + (cisBaromavg != null ? cisBaromavg.hashCode() : 0);
+        result = 31 * result + (cisBarommax != null ? cisBarommax.hashCode() : 0);
+        result = 31 * result + (windchillTempmin != null ? windchillTempmin.hashCode() : 0);
+        result = 31 * result + (windchillTempavg != null ? windchillTempavg.hashCode() : 0);
+        result = 31 * result + (windchillTempmax != null ? windchillTempmax.hashCode() : 0);
+        result = 31 * result + (heatindexTempmin != null ? heatindexTempmin.hashCode() : 0);
+        result = 31 * result + (heatindexTempavg != null ? heatindexTempavg.hashCode() : 0);
+        result = 31 * result + (heatindexTempmax != null ? heatindexTempmax.hashCode() : 0);
         return result;
     }
 }

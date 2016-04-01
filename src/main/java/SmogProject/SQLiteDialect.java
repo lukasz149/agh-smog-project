@@ -1,7 +1,7 @@
 /*
  * The author disclaims copyright to this source code.  In place of
  * a legal notice, here is a blessing:
- * 
+ *
  *    May you do good and not evil.
  *    May you find forgiveness for yourself and forgive others.
  *    May you share freely, never taking more than you give.
@@ -10,8 +10,11 @@
 package SmogProject;
 
 import org.hibernate.dialect.Dialect;
-import org.hibernate.dialect.function.*;
-import org.hibernate.type.StandardBasicTypes;
+import org.hibernate.dialect.function.SQLFunctionTemplate;
+import org.hibernate.dialect.function.StandardSQLFunction;
+import org.hibernate.dialect.function.VarArgsSQLFunction;
+import org.hibernate.type.IntegerType;
+import org.hibernate.type.StringType;
 
 import java.sql.Types;
 
@@ -39,46 +42,20 @@ public class SQLiteDialect extends Dialect {
         // registerColumnType(Types.NULL, "null");
         registerColumnType(Types.BLOB, "blob");
         registerColumnType(Types.CLOB, "clob");
-        registerColumnType(Types.BOOLEAN, "boolean");
+        registerColumnType(Types.BOOLEAN, "integer");
 
-        registerFunction( "concat", new VarArgsSQLFunction(StandardBasicTypes.STRING, "", "||", "") );
-        registerFunction( "mod", new SQLFunctionTemplate(StandardBasicTypes.INTEGER, "?1 % ?2" ) );
-        registerFunction( "quote", new StandardSQLFunction("quote", StandardBasicTypes.STRING) );
-        registerFunction( "random", new NoArgSQLFunction("random", StandardBasicTypes.INTEGER) );
-        registerFunction( "round", new StandardSQLFunction("round") );
-        registerFunction( "substr", new StandardSQLFunction("substr", StandardBasicTypes.STRING) );
-        registerFunction( "trim", new AbstractAnsiTrimEmulationFunction() {
-            protected SQLFunction resolveBothSpaceTrimFunction() {
-                return new SQLFunctionTemplate(StandardBasicTypes.STRING, "trim(?1)");
-            }
-
-            protected SQLFunction resolveBothSpaceTrimFromFunction() {
-                return new SQLFunctionTemplate(StandardBasicTypes.STRING, "trim(?2)");
-            }
-
-            protected SQLFunction resolveLeadingSpaceTrimFunction() {
-                return new SQLFunctionTemplate(StandardBasicTypes.STRING, "ltrim(?1)");
-            }
-
-            protected SQLFunction resolveTrailingSpaceTrimFunction() {
-                return new SQLFunctionTemplate(StandardBasicTypes.STRING, "rtrim(?1)");
-            }
-
-            protected SQLFunction resolveBothTrimFunction() {
-                return new SQLFunctionTemplate(StandardBasicTypes.STRING, "trim(?1, ?2)");
-            }
-
-            protected SQLFunction resolveLeadingTrimFunction() {
-                return new SQLFunctionTemplate(StandardBasicTypes.STRING, "ltrim(?1, ?2)");
-            }
-
-            protected SQLFunction resolveTrailingTrimFunction() {
-                return new SQLFunctionTemplate(StandardBasicTypes.STRING, "rtrim(?1, ?2)");
-            }
-        } );
+        registerFunction( "concat", new VarArgsSQLFunction(StringType.INSTANCE, "", "||", "") );
+        registerFunction( "mod", new SQLFunctionTemplate(IntegerType.INSTANCE, "?1 % ?2" ) );
+        registerFunction( "substr", new StandardSQLFunction("substr", StringType.INSTANCE) );
+        registerFunction( "substring", new StandardSQLFunction( "substr", StringType.INSTANCE ) );
     }
 
     public boolean supportsIdentityColumns() {
+        return true;
+    }
+
+    @Override
+    public boolean bindLimitParametersInReverseOrder() {
         return true;
     }
 
