@@ -20,7 +20,7 @@ public class WeatherController {
     public @ResponseBody List<PogodaEntity> weather(@RequestParam(value="date", defaultValue="2015-01-01") String date) throws ParseException {
 
         Session s = HibernateSession.getSessionFactory().openSession();
-        Query q = s.createQuery("from PogodaEntity where Data = \'" + date + "\'");
+        Query q = s.createQuery("from PogodaEntity where Data = \'" + date + "\'"  );
         List<PogodaEntity> result = q.list();
         s.close();
 
