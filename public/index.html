@@ -3,9 +3,46 @@
 <head>
     <title>Smog</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="Chart.js"></script>
+    <script src="script/Chart.js-2.0.0-beta/Chart.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <style>
+        .switch label input[type=checkbox]#checkTemperature:checked + .lever {
+            background-color: rgba(230, 81, 0, 0.5);
+        }
+        .switch label input[type=checkbox]#checkTemperature:checked + .lever:after {
+            background-color: rgba(230, 81, 0, 1);
+        }
+
+        .switch label input[type=checkbox]#checkWind:checked + .lever {
+            background-color: rgba(66, 66, 66, 0.5);
+        }
+        .switch label input[type=checkbox]#checkWind:checked + .lever:after {
+            background-color: rgba(66, 66, 66, 1);
+        }
+
+        .switch label input[type=checkbox]#checkPressure:checked + .lever {
+            background-color: rgba(156, 39, 176, 0.5);
+        }
+        .switch label input[type=checkbox]#checkPressure:checked + .lever:after {
+            background-color: rgba(156, 39, 176, 1);
+        }
+
+        .switch label input[type=checkbox]#checkRain:checked + .lever {
+            background-color: rgba(1, 87, 155, 0.5);
+        }
+        .switch label input[type=checkbox]#checkRain:checked + .lever:after {
+            background-color: rgba(1, 87, 155, 1);
+        }
+
+        .switch label input[type=checkbox]#checkHumidity:checked + .lever {
+            background-color: rgba(100, 181, 246, 0.5);
+        }
+        .switch label input[type=checkbox]#checkHumidity:checked + .lever:after {
+            background-color: rgba(100, 181, 246, 1);
+        }
+    </style>
 
 </head>
 
@@ -15,36 +52,70 @@
                 <div class="row">
                     <div class="col s6">
                         <label for="date">Data:</label>
-                        <input id="date" type="date" class="datepicker" placeholder="02-03-2014" onchange="updateWeatherData(); updateSmogData();">
+                        <input id="date" type="date" class="datepicker" placeholder="02-03-2014" onchange="updateWeatherData()">
                     </div>
 
-                    <div class="input-field col s6">
-                        <select id="station" onchange="updateSmogData()">
-                            <option value="" disabled>Wybierz stację</option>
-                            <option selected value="6">Stacja 6</option>
-                            <option value="7">Stacja 7</option>
-                            <option value="16">Stacja 16</option>
-                            <option value="149">Stacja 149</option>
-                            <option value="152">Stacja 152</option>
-                            <option value="153">Stacja 153</option>
-                        </select>
-                        <label for="station">Stacja:</label>
-                    </div>
+                    <!--<div class="input-field col s6">-->
+                        <!--<select id="station" onchange="updateSmogData()">-->
+                            <!--<option value="" disabled>Wybierz stację</option>-->
+                            <!--<option selected value="6">Stacja 6</option>-->
+                            <!--<option value="7">Stacja 7</option>-->
+                            <!--<option value="16">Stacja 16</option>-->
+                            <!--<option value="149">Stacja 149</option>-->
+                            <!--<option value="152">Stacja 152</option>-->
+                            <!--<option value="153">Stacja 153</option>-->
+                        <!--</select>-->
+                        <!--<label for="station">Stacja:</label>-->
+                    <!--</div>-->
                 </div>
             </div>
             <ul class="tabs">
-                <li class="tab col s2"><a href="#weather">Pogoda</a></li>
-                <li class="tab col s2"><a class="active" href="#smog">Smog</a></li>
+                <li class="tab col s2"><a href="#weather" style="color: #00c853 ">Pogoda</a></li>
+                <li class="tab col s2"><a class="active" href="#smog" style="color: #00c853 ">Smog</a></li>
+                <div class="indicator green accent-4" style="z-index:1"></div>
             </ul>
             <div id="weather" class="col s12">
-                <h5>Temperatura</h5>
-                <canvas id="temperatureChart" width="1000" height="200"></canvas>
-                <h5>Zachmurzenie</h5>
-                <canvas id="cloudyChart" width="1000" height="200"></canvas>
-                <h5>Wilgotność</h5>
-                <canvas id="humidityChart" width="1000" height="200"></canvas>
-                <h5>Prędkość wiatru</h5>
-                <canvas id="windSpeedChart" width="1000" height="200"></canvas>
+                <br>
+                <!-- Switch -->
+                <div class="switch">
+                    <label>
+                        Temperatura
+                        <input type="checkbox"  id="checkTemperature" onchange="updateTemperatureChart()">
+                        <span class="lever"></span>
+                    </label>
+
+                    <label>
+                        Wiatr
+                        <input checked="checked" type="checkbox" id="checkWind" onchange="updateWindSpeedChart()">
+                        <span class="lever"></span>
+                    </label>
+
+                    <label>
+                        Ciśnienie
+                        <input checked="checked" type="checkbox" id="checkPressure" onchange="updatePerssureChart()">
+                        <span class="lever"></span>
+                    </label>
+
+                    <label>
+                        Opady
+                        <input checked="checked" type="checkbox" id="checkRain" onchange="updateRainChart()">
+                        <span class="lever"></span>
+                    </label>
+
+                    <label>
+                        Wilgotność
+                        <input checked="checked" type="checkbox" id="checkHumidity" onchange="updateHumidityChart()">
+                        <span class="lever"></span>
+                    </label>
+                </div>
+                <h5>Pogoda</h5>
+                <canvas id="weatherChart" width="1000" height="400"></canvas>
+                <!--<h5>Zachmurzenie</h5>-->
+                <!--<canvas id="cloudyChart" width="1000" height="200"></canvas>-->
+                <!--<h5>Wilgotność</h5>-->
+                <!--<canvas id="humidityChart" width="1000" height="200"></canvas>-->
+                <!--<h5>Prędkość wiatru</h5>-->
+                <!--<canvas id="windSpeedChart" width="1000" height="200"></canvas>-->
             </div>
 
             <div id="smog" class="col s12">
@@ -52,7 +123,7 @@
         </div>
 
         <script src="weahterScripts.js"></script>
-        <script src="smogScripts.js"></script>
+        <!--<script src="smogScripts.js"></script>-->
 
         <script>
             $('.datepicker').pickadate({
