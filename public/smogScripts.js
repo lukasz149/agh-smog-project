@@ -37,13 +37,13 @@ $(document).ready(function() {
         var values = getSmogData(data);
         console.log(values);
         console.log("START");
-        smogChart = createChart(values.labels, values, "smogChart");
+        smogChart = createSmogChart(values.labels, values, "smogChart");
         updateAllCharts()
     });
 });
 
 
-function createChart(_labels, _values, _name) {
+function createSmogChart(_labels, _values, _name) {
     var data = {
         labels: _labels,
         datasets: [{
@@ -334,10 +334,10 @@ function updateSmogData() {
 
         if (values.labels.length != smogChart.data.datasets[0].data.length) {
             smogChart.destroy();
-            smogChart = createChart(values.labels, values, "smogChart");
+            smogChart = createSmogChart(values.labels, values, "smogChart");
             updateAllCharts();
         } else {
-            smogChart.data.labels = values.labels.slice();
+            smogChart.data.labels = values.labels.map(function(x) { return x + ":00"; });
             for (var v = 0; v < values.labels.length; ++v) {
                 //console.log(smogChart.data.datasets);
                 smogChart.data.datasets[0].data[v] = values.dwutlenekAzotu[v];
@@ -351,6 +351,7 @@ function updateSmogData() {
                 smogChart.data.datasets[8].data[v] = values.ozon8H[v];
                 smogChart.data.datasets[9].data[v] = values.benzen[v];
                 smogChart.data.datasets[10].data[v] = values.dwutlenekSiarki[v];
+
             }
             smogChart.update();
         }

@@ -3,6 +3,7 @@
 <head>
     <title>Smog</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script>
     <script src="script/Chart.js-2.0.0-beta/Chart.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
@@ -53,12 +54,8 @@
                 <div class="row">
                     <div class="col s6">
                         <label for="date">Data:</label>
-<<<<<<< HEAD
                         <!--<input id="date" type="date" class="datepicker" placeholder="02-03-2014" onchange="updateWeatherData(); updateSmogData();">-->
-                        <input id="date" type="date" class="datepicker" placeholder="02-03-2014" onchange="updateSmogData();">
-=======
-                        <input id="date" type="date" class="datepicker" placeholder="02-03-2014" onchange="updateWeatherData()">
->>>>>>> dfa05228fd354d93ed5990376bd62824e889d86b
+                        <input id="date" type="date" class="datepicker" placeholder="02-03-2014" onchange="updateSmogData(); updateWeatherData();">
                     </div>
 
                     <div class="input-field col s6">
@@ -75,11 +72,11 @@
                     </div>
                 </div>
             </div>
-            <ul class="tabs">
-                <li class="tab col s2"><a href="#weather" style="color: #00c853 ">Pogoda</a></li>
-                <li class="tab col s2"><a class="active" href="#smog" style="color: #00c853 ">Smog</a></li>
-                <div class="indicator green accent-4" style="z-index:1"></div>
-            </ul>
+            <!--<ul class="tabs">-->
+                <!--<li class="tab col s2"><a href="#weather" style="color: #00c853 ">Pogoda</a></li>-->
+                <!--<li class="tab col s2"><a class="active" href="#smog" style="color: #00c853 ">Smog</a></li>-->
+                <!--<div class="indicator green accent-4" style="z-index:1"></div>-->
+            <!--</ul>-->
             <div id="weather" class="col s12">
                 <br>
                 <!-- Switch -->
@@ -246,13 +243,10 @@
             </div>
         </div>
 
-<<<<<<< HEAD
         <!--<script src="weahterScripts.js"></script>-->
         <script src="smogScripts.js"></script>
-=======
         <script src="weahterScripts.js"></script>
         <!--<script src="smogScripts.js"></script>-->
->>>>>>> dfa05228fd354d93ed5990376bd62824e889d86b
 
         <script>
             $('.datepicker').pickadate({
