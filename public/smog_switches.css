@@ -1,0 +1,107 @@
+/*rgba(255, 23, 68, 1)/#ff1744/red accent-3*/
+.switch label input[type=checkbox]#dwutlenekAzotuSwitch:checked + .lever {
+    background-color: rgba(255, 23, 68, 0.5);
+}
+.switch label input[type=checkbox]#dwutlenekAzotuSwitch:checked + .lever:after {
+    background-color: rgba(255, 23, 68, 1);
+}
+
+
+/*rgba(101, 31, 255, 1)/#651fff/light-blue accent-3*/
+.switch label input[type=checkbox]#tlenekAzotuSwitch:checked + .lever {
+    background-color: rgba(101, 31, 255, 0.5);
+}
+.switch label input[type=checkbox]#tlenekAzotuSwitch:checked + .lever:after {
+    background-color: rgba(101, 31, 255, 1);
+}
+
+
+/*rgba(0, 176, 255, 1)/#00b0ff*/
+.switch label input[type=checkbox]#tlenkiAzotuSwitch:checked + .lever {
+    background-color: rgba(0, 176, 255, 0.5);
+}
+.switch label input[type=checkbox]#tlenkiAzotuSwitch:checked + .lever:after {
+    background-color: rgba(0, 176, 255, 1);
+}
+
+
+/*rgba(0, 230, 118, 1)/#00e676/ green accent-3*/
+.switch label input[type=checkbox]#pylZawieszonyPm10Switch:checked + .lever {
+    background-color: rgba(0, 230, 118, 0.5);
+}
+.switch label input[type=checkbox]#pylZawieszonyPm10Switch:checked + .lever:after {
+    background-color: rgba(0, 230, 118, 1);
+}
+
+
+/*rgba(255, 234, 0, 1)/#ffea00 yellow accent-3*/
+.switch label input[type=checkbox]#pylZawieszonyPm25Switch:checked + .lever {
+    background-color: rgba(255, 234, 0, 0.5);
+}
+.switch label input[type=checkbox]#pylZawieszonyPm25Switch:checked + .lever:after {
+    background-color: rgba(255, 234, 0, 1);
+}
+
+
+/*rgba(255, 61, 0, 1)/#ff3d00 deep-orange accent-3*/
+.switch label input[type=checkbox]#tlenekWeglaSwitch:checked + .lever {
+    background-color: rgba(255, 61, 0, 0.5);
+}
+.switch label input[type=checkbox]#tlenekWeglaSwitch:checked + .lever:after {
+    background-color: rgba(255, 61, 0, 1);
+}
+
+
+/*#4e342e brown darken-3/rgba(78, 52, 46, 1)*/
+.switch label input[type=checkbox]#tlenekWegla8HSwitch:checked + .lever {
+    background-color: rgba(78, 52, 46, 0.5);
+}
+.switch label input[type=checkbox]#tlenekWegla8HSwitch:checked + .lever:after {
+    background-color: rgba(78, 52, 46, 1);
+}
+
+
+/*#ec407a pink lighten-1/rgba(236, 64, 122, 1)*/
+.switch label input[type=checkbox]#ozonSwitch:checked + .lever {
+    background-color: rgba(236, 64, 122, 0.5);
+}
+.switch label input[type=checkbox]#ozonSwitch:checked + .lever:after {
+    background-color: rgba(236, 64, 122, 1);
+}
+
+
+/*#d500f9 purple accent-3/rgba(213, 0, 249, 1)*/
+.switch label input[type=checkbox]#ozon8HSwitch:checked + .lever {
+    background-color: rgba(213, 0, 249, 0.5);
+}
+.switch label input[type=checkbox]#ozon8HSwitch:checked + .lever:after {
+    background-color: rgba(213, 0, 249, 1);
+}
+
+
+/*#42a5f5 blue lighten-1/rgba(66, 165, 245, 1)*/
+.switch label input[type=checkbox]#benzenSwitch:checked + .lever {
+    background-color: rgba(66, 165, 245, 0.5);
+}
+.switch label input[type=checkbox]#benzenSwitch:checked + .lever:after {
+    background-color: rgba(66, 165, 245, 1);
+}
+
+
+/*#80cbc4 teal lighten-3/rgba(128, 203, 196, 1)*/
+.switch label input[type=checkbox]#dwutlenekSiarkiSwitch:checked + .lever {
+    background-color: rgba(128, 203, 196, 0.5);
+}
+.switch label input[type=checkbox]#dwutlenekSiarkiSwitch:checked + .lever:after {
+    background-color: rgba(128, 203, 196, 1);
+}
+
+
+
+
+
+
+
+
+
+
