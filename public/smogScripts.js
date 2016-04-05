@@ -316,13 +316,13 @@ function updateAllCharts(){
 
 
 function updateSmogData() {
-    var x = document.getElementById("date");
-    var date = x.value;
+    var fromdate = document.getElementById("from-date").innerHTML;
+    var todate = document.getElementById("to-date").innerHTML;
     var y = document.getElementById("station");
     var station = y.value;
 
     $.ajax({
-        url: "/smog?date=" + date + "&station=" + station,
+        url: "/smog?from=" + fromdate + "&to=" + todate + "&station=" + station,
     }).then(function(data) {
         if (data == "") {
             Materialize.toast("Brak danych o smogu", 1000);
@@ -337,7 +337,7 @@ function updateSmogData() {
             smogChart = createSmogChart(values.labels, values, "smogChart");
             updateAllCharts();
         } else {
-            smogChart.data.labels = values.labels.map(function(x) { return x + ":00"; });
+            smogChart.data.labels = values.labels.slice();
             for (var v = 0; v < values.labels.length; ++v) {
                 //console.log(smogChart.data.datasets);
                 smogChart.data.datasets[0].data[v] = values.dwutlenekAzotu[v];
@@ -378,7 +378,7 @@ function getSmogData(data) {
 
 
     for (var i = 0; i < data.length; i++) {
-        labels[i] = stringOrNull(data[i].godzina);
+        labels[i] = stringOrNull(data[i].label);
         pylZawieszonyPm10[i] = stringOrNull(data[i].pylZawieszonyPm10);
         tlenekWegla[i] = stringOrNull(data[i].tlenekWegla);
         dwutlenekAzotu[i] = stringOrNull(data[i].dwutlenekAzotu);

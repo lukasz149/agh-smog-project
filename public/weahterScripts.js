@@ -5,7 +5,6 @@
 //document.getElementById("checkTemperature").addEventListener("change", updateTemperatureChart);
 //document.getElementById("checkWind").addEventListener("change", updateWeatherData);
 
-
 var weatherChart;
 var datasets = [];
 
@@ -15,12 +14,8 @@ $(document).ready(function() {
     }).then(function(data) {
         var values = getWeatherData(data);
         console.log("START");
-        weatherChart = createChart(values.labels, values, "weatherChart");
-        updateTemperatureChart();
-        updateWindSpeedChart();
-        updatePerssureChart();
-        updateRainChart();
-        updateHumidityChart();
+        weatherChart = createChart(values.label, values, "weatherChart");
+        updateAllWeatherCharts();
     });
 });
 
@@ -35,7 +30,7 @@ function createChart(_labels, _values, _name) {
             pointBorderColor: "rgba(230, 81, 0, 1)",
             pointBackgroundColor: "rgba(230, 81, 0, 1)",
             pointBorderWidth: 1,
-            data: _values.temperature,
+            data: _values.temp,
             hidden: true
         }, {
             yAxisID: "y-axis-2",
@@ -45,7 +40,7 @@ function createChart(_labels, _values, _name) {
             pointBorderColor: "rgba(66, 66, 66, 1)",
             pointBackgroundColor: "rgba(66, 66, 66, 1)",
             pointBorderWidth: 1,
-            data: _values.windSpeed,
+            data: _values.wind,
             hidden: true
         }, {
             yAxisID: "y-axis-3",
@@ -210,10 +205,10 @@ function  updateHumidityChart() {
 }
 
 function updateWeatherData() {
-    var x = document.getElementById("date");
-    var date = x.value;
+    var fromdate = document.getElementById("from-date").innerHTML;
+    var todate = document.getElementById("to-date").innerHTML;
     $.ajax({
-        url: "/weather?date=" + date,
+        url: "/weather?from=" + fromdate + "&to=" + todate,
     }).then(function(data) {
         if (data == "") {
             Materialize.toast("Brak danych o pogodzie", 1000);
@@ -223,55 +218,53 @@ function updateWeatherData() {
         var values = getWeatherData(data);
         datasets = [];
 
-        if (values.labels.length != weatherChart.data.datasets[0].data.length) {
+        if (values.label.length != weatherChart.data.datasets[0].data.length) {
             weatherChart.destroy();
 
-            weatherChart = createChart(values.labels, values, "temperatureChart");
-            updateTemperatureChart();
-            updateWindSpeedChart();
-            updatePerssureChart();
-            updateRainChart();
-            updateHumidityChart();
+            weatherChart = createChart(values.label, values, "weatherChart");
+            updateAllWeatherCharts();
         } else {
-            weatherChart.data.labels = values.labels.slice();
-            for (var v = 0; v < values.labels.length; ++v) {
-                weatherChart.data.datasets[0].data[v] = values.temperature[v];
-                weatherChart.data.datasets[1].data[v] = values.windSpeed[v];
-                weatherChart.data.datasets[2].data[v] = values.pressure[v];
-                weatherChart.data.datasets[3].data[v] = values.rain[v];
-                weatherChart.data.datasets[4].data[v] = values.humidity[v];
-            }
+            weatherChart.data.labels = values.label.slice();
+            weatherChart.data.datasets[0].data = values.temp.slice();
+            weatherChart.data.datasets[1].data = values.wind.slice();
+            weatherChart.data.datasets[2].data = values.pressure.slice();
+            weatherChart.data.datasets[3].data = values.rain.slice();
+            weatherChart.data.datasets[4].data = values.humidity.slice();
+
             weatherChart.update();
         }
     });
 }
 
-function stringOrNull(x) {
-    return x === "" ? null : x;
-}
+//function stringOrNull(x) {
+//    return x === "" ? null : x;
+//}
 
 function getWeatherData(data) {
-    var labels = [];
-    var temperatureData = [];
-    var windSpeedData = [];
-    var pressureData = [];
-    var rainData = [];
-    var humidityData = [];
+    console.log(data);
+    var result = {
+        label: [],
+        temp: [],
+        wind: [],
+        pressure: [],
+        rain: [],
+        humidity: []
+    };
 
     for (var i = 0; i < data.length; i++) {
-        labels[i] = stringOrNull(data[i].godzina);
-        temperatureData[i] = stringOrNull(data[i].tempPowietrzaavg);
-        windSpeedData[i] = stringOrNull(data[i].avgPredkoscWiatruavg);
-        pressureData[i] = stringOrNull(data[i].cisnienieavg );
-        rainData[i] = stringOrNull(data[i].opadavg );
-        humidityData[i] = stringOrNull(data[i].wilgotnoscavg );
+        for (var field in result) {
+            result[field].push(stringOrNull(data[i][field]));
+        }
     }
-    return {
-        'labels': labels,
-        'temperature': temperatureData,
-        'windSpeed': windSpeedData,
-        'pressure': pressureData,
-        'rain': rainData,
-        'humidity': humidityData
-    };
+    console.log("Result");
+    console.log(result);
+    return result;
+}
+
+function updateAllWeatherCharts() {
+    updateTemperatureChart();
+    updateWindSpeedChart();
+    updatePerssureChart();
+    updateRainChart();
+    updateHumidityChart();
 }

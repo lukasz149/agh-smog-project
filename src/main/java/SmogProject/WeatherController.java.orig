@@ -26,14 +26,16 @@ public class WeatherController {
 
     @RequestMapping("/weather")
     public @ResponseBody List weather(@RequestParam(value="from", defaultValue="2015-01-01") String from,
-                                      @RequestParam(value="to", defaultValue="2015-01-01") String to,
-                                      @RequestParam(value="view", defaultValue="normal") String view) throws ParseException {
+                                                    @RequestParam(value="to", defaultValue="2015-01-02") String to,
+                                                    @RequestParam(value="view", defaultValue="normal") String view) throws ParseException {
 
         if (Objects.equals(view, "normal")) {
             Date fromdate = new SimpleDateFormat("yyyy-MM-dd").parse(from);
             Date todate = new SimpleDateFormat("yyyy-MM-dd").parse(to);
+            System.out.println(fromdate);
+            System.out.println(todate);
 
-            long diff = todate.getTime() - fromdate.getTime();
+            long diff = todate.getTime() - fromdate.getTime() + TimeUnit.DAYS.toMillis(1);
             long divhours = TimeUnit.MILLISECONDS.toHours(diff) / MAX_POINTS + 1;
             long divdays = TimeUnit.MILLISECONDS.toDays(diff) / MAX_POINTS + 1;
 
@@ -50,21 +52,25 @@ public class WeatherController {
 
             if (divhours < 24) { // hours
                 query = String.format(query, "P.godzina || ':00'",
-                                             String.format("group by Data, Godzina / %d", divhours));
+                                             String.format("group by Data, round(Godzina / %d)", divhours));
             } else if (divdays < 30) { // days
-                query = String.format(query, "P.data",
-                                    String.format("group by strftime('%%Y-%%m', Data), strftime('%%d', Data) / %d", divdays));
+                query = String.format(query, "P.data", "group by Data");
             } else { // month
-                query = String.format(query, "P.data",
-                                    String.format("group by strftime('%%Y', Data), strftime('%%d', Data) / %d", 1));
+                query = String.format(query, "P.data", "group by Data");
             }
 
+<<<<<<< Updated upstream
+        Session s = HibernateSession.getSessionFactory().openSession();
+        Query q = s.createQuery("from PogodaEntity where Data = \'" + date + "\'"  );
+        List<PogodaEntity> result = q.list();
+        s.close();
+=======
+>>>>>>> Stashed changes
 
             Session s = HibernateSession.getSessionFactory().openSession();
             Query q = s.createQuery(query);
             q.setResultTransformer(Transformers.aliasToBean(PogodaQueryResult.class));
             List result = q.list();
-            System.out.println("List length: " + result.size());
             s.close();
 
             return result;
@@ -75,4 +81,6 @@ public class WeatherController {
 
         return null;
     }
+
+    // public static void getAverageOver()
 }

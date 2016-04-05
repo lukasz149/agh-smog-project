@@ -2,13 +2,18 @@ package SmogProject;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.transform.Transformers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by lukas on 15.03.2016.
@@ -16,16 +21,62 @@ import java.util.List;
 @RestController
 public class SmogController {
 
+    private static final long MAX_POINTS = 30;
+
     @RequestMapping("/smog")
     public @ResponseBody
-    List<SmogEntity> smog(@RequestParam(value = "date", defaultValue = "2014-01-01") String date,
-                       @RequestParam(value = "station", defaultValue = "6") String station) throws ParseException {
+    List<SmogEntity> smog(@RequestParam(value="from", defaultValue="2015-01-01") String from,
+                          @RequestParam(value="to", defaultValue="2015-01-01") String to,
+                          @RequestParam(value="view", defaultValue="normal") String view,
+                          @RequestParam(value = "station", defaultValue = "6") String station) throws ParseException {
 
-        Session s = HibernateSession.getSessionFactory().openSession();
-        Query q = s.createQuery("from SmogEntity where Data = \'" + date + "\' and Stacja = " + station);
-        List<SmogEntity> result = q.list();
-        s.close();
-        return result;
+        if (Objects.equals(view, "normal")) {
+            Date fromdate = new SimpleDateFormat("yyyy-MM-dd").parse(from);
+            Date todate = new SimpleDateFormat("yyyy-MM-dd").parse(to);
+
+            long diff = todate.getTime() - fromdate.getTime();
+            long divhours = TimeUnit.MILLISECONDS.toHours(diff) / MAX_POINTS + 1;
+            long divdays = TimeUnit.MILLISECONDS.toDays(diff) / MAX_POINTS + 1;
+
+            String query = "select %s, " +
+                    "avg(P.pylZawieszonyPm10), " +
+                    "avg(P.tlenekWegla), " +
+                    "avg(P.dwutlenekAzotu), " +
+                    "avg(P.tlenekAzotu), " +
+                    "avg(P.tlenkiAzotu), " +
+                    "avg(P.pylZawieszonyPm25), " +
+                    "avg(P.tlenekWegla8H), " +
+                    "avg(P.benzen), " +
+                    "avg(P.dwutlenekSiarki), " +
+                    "avg(P.ozon), " +
+                    "avg(P.ozon8H) " +
+                    "from SmogEntity as P " +
+                    String.format("where Stacja = %s and Data between '%s' and '%s' ", station, from, to) +
+                    "%s " +
+                    "order by Data, Godzina";
+
+            if (divhours < 24) { // hours
+                query = String.format(query, "P.godzina || ':00'",
+                        String.format("group by Data, Godzina / %d", divhours));
+            } else if (divdays < 30) { // days
+                query = String.format(query, "P.data",
+                        String.format("group by strftime('%%Y-%%m', Data), strftime('%%d', Data) / %d", divdays));
+            } else { // month
+                query = String.format(query, "P.data",
+                        String.format("group by strftime('%%Y', Data), strftime('%%d', Data) / %d", 1));
+            }
+
+            Session s = HibernateSession.getSessionFactory().openSession();
+            Query q = s.createQuery(query);
+            q.setResultTransformer(Transformers.aliasToBean(SmogQueryResult.class));
+            List result = q.list();
+            System.out.println("List length: " + result.size());
+            s.close();
+
+            return result;
+        } else {
+
+        }
 
 //        try {
 //            lines = Files.readAllLines(Paths.get(String.format("data/smog/%s/csv/%s.csv", station, date)));
@@ -48,5 +99,6 @@ public class SmogController {
 //        }
 //        return null;
 
+        return null;
     }
 }

@@ -5,8 +5,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script>
     <script src="script/Chart.js-2.0.0-beta/Chart.js"></script>
+    <script src="script/wnumb-1.0.2/wNumb.js"></script>
+    <script src="script/noUiSlider/nouislider.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <link rel="stylesheet" href="script/noUiSlider/nouislider.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <link rel="stylesheet" type="text/css" href="smog_switches.css">
     <style>
@@ -44,6 +47,14 @@
         .switch label input[type=checkbox]#checkHumidity:checked + .lever:after {
             background-color: rgba(100, 181, 246, 1);
         }
+
+        /*#date .connect {*/
+            /*position: absolute;*/
+            /*top: 0;*/
+            /*bottom: 0;*/
+            /*background: #80C9F5;*/
+            /*box-shadow: inset 0 0 3px rgba(51,51,51,0.45);*/
+        /*}*/
     </style>
 
 </head>
@@ -55,7 +66,23 @@
                     <div class="col s6">
                         <label for="date">Data:</label>
                         <!--<input id="date" type="date" class="datepicker" placeholder="02-03-2014" onchange="updateWeatherData(); updateSmogData();">-->
-                        <input id="date" type="date" class="datepicker" placeholder="02-03-2014" onchange="updateSmogData(); updateWeatherData();">
+                        <!--<input id="date" type="date" class="datepicker" placeholder="2015-01-01" onchange="updateSmogData(); updateWeatherData();">-->
+                        <div id="date" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
+                            <!--<div class="noUi-base">-->
+                                <!--<div class="noUi-origin" style="left: 10.8626%;">-->
+                                    <!--<div class="noUi-handle noUi-handle-lower">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="noUi-origin" style="left: 83.3866%;">-->
+                                    <!--<div class="noUi-handle noUi-handle-upper">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                        <span>Od</span>
+                        <span id="from-date"></span>
+                        <span>do</span>
+                        <span id="to-date"></span>
                     </div>
 
                     <div class="input-field col s6">
@@ -249,13 +276,80 @@
         <!--<script src="smogScripts.js"></script>-->
 
         <script>
-            $('.datepicker').pickadate({
-                selectMonths: true, // Creates a dropdown to control month
-                selectYears: 15, // Creates a dropdown of 15 years to control year
-                format: 'yyyy-mm-dd'
-            });
+            function timestamp(str) {
+                return new Date(str).getTime();
+            }
+
+            function zfill(str, len) {
+                return new Array(len - str.length + 1).join('0') + str;
+            }
+
+            function formatDate(time) {
+                var date = new Date(time * 1);
+                return (date.getYear() + 1900) + "-" + zfill((date.getMonth() + 1).toString(), 2) + "-" + zfill((date.getDay() + 1).toString(), 2);
+            }
+
+//            $('.datepicker').pickadate({
+//                selectMonths: true, // Creates a dropdown to control month
+//                selectYears: 15, // Creates a dropdown of 15 years to control year
+//                format: 'yyyy-mm-dd'
+//            });
             $(document).ready(function() {
                 $('select').material_select();
+
+                var dateSlider = document.getElementById("date");
+                noUiSlider.create(dateSlider, {
+                    range: {
+                        min: timestamp('2014-01-01'),
+                        max: new Date().getTime()
+                    },
+
+                    steps: 1000 * 60 * 60 * 24, // days
+
+                    connect: true,
+
+                    start: [ timestamp(new Date().toString()), timestamp(new Date().toString()) ],
+
+                    behaviour: 'tap-drag',
+
+                    format: wNumb({
+                        decimals: 0
+                    })
+                });
+
+                var dateValues = [
+                    document.getElementById('from-date'),
+                    document.getElementById('to-date')
+                ];
+
+                dateSlider.noUiSlider.on('update', function( values, handle ) {
+                    dateValues[handle].innerHTML = formatDate(values[handle]);
+                });
+
+                dateSlider.noUiSlider.on('change', function() {
+                    updateWeatherData();
+                    updateSmogData();
+                });
+
+//                var connectBar = document.createElement('div'),
+//                    connectBase = dateSlider.querySelector('.noUi-base');
+//
+//                // Give the bar a class for styling and add it to the slider.
+//                connectBar.className += 'connect';
+//                connectBase.appendChild(connectBar);
+//
+//                dateSlider.noUiSlider.on('update', function( values, handle, a, b, handlePositions ) {
+//
+//                    var offset = handlePositions[handle];
+//
+//                    // Right offset is 100% - left offset
+//                    if ( handle === 1 ) {
+//                        offset = 100 - offset;
+//                    }
+//
+//                    // Pick left for the first handle, right for the second.
+//                    connectBar.style[handle ? 'right' : 'left'] = offset + '%';
+//                });
             });
         </script>
     </body>
