@@ -38,7 +38,7 @@ $(document).ready(function() {
         console.log(values);
         console.log("START");
         smogChart = createSmogChart(values.labels, values, "smogChart");
-        updateAllCharts()
+        updateAllCharts();
     });
 });
 

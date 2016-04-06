@@ -5,9 +5,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script>
     <script src="script/Chart.js-2.0.0-beta/Chart.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/heatmap.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
     <script src="script/wnumb-1.0.2/wNumb.js"></script>
     <script src="script/noUiSlider/nouislider.js"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     <link rel="stylesheet" href="script/noUiSlider/nouislider.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
@@ -55,6 +57,12 @@
             /*background: #80C9F5;*/
             /*box-shadow: inset 0 0 3px rgba(51,51,51,0.45);*/
         /*}*/
+        #heatmap {
+            min-width: 300px;
+            max-width: 800px;
+            height: 400px;
+            margin: 1em auto;
+        }
     </style>
 
 </head>
@@ -104,131 +112,142 @@
                 <!--<li class="tab col s2"><a class="active" href="#smog" style="color: #00c853 ">Smog</a></li>-->
                 <!--<div class="indicator green accent-4" style="z-index:1"></div>-->
             <!--</ul>-->
+            <ul class="tabs">
+            <li class="tab col s2"><a class="active" href="#weather_smog" style="color: #00c853 ">Pogoda i smog</a></li>
+            <li class="tab col s2"><a href="#heatmap" style="color: #00c853 ">Heatmap</a></li>
+            <div class="indicator green accent-4" style="z-index:1"></div>
+            </ul>
             <div class="section">
-                <div id="weather" class="col s12">
-                    <br>
-                    <!-- Switch -->
-                    <div class="switch">
-                        <label>
-                            Temperatura
-                            <input type="checkbox"  id="checkTemperature" onchange="updateTemperatureChart()">
-                            <span class="lever"></span>
-                        </label>
-
-                        <label>
-                            Wiatr
-                            <input checked="checked" type="checkbox" id="checkWind" onchange="updateWindSpeedChart()">
-                            <span class="lever"></span>
-                        </label>
-
-                        <label>
-                            Ciśnienie
-                            <input checked="checked" type="checkbox" id="checkPressure" onchange="updatePerssureChart()">
-                            <span class="lever"></span>
-                        </label>
-
-                        <label>
-                            Opady
-                            <input checked="checked" type="checkbox" id="checkRain" onchange="updateRainChart()">
-                            <span class="lever"></span>
-                        </label>
-
-                        <label>
-                            Wilgotność
-                            <input checked="checked" type="checkbox" id="checkHumidity" onchange="updateHumidityChart()">
-                            <span class="lever"></span>
-                        </label>
-                    </div>
-                    <h5>Pogoda</h5>
-                    <canvas id="weatherChart" width="1000" height="400"></canvas>
-                    <!--<h5>Zachmurzenie</h5>-->
-                    <!--<canvas id="cloudyChart" width="1000" height="200"></canvas>-->
-                    <!--<h5>Wilgotność</h5>-->
-                    <!--<canvas id="humidityChart" width="1000" height="200"></canvas>-->
-                    <!--<h5>Prędkość wiatru</h5>-->
-                    <!--<canvas id="windSpeedChart" width="1000" height="200"></canvas>-->
-                </div>
+                <div id="heatmap"> </div>
             </div>
 
-            <div class="section">
-                <div id="smog" class="row">
-                    <div class="col s9">
-                        <h5>Smog</h5>
-                        <canvas id="smogChart" width="950%" height="400"></canvas>
+            <div id="weather_smog">
+                <div class="section">
+                    <div id="weather" class="col s12">
+                        <br>
+                        <!-- Switch -->
+                        <div class="switch">
+                            <label>
+                                Temperatura
+                                <input type="checkbox"  id="checkTemperature" onchange="updateTemperatureChart()">
+                                <span class="lever"></span>
+                            </label>
+
+                            <label>
+                                Wiatr
+                                <input checked="checked" type="checkbox" id="checkWind" onchange="updateWindSpeedChart()">
+                                <span class="lever"></span>
+                            </label>
+
+                            <label>
+                                Ciśnienie
+                                <input checked="checked" type="checkbox" id="checkPressure" onchange="updatePerssureChart()">
+                                <span class="lever"></span>
+                            </label>
+
+                            <label>
+                                Opady
+                                <input checked="checked" type="checkbox" id="checkRain" onchange="updateRainChart()">
+                                <span class="lever"></span>
+                            </label>
+
+                            <label>
+                                Wilgotność
+                                <input checked="checked" type="checkbox" id="checkHumidity" onchange="updateHumidityChart()">
+                                <span class="lever"></span>
+                            </label>
+                        </div>
+                        <h5>Pogoda</h5>
+                        <canvas id="weatherChart" width="1000" height="400"></canvas>
+                        <!--<h5>Zachmurzenie</h5>-->
+                        <!--<canvas id="cloudyChart" width="1000" height="200"></canvas>-->
+                        <!--<h5>Wilgotność</h5>-->
+                        <!--<canvas id="humidityChart" width="1000" height="200"></canvas>-->
+                        <!--<h5>Prędkość wiatru</h5>-->
+                        <!--<canvas id="windSpeedChart" width="1000" height="200"></canvas>-->
                     </div>
-                    <!-- Switches -->
-                    <div class="col s3">
-                        <div class="row">
-                            <div class="col s6">
-                                <div class="switch">
-                                    <label>
-                                        Dwutlenek Azotu
-                                        <input checked type="checkbox" id="dwutlenekAzotuSwitch">
-                                        <span class="lever"></span>
-                                    </label>
-                                    <br>
-                                    <label>
-                                        Tlenek Azotu
-                                        <input type="checkbox" id="tlenekAzotuSwitch">
-                                        <span class="lever"></span>
-                                    </label>
-                                    <br>
-                                    <label>
-                                        Tlenki Azotu
-                                        <input type="checkbox" id="tlenkiAzotuSwitch">
-                                        <span class="lever"></span>
-                                    </label>
-                                    <br>
-                                    <label>
-                                        Pyl Zawieszony Pm 10
-                                        <input type="checkbox" id="pylZawieszonyPm10Switch">
-                                        <span class="lever"></span>
-                                    </label>
-                                    <br>
-                                    <label>
-                                        Pyl Zawieszony Pm 2,5
-                                        <input type="checkbox" id="pylZawieszonyPm25Switch">
-                                        <span class="lever"></span>
-                                    </label>
+                </div>
+
+                <div class="section">
+                    <div id="smog" class="row">
+                        <div class="col s9">
+                            <h5>Smog</h5>
+                            <canvas id="smogChart" width="950%" height="400"></canvas>
+                        </div>
+                        <!-- Switches -->
+                        <div class="col s3">
+                            <div class="row">
+                                <div class="col s6">
+                                    <div class="switch">
+                                        <label>
+                                            Dwutlenek Azotu
+                                            <input checked type="checkbox" id="dwutlenekAzotuSwitch">
+                                            <span class="lever"></span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            Tlenek Azotu
+                                            <input type="checkbox" id="tlenekAzotuSwitch">
+                                            <span class="lever"></span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            Tlenki Azotu
+                                            <input type="checkbox" id="tlenkiAzotuSwitch">
+                                            <span class="lever"></span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            Pyl Zawieszony Pm 10
+                                            <input type="checkbox" id="pylZawieszonyPm10Switch">
+                                            <span class="lever"></span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            Pyl Zawieszony Pm 2,5
+                                            <input type="checkbox" id="pylZawieszonyPm25Switch">
+                                            <span class="lever"></span>
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col s6">
-                                <div class="switch">
-                                    <label>
-                                        Tlenek Wegla
-                                        <input type="checkbox" id="tlenekWeglaSwitch">
-                                        <span class="lever"></span>
-                                    </label>
-                                    <br>
-                                    <label>
-                                        Tlenek Wegla 8H
-                                        <input type="checkbox" id="tlenekWegla8HSwitch">
-                                        <span class="lever"></span>
-                                    </label>
-                                    <br>
-                                    <label>
-                                        Ozon<br>
-                                        <input type="checkbox" id="ozonSwitch">
-                                        <span class="lever"></span>
+                                <div class="col s6">
+                                    <div class="switch">
+                                        <label>
+                                            Tlenek Wegla
+                                            <input type="checkbox" id="tlenekWeglaSwitch">
+                                            <span class="lever"></span>
+                                        </label>
                                         <br>
-                                    </label>
-                                    <label>
-                                        Ozon 8H<br>
-                                        <input type="checkbox" id="ozon8HSwitch">
-                                        <span class="lever"></span>
+                                        <label>
+                                            Tlenek Wegla 8H
+                                            <input type="checkbox" id="tlenekWegla8HSwitch">
+                                            <span class="lever"></span>
+                                        </label>
                                         <br>
-                                    </label>
-                                    <label>
-                                        Benzen<br>
-                                        <input type="checkbox" id="benzenSwitch">
-                                        <span class="lever"></span>
-                                    </label>
-                                    <br>
-                                    <label>
-                                        Dwutlenek Siarki
-                                        <input type="checkbox" id="dwutlenekSiarkiSwitch">
-                                        <span class="lever"></span>
-                                    </label>
+                                        <label>
+                                            Ozon<br>
+                                            <input type="checkbox" id="ozonSwitch">
+                                            <span class="lever"></span>
+                                            <br>
+                                        </label>
+                                        <label>
+                                            Ozon 8H<br>
+                                            <input type="checkbox" id="ozon8HSwitch">
+                                            <span class="lever"></span>
+                                            <br>
+                                        </label>
+                                        <label>
+                                            Benzen<br>
+                                            <input type="checkbox" id="benzenSwitch">
+                                            <span class="lever"></span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            Dwutlenek Siarki
+                                            <input type="checkbox" id="dwutlenekSiarkiSwitch">
+                                            <span class="lever"></span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -240,6 +259,7 @@
         <!--<script src="weahterScripts.js"></script>-->
         <script src="smogScripts.js"></script>
         <script src="weahterScripts.js"></script>
+        <script src="heatmapScripts.js"></script>
         <!--<script src="smogScripts.js"></script>-->
 
         <script>
