@@ -58,7 +58,7 @@ public class SmogController {
                     "avg(P.ozon), " +
                     "avg(P.ozon8H) " +
                     "from SmogEntity as P " +
-                    String.format("where Data between '%s' and '%s' and Stacja =  ", from, to, station) +
+                    String.format("where Data between '%s' and '%s' and Stacja = %s ", from, to, station) +
                     String.format("group by (strftime('%%s', Data) + 3600 * Godzina) / %d", secs) +
                     "order by Data, Godzina";
 
