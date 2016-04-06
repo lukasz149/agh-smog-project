@@ -273,7 +273,7 @@
 
             function formatDate(time) {
                 var date = new Date(time * 1);
-                return (date.getYear() + 1900) + "-" + zfill((date.getMonth() + 1).toString(), 2) + "-" + zfill((date.getDay() + 1).toString(), 2);
+                return (date.getYear() + 1900) + "-" + zfill((date.getMonth() + 1).toString(), 2) + "-" + zfill((date.getDate() + 1).toString(), 2);
             }
 
 //            $('.datepicker').pickadate({
@@ -291,7 +291,7 @@
                         max: new Date().getTime()
                     },
 
-                    steps: 1000 * 60 * 60 * 24, // days
+                    steps: 1000 * 60 * 60, // hours
 
                     connect: true,
 

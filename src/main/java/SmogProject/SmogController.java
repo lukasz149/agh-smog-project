@@ -34,11 +34,18 @@ public class SmogController {
             Date fromdate = new SimpleDateFormat("yyyy-MM-dd").parse(from);
             Date todate = new SimpleDateFormat("yyyy-MM-dd").parse(to);
 
-            long diff = todate.getTime() - fromdate.getTime();
+            long diff = todate.getTime() - fromdate.getTime() + TimeUnit.DAYS.toMillis(1);
+            long secs = TimeUnit.MILLISECONDS.toSeconds(diff) / MAX_POINTS;
             long divhours = TimeUnit.MILLISECONDS.toHours(diff) / MAX_POINTS + 1;
-            long divdays = TimeUnit.MILLISECONDS.toDays(diff) / MAX_POINTS + 1;
 
-            String query = "select %s, " +
+            String label;
+            if (divhours < 24) { // hours
+                label = "P.godzina || ':00'";
+            } else { // days, month
+                label = "P.data";
+            }
+
+            String query = "select " + label + ", " +
                     "avg(P.pylZawieszonyPm10), " +
                     "avg(P.tlenekWegla), " +
                     "avg(P.dwutlenekAzotu), " +
@@ -51,26 +58,15 @@ public class SmogController {
                     "avg(P.ozon), " +
                     "avg(P.ozon8H) " +
                     "from SmogEntity as P " +
-                    String.format("where Stacja = %s and Data between '%s' and '%s' ", station, from, to) +
-                    "%s " +
+                    String.format("where Data between '%s' and '%s' ", from, to) +
+                    String.format("group by (strftime('%%s', Data) + 3600 * Godzina) / %d", secs) +
                     "order by Data, Godzina";
-
-            if (divhours < 24) { // hours
-                query = String.format(query, "P.godzina || ':00'",
-                        String.format("group by Data, Godzina / %d", divhours));
-            } else if (divdays < 30) { // days
-                query = String.format(query, "P.data",
-                        String.format("group by strftime('%%Y-%%m', Data), strftime('%%d', Data) / %d", divdays));
-            } else { // month
-                query = String.format(query, "P.data",
-                        String.format("group by strftime('%%Y', Data), strftime('%%d', Data) / %d", 1));
-            }
 
             Session s = HibernateSession.getSessionFactory().openSession();
             Query q = s.createQuery(query);
+            q.setMaxResults(24);
             q.setResultTransformer(Transformers.aliasToBean(SmogQueryResult.class));
             List result = q.list();
-            System.out.println("List length: " + result.size());
             s.close();
 
             return result;
