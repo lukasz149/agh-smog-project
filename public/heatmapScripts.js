@@ -2,28 +2,47 @@
  * Created by ShittySushi on 06.04.2016.
  */
 
+var heatmapChart;
+
+function updateSmogAndWeatherHeatMap(continuation) {
+    var fromdate = document.getElementById("from-date").innerHTML;
+    var todate = document.getElementById("to-date").innerHTML;
+    var station = document.getElementById("station").value;
+
+    $.ajax({
+        url: "/weather?from=" + fromdate + "&to=" + todate,
+    }).then(function(data) {
+        var weatherData = getWeatherData(data);
+        $.ajax({
+            url: "/smog?from=" + fromdate + "&to=" + todate + "&station=" + station,
+        }).then(function(data) {
+            var smogData = getSmogData(data);
+            console.log('works');
+            continuation(weatherData, smogData);
+        });
+    });
+}
+
 
 $(function () {
 
-    $('#heatmap').highcharts({
-
+    heatmapChart = {
         chart: {
             type: 'heatmap',
             marginTop: 40,
             marginBottom: 40
         },
 
-
         title: {
-            text: 'Sales per employee per weekday'
+            text: 'Smog i Pogoda'
         },
 
         xAxis: {
-            categories: ['Alexander', 'Marie', 'Maximilian', 'Sophia', 'Lukas', 'Maria', 'Leon', 'Anna', 'Tim', 'Laura']
+            categories: []
         },
 
         yAxis: {
-            categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            categories: [],
             title: null
         },
 
@@ -52,9 +71,9 @@ $(function () {
         series: [{
             name: 'Sales per employee',
             borderWidth: 1,
-            data: [[0,0,10],[0,1,19],[0,2,8],[0,3,24],[0,4,67],[1,0,92],[1,1,58],[1,2,78],[1,3,117],[1,4,48],[2,0,35],[2,1,15],[2,2,123],[2,3,64],[2,4,52],[3,0,72],[3,1,132],[3,2,114],[3,3,19],[3,4,16],[4,0,38],[4,1,5],[4,2,8],[4,3,117],[4,4,115],[5,0,88],[5,1,32],[5,2,12],[5,3,6],[5,4,120],[6,0,13],[6,1,44],[6,2,88],[6,3,98],[6,4,96],[7,0,31],[7,1,1],[7,2,82],[7,3,32],[7,4,30],[8,0,85],[8,1,97],[8,2,123],[8,3,64],[8,4,84],[9,0,47],[9,1,114],[9,2,31],[9,3,48],[9,4,91]],
+            data: [],
             dataLabels: {
-                enabled: true,
+                enabled: false,
                 color: 'black',
                 style: {
                     textShadow: 'none'
@@ -62,5 +81,56 @@ $(function () {
             }
         }]
 
-    });
+    };
+
+    $('#heatmap').highcharts(heatmapChart);
 });
+
+function updateHeatMap() {
+    updateSmogAndWeatherHeatMap(function(weatherData, smogData) {
+        var alldata = $.extend({}, weatherData, smogData);
+        heatmapChart.yAxis.categories = [];
+        for (var name in alldata) {
+            if (name == "label" || name == "labels") continue;
+            heatmapChart.yAxis.categories.push(data_dict[name]);
+        }
+        heatmapChart.xAxis.categories = alldata.label.slice();
+
+        var len = alldata.label.length;
+        delete alldata.label;
+        delete alldata.labels;
+
+        heatmapChart.series[0].data = [];
+        for (var x = 0; x < len; ++x) {
+            var i = 0;
+            for (var y in alldata) {
+                heatmapChart.series[0].data.push([x, i, alldata[y][x]]);
+                ++i;
+            }
+        }
+
+        $('#heatmap').highcharts(heatmapChart);
+        console.log("yup");
+        console.log(heatmapChart.series[0].data);
+    });
+}
+
+
+var data_dict = {
+    "pylZawieszonyPm10": "Pyl Zawieszony Pm 10",
+    "tlenekWegla": "Tlenek Wegla",
+    "dwutlenekAzotu": "Dwutlenek Azotu",
+    "tlenekAzotu": "Tlenek Azotu",
+    "tlenkiAzotu": "Tlenki Azotu",
+    "pylZawieszonyPm25": "Pyl Zawieszony Pm 2,5",
+    "tlenekWegla8H": "Tlenek Wegla 8H",
+    "benzen": "Benzen",
+    "dwutlenekSiarki": "Dwutlenek Siarki",
+    "ozon": "Ozon",
+    "ozon8H": "Ozon 8H",
+    "temp": "Temperatura",
+    "wind": "Wiatr",
+    "pressure": "Ciśnienie",
+    "rain": "opady",
+    "humidity": "Wilgotność"
+};

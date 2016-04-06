@@ -112,8 +112,8 @@
             <li class="tab col s2"><a href="#heatmap" style="color: #00c853 ">Heatmap</a></li>
             <div class="indicator green accent-4" style="z-index:1"></div>
             </ul>
-            <div class="section">
-                <div id="heatmap"> </div>
+            <div id="heatmap">
+
             </div>
 
             <div id="weather_smog">
@@ -311,6 +311,7 @@
                 dateSlider.noUiSlider.on('change', function() {
                     updateWeatherData();
                     updateSmogData();
+                    updateHeatMap();
                 });
 
 //                var connectBar = document.createElement('div'),
