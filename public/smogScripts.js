@@ -318,8 +318,7 @@ function updateAllCharts(){
 function updateSmogData() {
     var fromdate = document.getElementById("from-date").innerHTML;
     var todate = document.getElementById("to-date").innerHTML;
-    var y = document.getElementById("station");
-    var station = y.value;
+    var station = document.getElementById("station").value;
 
     $.ajax({
         url: "/smog?from=" + fromdate + "&to=" + todate + "&station=" + station,
