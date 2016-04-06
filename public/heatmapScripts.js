@@ -48,8 +48,8 @@ $(function () {
 
         colorAxis: {
             min: 0,
-            minColor: '#FFFFFF',
-            maxColor: Highcharts.getOptions().colors[0]
+            minColor: '#00c853',
+            maxColor: '#d50000'
         },
 
         legend: {
