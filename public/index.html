@@ -138,7 +138,7 @@
                     <div id="weather" class="row">
                         <div class="col s9">
                             <h5>Pogoda</h5>
-                            <canvas id="weatherChart" width="950%" height="400"></canvas>
+                            <canvas id="weatherChart" width="950%" height="350"></canvas>
                         </div>
                         <!-- Switch -->
                         <div class="col s3">
@@ -194,7 +194,7 @@
                     <div id="smog" class="row">
                         <div class="col s9">
                             <h5>Smog</h5>
-                            <canvas id="smogChart" width="950%" height="400"></canvas>
+                            <canvas id="smogChart" width="950%" height="350"></canvas>
                         </div>
                         <!-- Switches -->
                         <div class="col s3">
@@ -323,7 +323,7 @@
 
             function formatDate(time) {
                 var date = new Date(time * 1);
-                return (date.getYear() + 1900) + "-" + zfill((date.getMonth() + 1).toString(), 2) + "-" + zfill((date.getDate() + 1).toString(), 2);
+                return (date.getYear() + 1900) + "-" + zfill((date.getMonth() + 1).toString(), 2) + "-" + zfill(date.getDate().toString(), 2);
             }
 
 //            $('.datepicker').pickadate({
