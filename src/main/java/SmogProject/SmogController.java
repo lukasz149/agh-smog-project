@@ -25,8 +25,8 @@ public class SmogController {
 
     @RequestMapping("/smog")
     public @ResponseBody
-    List<SmogEntity> smog(@RequestParam(value="from", defaultValue="2015-01-01") String from,
-                          @RequestParam(value="to", defaultValue="2015-01-01") String to,
+    List<SmogEntity> smog(@RequestParam(value="from", defaultValue="2015-04-06") String from,
+                          @RequestParam(value="to", defaultValue="2015-04-06") String to,
                           @RequestParam(value="view", defaultValue="normal") String view,
                           @RequestParam(value = "station", defaultValue = "6") String station) throws ParseException {
 
