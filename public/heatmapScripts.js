@@ -2,7 +2,11 @@
  * Created by ShittySushi on 06.04.2016.
  */
 
-var heatmapChart;
+var heatmapChart = null;
+
+$(document).ready(function() {
+    updateHeatMap();
+});
 
 function updateSmogAndWeatherHeatMap(continuation) {
     var fromdate = document.getElementById("from-date").innerHTML;
@@ -30,11 +34,11 @@ $(function () {
         chart: {
             type: 'heatmap',
             marginTop: 40,
-            marginBottom: 40
+            marginBottom: 100
         },
 
         title: {
-            text: 'Smog i Pogoda'
+            text: ''
         },
 
         xAxis: {
@@ -48,6 +52,7 @@ $(function () {
 
         colorAxis: {
             min: 0,
+            max: 1,
             minColor: '#00c853',
             maxColor: '#d50000'
         },
@@ -63,8 +68,8 @@ $(function () {
 
         tooltip: {
             formatter: function () {
-                return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' +
-                    this.point.value + '</b> items on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
+                return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> value <br><b>' +
+                    mulOrNull(this.point.value, scale_dict[rev_data_dict[this.series.yAxis.categories[this.point.y]]]) + '</b> of <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
             }
         },
 
@@ -79,12 +84,27 @@ $(function () {
                     textShadow: 'none'
                 }
             }
-        }]
+        }],
 
     };
 
     $('#heatmap').highcharts(heatmapChart);
 });
+
+function divOrNone(x, y) {
+    if (x == null) return null;
+    return x / y;
+}
+
+function mulOrNull(x, y) {
+    if (x == null) return null;
+    return x * y;
+}
+
+function addOrNull(x, y) {
+    if (x == null) return null;
+    return x + y;
+}
 
 function updateHeatMap() {
     updateSmogAndWeatherHeatMap(function(weatherData, smogData) {
@@ -104,7 +124,7 @@ function updateHeatMap() {
         for (var x = 0; x < len; ++x) {
             var i = 0;
             for (var y in alldata) {
-                heatmapChart.series[0].data.push([x, i, alldata[y][x]]);
+                heatmapChart.series[0].data.push([x, i, divOrNone(alldata[y][x], scale_dict[y])]);
                 ++i;
             }
         }
@@ -117,20 +137,44 @@ function updateHeatMap() {
 
 
 var data_dict = {
-    "pylZawieszonyPm10": "Pyl Zawieszony Pm 10",
-    "tlenekWegla": "Tlenek Wegla",
-    "dwutlenekAzotu": "Dwutlenek Azotu",
-    "tlenekAzotu": "Tlenek Azotu",
-    "tlenkiAzotu": "Tlenki Azotu",
-    "pylZawieszonyPm25": "Pyl Zawieszony Pm 2,5",
-    "tlenekWegla8H": "Tlenek Wegla 8H",
-    "benzen": "Benzen",
-    "dwutlenekSiarki": "Dwutlenek Siarki",
-    "ozon": "Ozon",
-    "ozon8H": "Ozon 8H",
-    "temp": "Temperatura",
-    "wind": "Wiatr",
-    "pressure": "Ciśnienie",
-    "rain": "opady",
-    "humidity": "Wilgotność"
+    "pylZawieszonyPm10":    "Pyl Zawieszony Pm 10",
+    "tlenekWegla":          "Tlenek Wegla",
+    "dwutlenekAzotu":       "Dwutlenek Azotu",
+    "tlenekAzotu":          "Tlenek Azotu",
+    "tlenkiAzotu":          "Tlenki Azotu",
+    "pylZawieszonyPm25":    "Pyl Zawieszony Pm 2,5",
+    "tlenekWegla8H":        "Tlenek Wegla 8H",
+    "benzen":               "Benzen",
+    "dwutlenekSiarki":      "Dwutlenek Siarki",
+    "ozon":                 "Ozon",
+    "ozon8H":               "Ozon 8H",
+    "temp":                 "Temperatura",
+    "wind":                 "Wiatr",
+    "pressure":             "Ciśnienie",
+    "rain":                 "opady",
+    "humidity":             "Wilgotność"
+};
+
+var rev_data_dict = {};
+for (var k in data_dict) {
+    rev_data_dict[data_dict[k]] = k;
+}
+
+var scale_dict = {
+    "pylZawieszonyPm10":    200,
+    "tlenekWegla":          20000,
+    "dwutlenekAzotu":       300,
+    "tlenekAzotu":          300,
+    "tlenkiAzotu":          300,
+    "pylZawieszonyPm25":    120,
+    "tlenekWegla8H":        20000,
+    "benzen":               40,
+    "dwutlenekSiarki":      400,
+    "ozon":                 240,
+    "ozon8H":               240,
+    "temp":                 50,
+    "wind":                 10,
+    "pressure":             2000,
+    "rain":                 50,
+    "humidity":             100,
 };

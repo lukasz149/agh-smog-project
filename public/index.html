@@ -70,6 +70,12 @@
         .container .section {
             padding-bottom: 0px;
         }
+
+        #heatmap {
+            width: 1000px;
+            height: 600px;
+            margin: 5em auto;
+        }
     </style>
 
 </head>
@@ -304,7 +310,7 @@
                 noUiSlider.create(dateSlider, {
                     range: {
                         min: timestamp('2014-01-01'),
-                        max: new Date().getTime()
+                        max: timestamp('2016-04-06')
                     },
 
                     steps: 1000 * 60 * 60, // hours
