@@ -349,7 +349,7 @@
                 end.innerHTML = formatDate(endDate);
             });
             var flagDayMax = true;
-            var flagDayMin = true;
+            var flagDayMin = false;
             function updateDay(beginDate, endDate, direction) {
                 var minDate = new Date('2014-01-01');
                 var maxDate = new Date('2016-04-06');
@@ -384,7 +384,7 @@
                 }
             }
             var flagWeekMax = true;
-            var flagWeekMin = true;
+            var flagWeekMin = false;
             function updateWeek(beginDate, endDate, direction) {
                 var minDate = new Date('2014-01-01');
                 var maxDate = new Date('2016-04-06');
@@ -419,7 +419,7 @@
                 }
             }
             var flagMonthMax = true;
-            var flagMonthMin = true;
+            var flagMonthMin = false;
             function updateMonth(beginDate, endDate, direction) {
                 var minDate = new Date('2014-01-01');
                 var maxDate = new Date('2016-04-06');
@@ -454,7 +454,7 @@
                 }
             }
             var flagYearMax = true;
-            var flagYearMin = true;
+            var flagYearMin = false;
             function updateYear(beginDate, endDate, direction) {
                 var minDate = new Date('2014-01-01');
                 var maxDate = new Date('2016-04-06');
