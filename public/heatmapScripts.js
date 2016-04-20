@@ -130,8 +130,6 @@ function updateHeatMap() {
         }
 
         $('#heatmap').highcharts(heatmapChart);
-        console.log("yup");
-        console.log(heatmapChart.series[0].data);
     });
 }
 
