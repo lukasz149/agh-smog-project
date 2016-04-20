@@ -359,8 +359,9 @@
                         beginDate.setFullYear(maxDate.getFullYear());
                         beginDate.setMonth(maxDate.getMonth());
                         beginDate.setDate(maxDate.getDate() - 1);
+                        endDate.setDate(endDate.getDate() - 1);
                         flagDayMax = false;
-                    } else if ((beginDate > minDate) && flagDayMax == false){
+                    } else if (!(beginDate < minDate) && flagDayMax == false){
                         beginDate.setDate(beginDate.getDate() - 1);
                         endDate.setDate(endDate.getDate() - 1);
                         if (beginDate < minDate) {
@@ -374,7 +375,7 @@
                         endDate.setMonth(minDate.getMonth());
                         endDate.setDate(minDate.getDate() + 1);
                         flagDayMin = false;
-                    } else if ((endDate < maxDate) && flagDayMin == false) {
+                    } else if (endDate < maxDate && (flagDayMin == false)) {
                         beginDate.setDate(beginDate.getDate() + 1);
                         endDate.setDate(endDate.getDate() + 1);
                         if (endDate > maxDate) {
@@ -506,7 +507,6 @@
                 } else if (range === "year") {
                     updateYear(beginDate, endDate, direction);
                 }
-
                 begin.innerHTML = formatDate(beginDate);
                 end.innerHTML = formatDate(endDate);
                 dateValues[0].innerHTML = formatDate(beginDate);
@@ -540,7 +540,6 @@
             var dateSlider = document.getElementById("date");
             $(document).ready(function() {
                 $('select').material_select();
-
                 //dateSlider = document.getElementById("date");
                 noUiSlider.create(dateSlider, {
                     range: {

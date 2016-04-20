@@ -25,8 +25,8 @@ public class WeatherController {
     private static final long MAX_POINTS = 24;
 
     @RequestMapping("/weather")
-    public @ResponseBody List weather(@RequestParam(value="from", defaultValue="2015-04-06") String from,
-                                      @RequestParam(value="to", defaultValue="2015-04-06") String to,
+    public @ResponseBody List weather(@RequestParam(value="from", defaultValue="2016-04-06") String from,
+                                      @RequestParam(value="to", defaultValue="2016-04-06") String to,
                                       @RequestParam(value="view", defaultValue="normal") String view) throws ParseException {
 
         if (Objects.equals(view, "normal")) {
