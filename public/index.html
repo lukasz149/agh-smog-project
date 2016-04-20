@@ -83,8 +83,11 @@
     <body>
         <div class="container">
             <div class="section" style="margin-bottom: 0px">
-                <div class="row">
-                    <div class="col s10">
+                <div class="row valign-wrapper">
+                    <div class="col s1 center-align">
+                        <a class="btn-floating btn waves-effect waves-light red center-align" id="prev">-</a>
+                    </div>
+                    <div class="col s6 center-align" >
                         <label for="date">Data:</label>
                         <!--<input id="date" type="date" class="datepicker" placeholder="02-03-2014" onchange="updateWeatherData(); updateSmogData();">-->
                         <!--<input id="date" type="date" class="datepicker" placeholder="2015-01-01" onchange="updateSmogData(); updateWeatherData();">-->
@@ -105,8 +108,22 @@
                         <span>do</span>
                         <span id="to-date"></span>
                     </div>
+                    <div class="col s1 center-align">
+                        <a class="btn-floating btn waves-effect waves-light red" id="next">+</a>
+                    </div>
 
-                    <div class="input-field col s2">
+                    <div class="input-field col s2 center-align">
+                        <select id="range">
+                            <option value="" disabled>Wybierz przedział</option>
+                            <option selected value="day">Dzień</option>
+                            <option value="week">Tydzien</option>
+                            <option value="month">Miesiąc</option>
+                            <option value="year">Rok</option>
+                        </select>
+                        <label for="station">Przedział:</label>
+                    </div>
+
+                    <div class="input-field col s2 center-align">
                         <select id="station" onchange="updateSmogData()">
                             <option value="" disabled>Wybierz stację</option>
                             <option selected value="6">Stacja 6</option>
@@ -313,6 +330,194 @@
         <!--<script src="smogScripts.js"></script>-->
 
         <script>
+            $( "#prev" ).on( "click", function() {
+                updateDate("prev");
+            });
+            $( "#next" ).on( "click", function() {
+                updateDate("next");
+            });
+
+            $( "#range" ).on( "change", function() {
+                dateSlider.noUiSlider.set([ timestamp(new Date().toString()), timestamp(new Date().toString()) ]);
+                var begin = document.getElementById('from-date');
+                var end = document.getElementById('to-date');
+
+                var beginDate = new Date(begin.innerHTML);
+                var endDate = new Date(end.innerHTML);
+
+                begin.innerHTML = formatDate(beginDate);
+                end.innerHTML = formatDate(endDate);
+            });
+            var flagDayMax = true;
+            var flagDayMin = true;
+            function updateDay(beginDate, endDate, direction) {
+                var minDate = new Date('2014-01-01');
+                var maxDate = new Date('2016-04-06');
+
+                if(direction === "prev") {
+                    if (endDate.toString() === maxDate.toString() && flagDayMax == true) {
+                        beginDate.setFullYear(maxDate.getFullYear());
+                        beginDate.setMonth(maxDate.getMonth());
+                        beginDate.setDate(maxDate.getDate() - 1);
+                        flagDayMax = false;
+                    } else if ((beginDate > minDate) && flagDayMax == false){
+                        beginDate.setDate(beginDate.getDate() - 1);
+                        endDate.setDate(endDate.getDate() - 1);
+                        if (beginDate < minDate) {
+                            flagDayMin = true;
+                        }
+                    }
+                }
+                if (direction === "next") {
+                    if (beginDate.toString() === minDate.toString() && flagDayMin == true) {
+                        endDate.setFullYear(minDate.getFullYear());
+                        endDate.setMonth(minDate.getMonth());
+                        endDate.setDate(minDate.getDate() + 1);
+                        flagDayMin = false;
+                    } else if ((endDate < maxDate) && flagDayMin == false) {
+                        beginDate.setDate(beginDate.getDate() + 1);
+                        endDate.setDate(endDate.getDate() + 1);
+                        if (endDate > maxDate) {
+                            flagDayMax = true;
+                        }
+                    }
+                }
+            }
+            var flagWeekMax = true;
+            var flagWeekMin = true;
+            function updateWeek(beginDate, endDate, direction) {
+                var minDate = new Date('2014-01-01');
+                var maxDate = new Date('2016-04-06');
+
+                if(direction === "prev") {
+                    if (endDate.toString() === maxDate.toString() && flagWeekMax == true) {
+                        beginDate.setFullYear(maxDate.getFullYear());
+                        beginDate.setMonth(maxDate.getMonth());
+                        beginDate.setDate(maxDate.getDate() - 7);
+                        flagWeekMax = false;
+                    } else if ((beginDate > minDate) && flagWeekMax == false){
+                        beginDate.setDate(beginDate.getDate() - 7);
+                        endDate.setDate(endDate.getDate() - 7);
+                        if (beginDate < minDate) {
+                            flagWeekMin = true;
+                        }
+                    }
+                }
+                if (direction === "next") {
+                    if (beginDate.toString() === minDate.toString() && flagWeekMin == true) {
+                        endDate.setFullYear(minDate.getFullYear());
+                        endDate.setMonth(minDate.getMonth());
+                        endDate.setDate(minDate.getDate() + 7);
+                        flagWeekMin = false;
+                    } else if ((endDate < maxDate) && flagWeekMin == false) {
+                        beginDate.setDate(beginDate.getDate() + 7);
+                        endDate.setDate(endDate.getDate() + 7);
+                        if (endDate > maxDate) {
+                            flagWeekMax = true;
+                        }
+                    }
+                }
+            }
+            var flagMonthMax = true;
+            var flagMonthMin = true;
+            function updateMonth(beginDate, endDate, direction) {
+                var minDate = new Date('2014-01-01');
+                var maxDate = new Date('2016-04-06');
+
+                if(direction === "prev") {
+                    if (endDate.toString() === maxDate.toString() && flagMonthMax == true) {
+                        beginDate.setFullYear(maxDate.getFullYear());
+                        beginDate.setMonth(maxDate.getMonth() - 1);
+                        beginDate.setDate(maxDate.getDate());
+                        flagMonthMax = false;
+                    } else if ((beginDate > minDate) && flagMonthMax == false){
+                        beginDate.setMonth(beginDate.getMonth() - 1);
+                        endDate.setMonth(endDate.getMonth() - 1);
+                        if (beginDate < minDate) {
+                            flagMonthMin = true;
+                        }
+                    }
+                }
+                if (direction === "next") {
+                    if (beginDate.toString() === minDate.toString() && flagMonthMin == true) {
+                        endDate.setFullYear(minDate.getFullYear());
+                        endDate.setMonth(minDate.getMonth() + 1);
+                        endDate.setDate(minDate.getDate());
+                        flagMonthMin = false;
+                    } else if ((endDate < maxDate) && flagMonthMin == false) {
+                        beginDate.setMonth(beginDate.getMonth() + 1);
+                        endDate.setMonth(endDate.getMonth() + 1);
+                        if (endDate > maxDate) {
+                            flagMonthMax = true;
+                        }
+                    }
+                }
+            }
+            var flagYearMax = true;
+            var flagYearMin = true;
+            function updateYear(beginDate, endDate, direction) {
+                var minDate = new Date('2014-01-01');
+                var maxDate = new Date('2016-04-06');
+
+                if(direction === "prev") {
+                    if (endDate.toString() === maxDate.toString() && flagYearMax == true) {
+                        beginDate.setFullYear(maxDate.getFullYear() - 1);
+                        beginDate.setMonth(maxDate.getMonth());
+                        beginDate.setDate(maxDate.getDate());
+                        flagYearMax = false;
+                    } else if ((beginDate > minDate) && flagYearMax == false){
+                        beginDate.setFullYear(beginDate.getFullYear() - 1);
+                        endDate.setFullYear(endDate.getFullYear() - 1);
+                        if (beginDate < minDate) {
+                            flagYearMin = true;
+                        }
+                    }
+                }
+                if (direction === "next") {
+                    if (beginDate.toString() === minDate.toString() && flagYearMin == true) {
+                        endDate.setFullYear(minDate.getFullYear() + 1);
+                        endDate.setMonth(minDate.getMonth());
+                        endDate.setDate(minDate.getDate());
+                        flagYearMin = false;
+                    } else if ((endDate < maxDate) && flagYearMin == false) {
+                        beginDate.setFullYear(beginDate.getFullYear() + 1);
+                        endDate.setFullYear(endDate.getFullYear() + 1);
+                        if (endDate > maxDate) {
+                            flagYearMax = true;
+                        }
+                    }
+                }
+            }
+
+            function updateDate(direction) {
+                var range = document.getElementById("range").value;
+                var begin = document.getElementById('from-date');
+                var end = document.getElementById('to-date');
+
+                var beginDate = new Date(begin.innerHTML);
+                var endDate = new Date(end.innerHTML);
+
+                if (range === "day") {
+                    updateDay(beginDate, endDate, direction);
+                } else if (range === "week") {
+                    updateWeek(beginDate, endDate, direction);
+                } else if (range === "month") {
+                    updateMonth(beginDate, endDate, direction);
+                } else if (range === "year") {
+                    updateYear(beginDate, endDate, direction);
+                }
+
+                begin.innerHTML = formatDate(beginDate);
+                end.innerHTML = formatDate(endDate);
+                dateValues[0].innerHTML = formatDate(beginDate);
+                dateValues[1].innerHTML = formatDate(endDate);
+                dateSlider.noUiSlider.set([timestamp(beginDate.toString()),timestamp(endDate.toString())]);
+
+                updateWeatherData();
+                updateSmogData();
+                updateHeatMap();
+            }
+
             function timestamp(str) {
                 return new Date(str).getTime();
             }
@@ -331,10 +536,12 @@
 //                selectYears: 15, // Creates a dropdown of 15 years to control year
 //                format: 'yyyy-mm-dd'
 //            });
+            var dateValues = [];
+            var dateSlider = document.getElementById("date");
             $(document).ready(function() {
                 $('select').material_select();
 
-                var dateSlider = document.getElementById("date");
+                //dateSlider = document.getElementById("date");
                 noUiSlider.create(dateSlider, {
                     range: {
                         min: timestamp('2014-01-01'),
@@ -354,12 +561,13 @@
                     })
                 });
 
-                var dateValues = [
+                dateValues = [
                     document.getElementById('from-date'),
                     document.getElementById('to-date')
                 ];
 
                 dateSlider.noUiSlider.on('update', function( values, handle ) {
+
                     dateValues[handle].innerHTML = formatDate(values[handle]);
                 });
 
