@@ -156,6 +156,116 @@ function createSmogChart(_labels, _values, _name) {
             pointBorderWidth: 1,
             data: _values.dwutlenekSiarki,
             hidden: true
+        }, {
+            yAxisID: "y-axis-1",
+            label: "dwutlenekAzotuNORMA",
+            borderColor: "rgba(255, 23, 68, 1)",
+            backgroundColor: "rgba(255, 23, 68, 0)",
+            pointBorderColor: "rgba(255, 23, 68, 0)",
+            pointBackgroundColor: "rgba(255, 23, 68, 0)",
+            pointBorderWidth: 1,
+            data: [40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40],
+            hidden: false
+        }, {
+            yAxisID: "y-axis-2",
+            label: "tlenekAzotuNORMA",
+            borderColor: "rgba(101, 31, 255, 1)",
+            backgroundColor: "rgba(101, 31, 255, 0)",
+            pointBorderColor: "rgba(101, 31, 255, 0)",
+            pointBackgroundColor: "rgba(101, 31, 255, 0)",
+            pointBorderWidth: 1,
+            data: [30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],
+            hidden: true
+        }, {
+            yAxisID: "y-axis-3",
+            label: "tlenkiAzotuNORMA",
+            borderColor: "rgba(0, 176, 255, 1)",
+            backgroundColor: "rgba(0, 176, 255, 0)",
+            pointBorderColor: "rgba(0, 176, 255, 0)",
+            pointBackgroundColor: "rgba(0, 176, 255, 0)",
+            pointBorderWidth: 1,
+            data: [30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],
+            hidden: true
+        }, {
+            yAxisID: "y-axis-4",
+            label: "pylZawieszonyPm10NORMA",
+            borderColor: "rgba(0, 230, 118, 1)",
+            backgroundColor: "rgba(0, 230, 118, 0)",
+            pointBorderColor: "rgba(0, 230, 118, 0)",
+            pointBackgroundColor: "rgba(0, 230, 118, 0)",
+            pointBorderWidth: 1,
+            data: [40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40],
+            hidden: true
+        }, {
+            yAxisID: "y-axis-5",
+            label: "pylZawieszonyPm25NORMA",
+            borderColor: "rgba(255, 234, 0, 1)",
+            backgroundColor: "rgba(255, 234, 0, 0)",
+            pointBorderColor: "rgba(255, 234, 0, 0)",
+            pointBackgroundColor: "rgba(255, 234, 0, 0)",
+            pointBorderWidth: 1,
+            data: [20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20],
+            hidden: true
+        }, {
+            yAxisID: "y-axis-6",
+            label: "tlenekWeglaNORMA",
+            borderColor: "rgba(255, 61, 0, 1)",
+            backgroundColor: "rgba(255, 61, 0, 0)",
+            pointBorderColor: "rgba(255, 61, 0, 0)",
+            pointBackgroundColor: "rgba(255, 61, 0, 0)",
+            pointBorderWidth: 1,
+            data: [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000],
+            hidden: true
+        }, {
+            yAxisID: "y-axis-7",
+            label: "tlenekWegla8HNORMA",
+            borderColor: "rgba(78, 52, 46, 1)",
+            backgroundColor: "rgba(78, 52, 46, 0)",
+            pointBorderColor: "rgba(78, 52, 46, 0)",
+            pointBackgroundColor: "rgba(78, 52, 46, 0)",
+            pointBorderWidth: 1,
+            data: [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000],
+            hidden: true
+        }, {
+            yAxisID: "y-axis-8",
+            label: "ozonNORMA",
+            borderColor: "rgba(236, 64, 122, 1)",
+            backgroundColor: "rgba(236, 64, 122, 0)",
+            pointBorderColor: "rgba(236, 64, 122, 0)",
+            pointBackgroundColor: "rgba(236, 64, 122, 0)",
+            pointBorderWidth: 1,
+            data: [120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120],
+            hidden: true
+        }, {
+            yAxisID: "y-axis-9",
+            label: "ozon8HNORMA",
+            borderColor: "rgba(213, 0, 249, 1)",
+            backgroundColor: "rgba(213, 0, 249, 0)",
+            pointBorderColor: "rgba(213, 0, 249, 0)",
+            pointBackgroundColor: "rgba(213, 0, 249, 0)",
+            pointBorderWidth: 1,
+            data: [120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120],
+            hidden: true
+        }, {
+            yAxisID: "y-axis-10",
+            label: "benzenNORMA",
+            borderColor: "rgba(66, 165, 245, 1)",
+            backgroundColor: "rgba(66, 165, 245, 0)",
+            pointBorderColor: "rgba(66, 165, 245, 0)",
+            pointBackgroundColor: "rgba(66, 165, 245, 0)",
+            pointBorderWidth: 1,
+            data: [5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5],
+            hidden: true
+        }, {
+            yAxisID: "y-axis-11",
+            label: "dwutlenekSiarki",
+            borderColor: "rgba(128, 203, 196, 1)",
+            backgroundColor: "rgba(128, 203, 196, 0)",
+            pointBorderColor: "rgba(128, 203, 196, 0)",
+            pointBackgroundColor: "rgba(128, 203, 196, 0)",
+            pointBorderWidth: 1,
+            data: [125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125],
+            hidden: true
         }]
     };
     var options = {
@@ -175,7 +285,8 @@ function createSmogChart(_labels, _values, _name) {
                 display: true,
                 position: "left",
                 ticks: {
-                    fontColor: "rgba(255, 23, 68, 1)"
+                    fontColor: "rgba(255, 23, 68, 1)",
+                    beginAtZero: true
                 },
                 gridLines: {
                     drawOnChartArea: true
@@ -208,7 +319,7 @@ function createSmogChart(_labels, _values, _name) {
                 display: false,
                 position: "right",
                 ticks: {
-                    fontColor: "rgba(160, 0, 0, 1)"
+                    fontColor: "rgba(0, 230, 118, 1)"
                 },
                 gridLines: {
                     drawOnChartArea: true // only want the grid lines for one axis to show up
@@ -274,7 +385,7 @@ function createSmogChart(_labels, _values, _name) {
                 display: false,
                 position: "right",
                 ticks: {
-                    fontColor: "rgba(115, 71, 45, 1)"
+                    fontColor: "rgba(66, 165, 245, 1)"
                 },
                 gridLines: {
                     drawOnChartArea: true // only want the grid lines for one axis to show up
@@ -293,9 +404,11 @@ function createSmogChart(_labels, _values, _name) {
             }]
         }
     };
+    Chart.defaults.global.legend = false;
     var ctx = document.getElementById(_name).getContext("2d");
     return new Chart.Line(ctx, {
         data: data,
+
         options: options
     });
 }
@@ -303,12 +416,15 @@ function createSmogChart(_labels, _values, _name) {
 
 function updateAllCharts(){
     for(var i in dic){
+        console.log(i);
         if($("#" + dic[i].name).is(':checked')) {
             smogChart.data.datasets[dic[i].number].hidden = false;
             smogChart.options.scales.yAxes[dic[i].number].display = true;
+            smogChart.data.datasets[dic[i].number+11].hidden = false;
         } else {
             smogChart.data.datasets[dic[i].number].hidden = true;
             smogChart.options.scales.yAxes[dic[i].number].display = false;
+            smogChart.data.datasets[dic[i].number+11].hidden = true;
         }
         smogChart.update();
     }

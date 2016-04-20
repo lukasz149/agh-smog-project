@@ -143,6 +143,7 @@ function createChart(_labels, _values, _name) {
             }]
         }
     };
+    Chart.defaults.global.legend = false;
     var ctx = document.getElementById(_name).getContext("2d");
     return new Chart.Line(ctx, {
         data: data,
