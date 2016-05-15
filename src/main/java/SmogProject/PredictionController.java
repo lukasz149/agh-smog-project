@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class PredictionController {
     @RequestMapping("/prediction")
     public @ResponseBody
-    List<SmogEntity> prediction(@RequestParam(value="from", defaultValue="2016-04-06") String my_date,
+    List<SmogEntity> prediction(@RequestParam(value="date", defaultValue="2016-04-06") String my_date,
                                 @RequestParam(value = "station", defaultValue = "6") String station) throws ParseException {
 
             String query = "select " + "P.godzina || ':00'" + ", " +
