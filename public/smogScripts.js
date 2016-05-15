@@ -34,6 +34,12 @@ var dic = [{name: "dwutlenekAzotuSwitch", number:0},
     {name: "dwutlenekSiarkiSwitch", number:10}];
 
 $(document).ready(function() {
+    var valuesPrediction = [];
+    var from = new Date('2016-04-06');
+    var to = new Date('2016-04-06');
+    from.setDate(from.getDate()-1);
+    from = (from.getYear() + 1900) + "-" + zfill((from.getMonth() + 1).toString(), 2) + "-" + zfill(from.getDate().toString(), 2);
+    to = (to.getYear() + 1900) + "-" + zfill((to.getMonth() + 1).toString(), 2) + "-" + zfill(to.getDate().toString(), 2);
     $.ajax({
         url: "/smog"
     }).then(function(data) {
@@ -41,17 +47,32 @@ $(document).ready(function() {
         console.log(values);
         console.log("START");
         smogChart = createSmogChart(values.labels, values, "smogChart", options);
-        smogChartPrediction = createSmogChart(values.labels, values, "smogChartPrediction", optionsPrediction);
-
         updateAllCharts();
     });
+    $.ajax({
+        url: "/smog?from="+from+"&to="+to
+    }).then(function(data) {
+        valuesPrediction = data;
+        $.ajax({
+            url: "/prediction"
+        }).then(function(data) {
+            var tmp = valuesPrediction.concat(data);
+            var values = getSmogData(tmp);
+            smogChartPrediction = createSmogChart(values.labels, values, "smogChartPrediction", optionsPrediction);
+            updateAllCharts();
+        });
+    });
+
 });
+
+
 
 
 function createSmogChart(_labels, _values, _name, _options) {
     var data = {
         labels: _labels,
-        datasets: [{
+        datasets: [
+            {
             yAxisID: "y-axis-1",
             label: "dwutlenekAzotu",
             borderColor: "rgba(255, 23, 68, 0.8)",
@@ -276,9 +297,34 @@ function createSmogChart(_labels, _values, _name, _options) {
     var options = _options;
     Chart.defaults.global.legend = false;
     var ctx = document.getElementById(_name).getContext("2d");
+
+    var originalLineDraw = Chart.controllers.line.prototype.draw;
+    Chart.helpers.extend(Chart.controllers.line.prototype, {
+        draw: function() {
+            originalLineDraw.apply(this, arguments);
+
+            var chart = this.chart;
+            var ctx = chart.chart.ctx;
+
+            var index = 24;
+            if (index) {
+                var xaxis = chart.scales['x-axis-0'];
+                var yaxis = chart.scales['y-axis-4'];
+
+                ctx.save();
+                ctx.beginPath();
+                ctx.moveTo(xaxis.getPixelForValue(undefined, index), yaxis.top);
+                ctx.strokeStyle = '#ff0000';
+                ctx.lineTo(xaxis.getPixelForValue(undefined, index), yaxis.bottom);
+                ctx.stroke();
+                ctx.restore();
+            }
+        }
+    });
+
+
     return new Chart.Line(ctx, {
         data: data,
-
         options: options
     });
 }
@@ -398,8 +444,10 @@ var options = {
     responsive: false,
     hoverMode: 'label',
     stacked: true,
+    lineAtIndex: 2,
     scales: {
         xAxes: [{
+            id: "x-axis-0",
             display: true,
             gridLines: {
                 offsetGridLines: false
@@ -535,10 +583,11 @@ var optionsPrediction = jQuery.extend(true, {}, options);
 optionsPrediction.annotation = {
     annotations: [{
         type: 'line',
-        mode: 'vertical',
+        mode: 'horizontal',
         scaleID: 'y-axis-4',
-        value: '25',
-        borderColor: 'red',
+        value: '40',
+        borderColor: 'rgba(0, 230, 118, 1)',
         borderWidth: 1
     }]
 };
+
