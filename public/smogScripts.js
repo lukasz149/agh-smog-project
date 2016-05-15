@@ -15,7 +15,10 @@ document.getElementById("ozon8HSwitch").addEventListener("change", updateAllChar
 document.getElementById("benzenSwitch").addEventListener("change", updateAllCharts);
 document.getElementById("dwutlenekSiarkiSwitch").addEventListener("change", updateAllCharts);
 
+
 var smogChart;
+var smogChartPrediction;
+
 var datasets = [];
 
 var dic = [{name: "dwutlenekAzotuSwitch", number:0},
@@ -37,13 +40,15 @@ $(document).ready(function() {
         var values = getSmogData(data);
         console.log(values);
         console.log("START");
-        smogChart = createSmogChart(values.labels, values, "smogChart");
+        smogChart = createSmogChart(values.labels, values, "smogChart", options);
+        smogChartPrediction = createSmogChart(values.labels, values, "smogChartPrediction", optionsPrediction);
+
         updateAllCharts();
     });
 });
 
 
-function createSmogChart(_labels, _values, _name) {
+function createSmogChart(_labels, _values, _name, _options) {
     var data = {
         labels: _labels,
         datasets: [{
@@ -55,7 +60,7 @@ function createSmogChart(_labels, _values, _name) {
             pointBackgroundColor: "rgba(255, 23, 68, 1)",
             pointBorderWidth: 1,
             data: _values.dwutlenekAzotu,
-            hidden: false
+            hidden: true
         }, {
             yAxisID: "y-axis-2",
             label: "tlenekAzotu",
@@ -85,7 +90,7 @@ function createSmogChart(_labels, _values, _name) {
             pointBackgroundColor: "rgba(0, 230, 118, 1)",
             pointBorderWidth: 1,
             data: _values.pylZawieszonyPm10,
-            hidden: true
+            hidden: false
         }, {
             yAxisID: "y-axis-5",
             label: "pylZawieszonyPm25",
@@ -165,7 +170,7 @@ function createSmogChart(_labels, _values, _name) {
             pointBackgroundColor: "rgba(255, 23, 68, 0)",
             pointBorderWidth: 1,
             data: [40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40],
-            hidden: false
+            hidden: true
         }, {
             yAxisID: "y-axis-2",
             label: "tlenekAzotuNORMA",
@@ -195,7 +200,7 @@ function createSmogChart(_labels, _values, _name) {
             pointBackgroundColor: "rgba(0, 230, 118, 0)",
             pointBorderWidth: 1,
             data: [40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40],
-            hidden: true
+            hidden: false
         }, {
             yAxisID: "y-axis-5",
             label: "pylZawieszonyPm25NORMA",
@@ -268,142 +273,7 @@ function createSmogChart(_labels, _values, _name) {
             hidden: true
         }]
     };
-    var options = {
-        responsive: false,
-        hoverMode: 'label',
-        stacked: true,
-        scales: {
-            xAxes: [{
-                display: true,
-                gridLines: {
-                    offsetGridLines: false
-                }
-            }],
-            yAxes: [{
-                id: "y-axis-1",
-                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                display: true,
-                position: "left",
-                ticks: {
-                    fontColor: "rgba(255, 23, 68, 1)",
-                    beginAtZero: true
-                },
-                gridLines: {
-                    drawOnChartArea: true
-                }
-            }, {
-                id: "y-axis-2",
-                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                display: false,
-                position: "right",
-                ticks: {
-                    fontColor: "rgba(101, 31, 255, 1)"
-                },
-                gridLines: {
-                    drawOnChartArea: true // only want the grid lines for one axis to show up
-                }
-            }, {
-                id: "y-axis-3",
-                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                display: false,
-                position: "left",
-                ticks: {
-                    fontColor: "rgba(0, 176, 255, 1)"
-                },
-                gridLines: {
-                    drawOnChartArea: true // only want the grid lines for one axis to show up
-                }
-            }, {
-                id: "y-axis-4",
-                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                display: false,
-                position: "right",
-                ticks: {
-                    fontColor: "rgba(0, 230, 118, 1)"
-                },
-                gridLines: {
-                    drawOnChartArea: true // only want the grid lines for one axis to show up
-                }
-            }, {
-                id: "y-axis-5",
-                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                display: false,
-                position: "left",
-                ticks: {
-                    fontColor: "rgba(255, 234, 0, 1)"
-                },
-                gridLines: {
-                    drawOnChartArea: true // only want the grid lines for one axis to show up
-                }
-            }, {
-                id: "y-axis-6",
-                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                display: false,
-                position: "right",
-                ticks: {
-                    fontColor: "rgba(255, 61, 0, 1)"
-                },
-                gridLines: {
-                    drawOnChartArea: true // only want the grid lines for one axis to show up
-                }
-            }, {
-                id: "y-axis-7",
-                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                display: false,
-                position: "left",
-                ticks: {
-                    fontColor: "rgba(78, 52, 46, 1)"
-                },
-                gridLines: {
-                    drawOnChartArea: true // only want the grid lines for one axis to show up
-                }
-            }, {
-                id: "y-axis-8",
-                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                display: false,
-                position: "right",
-                ticks: {
-                    fontColor: "rgba(236, 64, 122, 1)"
-                },
-                gridLines: {
-                    drawOnChartArea: true // only want the grid lines for one axis to show up
-                }
-            }, {
-                id: "y-axis-9",
-                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                display: false,
-                position: "left",
-                ticks: {
-                    fontColor: "rgba(213, 0, 249, 1)"
-                },
-                gridLines: {
-                    drawOnChartArea: true // only want the grid lines for one axis to show up
-                }
-            }, {
-                id: "y-axis-10",
-                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                display: false,
-                position: "right",
-                ticks: {
-                    fontColor: "rgba(66, 165, 245, 1)"
-                },
-                gridLines: {
-                    drawOnChartArea: true // only want the grid lines for one axis to show up
-                }
-            }, {
-                id: "y-axis-11",
-                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                display: false,
-                position: "left",
-                ticks: {
-                    fontColor: "rgba(128, 203, 196, 1)"
-                },
-                gridLines: {
-                    drawOnChartArea: true // only want the grid lines for one axis to show up
-                }
-            }]
-        }
-    };
+    var options = _options;
     Chart.defaults.global.legend = false;
     var ctx = document.getElementById(_name).getContext("2d");
     return new Chart.Line(ctx, {
@@ -449,7 +319,7 @@ function updateSmogData() {
 
         if (values.labels.length != smogChart.data.datasets[0].data.length) {
             smogChart.destroy();
-            smogChart = createSmogChart(values.labels, values, "smogChart");
+            smogChart = createSmogChart(values.labels, values, "smogChart", options);
             updateAllCharts();
         } else {
             smogChart.data.labels = values.labels.slice();
@@ -523,3 +393,152 @@ function getSmogData(data) {
     };
 }
 
+
+var options = {
+    responsive: false,
+    hoverMode: 'label',
+    stacked: true,
+    scales: {
+        xAxes: [{
+            display: true,
+            gridLines: {
+                offsetGridLines: false
+            }
+        }],
+        yAxes: [{
+            id: "y-axis-1",
+            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+            display: false,
+            position: "left",
+            ticks: {
+                fontColor: "rgba(255, 23, 68, 1)",
+                beginAtZero: true
+            },
+            gridLines: {
+                drawOnChartArea: true
+            }
+        }, {
+            id: "y-axis-2",
+            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+            display: false,
+            position: "right",
+            ticks: {
+                fontColor: "rgba(101, 31, 255, 1)"
+            },
+            gridLines: {
+                drawOnChartArea: true // only want the grid lines for one axis to show up
+            }
+        }, {
+            id: "y-axis-3",
+            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+            display: false,
+            position: "left",
+            ticks: {
+                fontColor: "rgba(0, 176, 255, 1)"
+            },
+            gridLines: {
+                drawOnChartArea: true // only want the grid lines for one axis to show up
+            }
+        }, {
+            id: "y-axis-4",
+            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+            display: true,
+            position: "right",
+            ticks: {
+                fontColor: "rgba(0, 230, 118, 1)"
+            },
+            gridLines: {
+                drawOnChartArea: true // only want the grid lines for one axis to show up
+            }
+        }, {
+            id: "y-axis-5",
+            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+            display: false,
+            position: "left",
+            ticks: {
+                fontColor: "rgba(255, 234, 0, 1)"
+            },
+            gridLines: {
+                drawOnChartArea: true // only want the grid lines for one axis to show up
+            }
+        }, {
+            id: "y-axis-6",
+            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+            display: false,
+            position: "right",
+            ticks: {
+                fontColor: "rgba(255, 61, 0, 1)"
+            },
+            gridLines: {
+                drawOnChartArea: true // only want the grid lines for one axis to show up
+            }
+        }, {
+            id: "y-axis-7",
+            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+            display: false,
+            position: "left",
+            ticks: {
+                fontColor: "rgba(78, 52, 46, 1)"
+            },
+            gridLines: {
+                drawOnChartArea: true // only want the grid lines for one axis to show up
+            }
+        }, {
+            id: "y-axis-8",
+            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+            display: false,
+            position: "right",
+            ticks: {
+                fontColor: "rgba(236, 64, 122, 1)"
+            },
+            gridLines: {
+                drawOnChartArea: true // only want the grid lines for one axis to show up
+            }
+        }, {
+            id: "y-axis-9",
+            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+            display: false,
+            position: "left",
+            ticks: {
+                fontColor: "rgba(213, 0, 249, 1)"
+            },
+            gridLines: {
+                drawOnChartArea: true // only want the grid lines for one axis to show up
+            }
+        }, {
+            id: "y-axis-10",
+            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+            display: false,
+            position: "right",
+            ticks: {
+                fontColor: "rgba(66, 165, 245, 1)"
+            },
+            gridLines: {
+                drawOnChartArea: true // only want the grid lines for one axis to show up
+            }
+        }, {
+            id: "y-axis-11",
+            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+            display: false,
+            position: "left",
+            ticks: {
+                fontColor: "rgba(128, 203, 196, 1)"
+            },
+            gridLines: {
+                drawOnChartArea: true // only want the grid lines for one axis to show up
+            }
+        }]
+    }
+};
+var optionsPrediction = jQuery.extend(true, {}, options);
+
+optionsPrediction.annotation = {
+    annotations: [{
+        type: 'line',
+        mode: 'vertical',
+        scaleID: 'y-axis-4',
+        value: '25',
+        borderColor: 'red',
+        borderWidth: 1
+    }]
+};
