@@ -17,37 +17,26 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 public class PredictionController {
-
-    private static final long MAX_POINTS = 30;
-
     @RequestMapping("/prediction")
     public @ResponseBody
-    List<SmogEntity> smog(@RequestParam(value="from", defaultValue="2016-04-06") String from,
-                          @RequestParam(value="to", defaultValue="2016-04-06") String to,
-                          @RequestParam(value="view", defaultValue="normal") String view,
-                          @RequestParam(value = "station", defaultValue = "7") String station) throws ParseException {
-
-        if (Objects.equals(view, "normal")) {
-            Date fromdate = new SimpleDateFormat("yyyy-MM-dd").parse(from);
-            Date todate = new SimpleDateFormat("yyyy-MM-dd").parse(to);
-            long diff = todate.getTime() - fromdate.getTime() + TimeUnit.DAYS.toMillis(1);
-            long secs = TimeUnit.MILLISECONDS.toSeconds(diff) / MAX_POINTS;
+    List<SmogEntity> prediction(@RequestParam(value="date", defaultValue="2016-04-06") String my_date,
+                                @RequestParam(value = "station", defaultValue = "6") String station) throws ParseException {
 
             String query = "select " + "P.godzina || ':00'" + ", " +
-                    "avg(P.pylZawieszonyPm10), " +
-                    "avg(P.tlenekWegla), " +
-                    "avg(P.dwutlenekAzotu), " +
-                    "avg(P.tlenekAzotu), " +
-                    "avg(P.tlenkiAzotu), " +
-                    "avg(P.pylZawieszonyPm25), " +
-                    "avg(P.tlenekWegla8H), " +
-                    "avg(P.benzen), " +
-                    "avg(P.dwutlenekSiarki), " +
-                    "avg(P.ozon), " +
-                    "avg(P.ozon8H) " +
+                    "P.pylZawieszonyPm10, " +
+                    "P.tlenekWegla, " +
+                    "P.dwutlenekAzotu, " +
+                    "P.tlenekAzotu, " +
+                    "P.tlenkiAzotu, " +
+                    "P.pylZawieszonyPm25, " +
+                    "P.tlenekWegla8H, " +
+                    "P.benzen, " +
+                    "P.dwutlenekSiarki, " +
+                    "P.ozon, " +
+                    "P.ozon8H " +
                     "from SmogEntity as P " +
-                    String.format("where Data between '%s' and '%s' and Stacja = %s ", from, to, station)+
-                    String.format("group by 3600 * Godzina) / %d", secs);
+                    String.format("where Data = '%s' and Stacja = %s ", my_date, station) +
+                    "order by Data, Godzina";
 
 
             Session s = HibernateSession.getSessionFactory().openSession();
@@ -57,10 +46,5 @@ public class PredictionController {
             s.close();
 
             return result;
-        } else {
-            //...
-        }
-
-        return null;
     }
 }
