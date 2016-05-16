@@ -59,7 +59,7 @@ $(document).ready(function() {
             var tmp = valuesPrediction.concat(data);
             var values = getSmogData(tmp);
             smogChartPrediction = createSmogChart(values.labels, values, "smogChartPrediction", optionsPrediction);
-            updateAllCharts();
+            // updateAllCharts();
         });
     });
 

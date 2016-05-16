@@ -9,18 +9,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 public class PredictionController {
     @RequestMapping("/prediction")
     public @ResponseBody
-    List<SmogEntity> prediction(@RequestParam(value="date", defaultValue="2016-04-06") String my_date,
-                                @RequestParam(value = "station", defaultValue = "6") String station) throws ParseException {
+    List<SmogEntity> prediction(@RequestParam(value="date", defaultValue="2016-04-05") String my_date,
+                                @RequestParam(value = "station", defaultValue = "7") String station) throws ParseException {
 
             String query = "select " + "P.godzina || ':00'" + ", " +
                     "P.pylZawieszonyPm10, " +
@@ -34,7 +30,7 @@ public class PredictionController {
                     "P.dwutlenekSiarki, " +
                     "P.ozon, " +
                     "P.ozon8H " +
-                    "from SmogEntity as P " +
+                    "from PrognozyEntity as P " +
                     String.format("where Data = '%s' and Stacja = %s ", my_date, station) +
                     "order by Data, Godzina";
 

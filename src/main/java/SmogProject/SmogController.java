@@ -28,7 +28,7 @@ public class SmogController {
     List<SmogEntity> smog(@RequestParam(value="from", defaultValue="2016-04-06") String from,
                           @RequestParam(value="to", defaultValue="2016-04-06") String to,
                           @RequestParam(value="view", defaultValue="normal") String view,
-                          @RequestParam(value = "station", defaultValue = "6") String station) throws ParseException {
+                          @RequestParam(value = "station", defaultValue = "7") String station) throws ParseException {
 
         if (Objects.equals(view, "normal")) {
             Date fromdate = new SimpleDateFormat("yyyy-MM-dd").parse(from);
