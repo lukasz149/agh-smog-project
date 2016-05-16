@@ -80,7 +80,7 @@
         #heatmap {
             width: 1000px;
             height: 600px;
-            margin: 5em auto;
+            /*margin: 5em auto;*/
         }
     </style>
 
@@ -148,12 +148,16 @@
                 <!--<li class="tab col s2"><a class="active" href="#smog" style="color: #00c853 ">Smog</a></li>-->
                 <!--<div class="indicator green accent-4" style="z-index:1"></div>-->
             <!--</ul>-->
-            <ul class="tabs">
-                <li class="tab"><a class="active" href="#weather_smog" style="color: #00c853 ">Pogoda i smog</a></li>
-                <li class="tab"><a href="#heatmap" style="color: #00c853 ">Heatmap</a></li>
-                <li class="tab"><a href="#prediction" style="color: #00c853 ">Przewidywania</a></li>
-                <div class="indicator green accent-4" style="z-index:1"></div>
-            </ul>
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s4"><a class="active" href="#weather_smog" style="color: #00c853">Pogoda i smog</a></li>
+                        <li class="tab col s4"><a href="#heatmap" style="color: #00c853 ">Heatmap</a></li>
+                        <li class="tab col s4"><a href="#prediction" style="color: #00c853 ">Przewidywania</a></li>
+                        <div class="indicator green accent-4" style="z-index:1"></div>
+                    </ul>
+                </div>
+            </div>
             <div id="heatmap">
 
             </div>

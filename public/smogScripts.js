@@ -221,7 +221,7 @@ function createSmogChart(_labels, _values, _name, _options) {
             pointBackgroundColor: "rgba(0, 230, 118, 0)",
             pointBorderWidth: 1,
             data: [40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40],
-            hidden: false
+            hidden: true
         }, {
             yAxisID: "y-axis-5",
             label: "pylZawieszonyPm25NORMA",
@@ -314,7 +314,7 @@ function createSmogChart(_labels, _values, _name, _options) {
                 ctx.save();
                 ctx.beginPath();
                 ctx.moveTo(xaxis.getPixelForValue(undefined, index), yaxis.top);
-                ctx.strokeStyle = '#ff0000';
+                ctx.strokeStyle = 'grey';
                 ctx.lineTo(xaxis.getPixelForValue(undefined, index), yaxis.bottom);
                 ctx.stroke();
                 ctx.restore();
