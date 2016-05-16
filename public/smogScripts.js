@@ -581,13 +581,95 @@ var options = {
 var optionsPrediction = jQuery.extend(true, {}, options);
 
 optionsPrediction.annotation = {
-    annotations: [{
-        type: 'line',
-        mode: 'horizontal',
-        scaleID: 'y-axis-4',
-        value: '40',
-        borderColor: 'rgba(0, 230, 118, 1)',
-        borderWidth: 1
-    }]
+    annotations: [
+        {
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y-axis-1',
+            value: '40',
+            borderColor: 'rgba(255, 23, 68, 1)',
+            borderWidth: 1
+        },
+        {
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y-axis-2',
+            value: '30',
+            borderColor: 'rgba(101, 31, 255, 1)',
+            borderWidth: 1
+        },
+        {
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y-axis-3',
+            value: '30',
+            borderColor: 'rgba(0, 176, 255, 1)',
+            borderWidth: 1
+        },
+        {
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y-axis-4',
+            value: '40',
+            borderColor: 'rgba(0, 230, 118, 1)',
+            borderWidth: 1
+        },
+        {
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y-axis-5',
+            value: '20',
+            borderColor: 'rgba(255, 234, 0, 1)',
+            borderWidth: 1
+        },
+        {
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y-axis-6',
+            value: '10000',
+            borderColor: 'rgba(255, 61, 0, 1)',
+            borderWidth: 1
+        },
+        {
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y-axis-7',
+            value: '10000',
+            borderColor: 'rgba(78, 52, 46, 1)',
+            borderWidth: 1
+        },
+        {
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y-axis-8',
+            value: '120',
+            borderColor: 'rgba(236, 64, 122, 1)',
+            borderWidth: 1
+        },
+        {
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y-axis-9',
+            value: '120',
+            borderColor: 'rgba(213, 0, 249, 1)',
+            borderWidth: 1
+        },
+        {
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y-axis-10',
+            value: '5',
+            borderColor: 'rgba(66, 165, 245, 1)',
+            borderWidth: 1
+        },
+        {
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y-axis-11',
+            value: '125',
+            borderColor: 'rgba(128, 203, 196, 1)',
+            borderWidth: 1
+        }
+    ]
 };
 
