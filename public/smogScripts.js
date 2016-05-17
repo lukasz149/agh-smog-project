@@ -15,6 +15,17 @@ document.getElementById("ozon8HSwitch").addEventListener("change", updateAllChar
 document.getElementById("benzenSwitch").addEventListener("change", updateAllCharts);
 document.getElementById("dwutlenekSiarkiSwitch").addEventListener("change", updateAllCharts);
 
+document.getElementById("dwutlenekAzotuSwitch2").addEventListener("change", updatePredictionCharts);
+document.getElementById("tlenekAzotuSwitch2").addEventListener("change", updatePredictionCharts);
+document.getElementById("tlenkiAzotuSwitch2").addEventListener("change", updatePredictionCharts);
+document.getElementById("pylZawieszonyPm10Switch2").addEventListener("change", updatePredictionCharts);
+document.getElementById("pylZawieszonyPm25Switch2").addEventListener("change", updatePredictionCharts);
+document.getElementById("tlenekWeglaSwitch2").addEventListener("change", updatePredictionCharts);
+document.getElementById("tlenekWegla8HSwitch2").addEventListener("change", updatePredictionCharts);
+document.getElementById("ozonSwitch2").addEventListener("change", updatePredictionCharts);
+document.getElementById("ozon8HSwitch2").addEventListener("change", updatePredictionCharts);
+document.getElementById("benzenSwitch2").addEventListener("change", updatePredictionCharts);
+document.getElementById("dwutlenekSiarkiSwitch2").addEventListener("change", updatePredictionCharts);
 
 var smogChart;
 var smogChartPrediction;
@@ -32,6 +43,18 @@ var dic = [{name: "dwutlenekAzotuSwitch", number:0},
     {name: "ozon8HSwitch", number:8},
     {name: "benzenSwitch", number:9},
     {name: "dwutlenekSiarkiSwitch", number:10}];
+
+var dic2 = [{name: "dwutlenekAzotuSwitch2", number:0},
+    {name: "tlenekAzotuSwitch2", number:1},
+    {name: "tlenkiAzotuSwitch2", number:2},
+    {name: "pylZawieszonyPm10Switch2", number:3},
+    {name: "pylZawieszonyPm25Switch2", number:4},
+    {name: "tlenekWeglaSwitch2", number:5},
+    {name: "tlenekWegla8HSwitch2", number:6},
+    {name: "ozonSwitch2", number:7},
+    {name: "ozon8HSwitch2", number:8},
+    {name: "benzenSwitch2", number:9},
+    {name: "dwutlenekSiarkiSwitch2", number:10}];
 
 $(document).ready(function() {
     var valuesPrediction = [];
@@ -59,7 +82,7 @@ $(document).ready(function() {
             var tmp = valuesPrediction.concat(data);
             var values = getSmogData(tmp);
             smogChartPrediction = createSmogChart(values.labels, values, "smogChartPrediction", optionsPrediction);
-            // updateAllCharts();
+            updatePredictionCharts();
         });
     });
 
@@ -73,226 +96,226 @@ function createSmogChart(_labels, _values, _name, _options) {
         labels: _labels,
         datasets: [
             {
-            yAxisID: "y-axis-1",
-            label: "dwutlenekAzotu",
-            borderColor: "rgba(255, 23, 68, 0.8)",
-            backgroundColor: "rgba(255, 23, 68, 0.2)",
-            pointBorderColor: "rgba(255, 23, 68, 1)",
-            pointBackgroundColor: "rgba(255, 23, 68, 1)",
-            pointBorderWidth: 1,
-            data: _values.dwutlenekAzotu,
-            hidden: true
-        }, {
-            yAxisID: "y-axis-2",
-            label: "tlenekAzotu",
-            borderColor: "rgba(101, 31, 255, 0.8)",
-            backgroundColor: "rgba(101, 31, 255, 0.2)",
-            pointBorderColor: "rgba(101, 31, 255, 1)",
-            pointBackgroundColor: "rgba(101, 31, 255, 1)",
-            pointBorderWidth: 1,
-            data: _values.tlenekAzotu,
-            hidden: true
-        }, {
-            yAxisID: "y-axis-3",
-            label: "tlenkiAzotu",
-            borderColor: "rgba(0, 176, 255, 0.8)",
-            backgroundColor: "rgba(0, 176, 255, 0.2)",
-            pointBorderColor: "rgba(0, 176, 255, 1)",
-            pointBackgroundColor: "rgba(0, 176, 255, 1)",
-            pointBorderWidth: 1,
-            data: _values.tlenkiAzotu,
-            hidden: true
-        }, {
-            yAxisID: "y-axis-4",
-            label: "pylZawieszonyPm10",
-            borderColor: "rgba(0, 230, 118, 0.8)",
-            backgroundColor: "rgba(0, 230, 118, 0.2)",
-            pointBorderColor: "rgba(0, 230, 118, 1)",
-            pointBackgroundColor: "rgba(0, 230, 118, 1)",
-            pointBorderWidth: 1,
-            data: _values.pylZawieszonyPm10,
-            hidden: false
-        }, {
-            yAxisID: "y-axis-5",
-            label: "pylZawieszonyPm25",
-            borderColor: "rgba(255, 234, 0, 0.2)",
-            backgroundColor: "rgba(255, 234, 0, 0.2)",
-            pointBorderColor: "rgba(255, 234, 0, 1)",
-            pointBackgroundColor: "rgba(255, 234, 0, 1)",
-            pointBorderWidth: 1,
-            data: _values.pylZawieszonyPm25,
-            hidden: true
-        }, {
-            yAxisID: "y-axis-6",
-            label: "tlenekWegla",
-            borderColor: "rgba(255, 61, 0, 0.8)",
-            backgroundColor: "rgba(255, 61, 0, 0.2)",
-            pointBorderColor: "rgba(255, 61, 0, 1)",
-            pointBackgroundColor: "rgba(255, 61, 0, 1)",
-            pointBorderWidth: 1,
-            data: _values.tlenekWegla,
-            hidden: true
-        }, {
-            yAxisID: "y-axis-7",
-            label: "tlenekWegla8H",
-            borderColor: "rgba(78, 52, 46, 0.8)",
-            backgroundColor: "rgba(78, 52, 46, 0.2)",
-            pointBorderColor: "rgba(78, 52, 46, 1)",
-            pointBackgroundColor: "rgba(78, 52, 46, 1)",
-            pointBorderWidth: 1,
-            data: _values.tlenekWegla8H,
-            hidden: true
-        }, {
-            yAxisID: "y-axis-8",
-            label: "ozon",
-            borderColor: "rgba(236, 64, 122, 0.8)",
-            backgroundColor: "rgba(236, 64, 122, 0.2)",
-            pointBorderColor: "rgba(236, 64, 122, 1)",
-            pointBackgroundColor: "rgba(236, 64, 122, 1)",
-            pointBorderWidth: 1,
-            data: _values.ozon,
-            hidden: true
-        }, {
-            yAxisID: "y-axis-9",
-            label: "ozon8H",
-            borderColor: "rgba(213, 0, 249, 0.8)",
-            backgroundColor: "rgba(213, 0, 249, 0.2)",
-            pointBorderColor: "rgba(213, 0, 249, 1)",
-            pointBackgroundColor: "rgba(213, 0, 249, 1)",
-            pointBorderWidth: 1,
-            data: _values.ozon8H,
-            hidden: true
-        }, {
-            yAxisID: "y-axis-10",
-            label: "benzen",
-            borderColor: "rgba(66, 165, 245, 0.8)",
-            backgroundColor: "rgba(66, 165, 245, 0.2)",
-            pointBorderColor: "rgba(66, 165, 245, 1)",
-            pointBackgroundColor: "rgba(66, 165, 245, 1)",
-            pointBorderWidth: 1,
-            data: _values.benzen,
-            hidden: true
-        }, {
-            yAxisID: "y-axis-11",
-            label: "dwutlenekSiarki",
-            borderColor: "rgba(128, 203, 196, 0.8)",
-            backgroundColor: "rgba(128, 203, 196, 0.2)",
-            pointBorderColor: "rgba(128, 203, 196, 1)",
-            pointBackgroundColor: "rgba(128, 203, 196, 1)",
-            pointBorderWidth: 1,
-            data: _values.dwutlenekSiarki,
-            hidden: true
-        }, {
-            yAxisID: "y-axis-1",
-            label: "dwutlenekAzotuNORMA",
-            borderColor: "rgba(255, 23, 68, 1)",
-            backgroundColor: "rgba(255, 23, 68, 0)",
-            pointBorderColor: "rgba(255, 23, 68, 0)",
-            pointBackgroundColor: "rgba(255, 23, 68, 0)",
-            pointBorderWidth: 1,
-            data: [40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40],
-            hidden: true
-        }, {
-            yAxisID: "y-axis-2",
-            label: "tlenekAzotuNORMA",
-            borderColor: "rgba(101, 31, 255, 1)",
-            backgroundColor: "rgba(101, 31, 255, 0)",
-            pointBorderColor: "rgba(101, 31, 255, 0)",
-            pointBackgroundColor: "rgba(101, 31, 255, 0)",
-            pointBorderWidth: 1,
-            data: [30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],
-            hidden: true
-        }, {
-            yAxisID: "y-axis-3",
-            label: "tlenkiAzotuNORMA",
-            borderColor: "rgba(0, 176, 255, 1)",
-            backgroundColor: "rgba(0, 176, 255, 0)",
-            pointBorderColor: "rgba(0, 176, 255, 0)",
-            pointBackgroundColor: "rgba(0, 176, 255, 0)",
-            pointBorderWidth: 1,
-            data: [30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],
-            hidden: true
-        }, {
-            yAxisID: "y-axis-4",
-            label: "pylZawieszonyPm10NORMA",
-            borderColor: "rgba(0, 230, 118, 1)",
-            backgroundColor: "rgba(0, 230, 118, 0)",
-            pointBorderColor: "rgba(0, 230, 118, 0)",
-            pointBackgroundColor: "rgba(0, 230, 118, 0)",
-            pointBorderWidth: 1,
-            data: [40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40],
-            hidden: true
-        }, {
-            yAxisID: "y-axis-5",
-            label: "pylZawieszonyPm25NORMA",
-            borderColor: "rgba(255, 234, 0, 1)",
-            backgroundColor: "rgba(255, 234, 0, 0)",
-            pointBorderColor: "rgba(255, 234, 0, 0)",
-            pointBackgroundColor: "rgba(255, 234, 0, 0)",
-            pointBorderWidth: 1,
-            data: [20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20],
-            hidden: true
-        }, {
-            yAxisID: "y-axis-6",
-            label: "tlenekWeglaNORMA",
-            borderColor: "rgba(255, 61, 0, 1)",
-            backgroundColor: "rgba(255, 61, 0, 0)",
-            pointBorderColor: "rgba(255, 61, 0, 0)",
-            pointBackgroundColor: "rgba(255, 61, 0, 0)",
-            pointBorderWidth: 1,
-            data: [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000],
-            hidden: true
-        }, {
-            yAxisID: "y-axis-7",
-            label: "tlenekWegla8HNORMA",
-            borderColor: "rgba(78, 52, 46, 1)",
-            backgroundColor: "rgba(78, 52, 46, 0)",
-            pointBorderColor: "rgba(78, 52, 46, 0)",
-            pointBackgroundColor: "rgba(78, 52, 46, 0)",
-            pointBorderWidth: 1,
-            data: [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000],
-            hidden: true
-        }, {
-            yAxisID: "y-axis-8",
-            label: "ozonNORMA",
-            borderColor: "rgba(236, 64, 122, 1)",
-            backgroundColor: "rgba(236, 64, 122, 0)",
-            pointBorderColor: "rgba(236, 64, 122, 0)",
-            pointBackgroundColor: "rgba(236, 64, 122, 0)",
-            pointBorderWidth: 1,
-            data: [120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120],
-            hidden: true
-        }, {
-            yAxisID: "y-axis-9",
-            label: "ozon8HNORMA",
-            borderColor: "rgba(213, 0, 249, 1)",
-            backgroundColor: "rgba(213, 0, 249, 0)",
-            pointBorderColor: "rgba(213, 0, 249, 0)",
-            pointBackgroundColor: "rgba(213, 0, 249, 0)",
-            pointBorderWidth: 1,
-            data: [120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120],
-            hidden: true
-        }, {
-            yAxisID: "y-axis-10",
-            label: "benzenNORMA",
-            borderColor: "rgba(66, 165, 245, 1)",
-            backgroundColor: "rgba(66, 165, 245, 0)",
-            pointBorderColor: "rgba(66, 165, 245, 0)",
-            pointBackgroundColor: "rgba(66, 165, 245, 0)",
-            pointBorderWidth: 1,
-            data: [5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5],
-            hidden: true
-        }, {
-            yAxisID: "y-axis-11",
-            label: "dwutlenekSiarki",
-            borderColor: "rgba(128, 203, 196, 1)",
-            backgroundColor: "rgba(128, 203, 196, 0)",
-            pointBorderColor: "rgba(128, 203, 196, 0)",
-            pointBackgroundColor: "rgba(128, 203, 196, 0)",
-            pointBorderWidth: 1,
-            data: [125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125],
-            hidden: true
-        }]
+                yAxisID: "y-axis-1",
+                label: "dwutlenekAzotu",
+                borderColor: "rgba(255, 23, 68, 0.8)",
+                backgroundColor: "rgba(255, 23, 68, 0.2)",
+                pointBorderColor: "rgba(255, 23, 68, 1)",
+                pointBackgroundColor: "rgba(255, 23, 68, 1)",
+                pointBorderWidth: 1,
+                data: _values.dwutlenekAzotu,
+                hidden: true
+            }, {
+                yAxisID: "y-axis-2",
+                label: "tlenekAzotu",
+                borderColor: "rgba(101, 31, 255, 0.8)",
+                backgroundColor: "rgba(101, 31, 255, 0.2)",
+                pointBorderColor: "rgba(101, 31, 255, 1)",
+                pointBackgroundColor: "rgba(101, 31, 255, 1)",
+                pointBorderWidth: 1,
+                data: _values.tlenekAzotu,
+                hidden: true
+            }, {
+                yAxisID: "y-axis-3",
+                label: "tlenkiAzotu",
+                borderColor: "rgba(0, 176, 255, 0.8)",
+                backgroundColor: "rgba(0, 176, 255, 0.2)",
+                pointBorderColor: "rgba(0, 176, 255, 1)",
+                pointBackgroundColor: "rgba(0, 176, 255, 1)",
+                pointBorderWidth: 1,
+                data: _values.tlenkiAzotu,
+                hidden: true
+            }, {
+                yAxisID: "y-axis-4",
+                label: "pylZawieszonyPm10",
+                borderColor: "rgba(0, 230, 118, 0.8)",
+                backgroundColor: "rgba(0, 230, 118, 0.2)",
+                pointBorderColor: "rgba(0, 230, 118, 1)",
+                pointBackgroundColor: "rgba(0, 230, 118, 1)",
+                pointBorderWidth: 1,
+                data: _values.pylZawieszonyPm10,
+                hidden: false
+            }, {
+                yAxisID: "y-axis-5",
+                label: "pylZawieszonyPm25",
+                borderColor: "rgba(255, 234, 0, 0.2)",
+                backgroundColor: "rgba(255, 234, 0, 0.2)",
+                pointBorderColor: "rgba(255, 234, 0, 1)",
+                pointBackgroundColor: "rgba(255, 234, 0, 1)",
+                pointBorderWidth: 1,
+                data: _values.pylZawieszonyPm25,
+                hidden: true
+            }, {
+                yAxisID: "y-axis-6",
+                label: "tlenekWegla",
+                borderColor: "rgba(255, 61, 0, 0.8)",
+                backgroundColor: "rgba(255, 61, 0, 0.2)",
+                pointBorderColor: "rgba(255, 61, 0, 1)",
+                pointBackgroundColor: "rgba(255, 61, 0, 1)",
+                pointBorderWidth: 1,
+                data: _values.tlenekWegla,
+                hidden: true
+            }, {
+                yAxisID: "y-axis-7",
+                label: "tlenekWegla8H",
+                borderColor: "rgba(78, 52, 46, 0.8)",
+                backgroundColor: "rgba(78, 52, 46, 0.2)",
+                pointBorderColor: "rgba(78, 52, 46, 1)",
+                pointBackgroundColor: "rgba(78, 52, 46, 1)",
+                pointBorderWidth: 1,
+                data: _values.tlenekWegla8H,
+                hidden: true
+            }, {
+                yAxisID: "y-axis-8",
+                label: "ozon",
+                borderColor: "rgba(236, 64, 122, 0.8)",
+                backgroundColor: "rgba(236, 64, 122, 0.2)",
+                pointBorderColor: "rgba(236, 64, 122, 1)",
+                pointBackgroundColor: "rgba(236, 64, 122, 1)",
+                pointBorderWidth: 1,
+                data: _values.ozon,
+                hidden: true
+            }, {
+                yAxisID: "y-axis-9",
+                label: "ozon8H",
+                borderColor: "rgba(213, 0, 249, 0.8)",
+                backgroundColor: "rgba(213, 0, 249, 0.2)",
+                pointBorderColor: "rgba(213, 0, 249, 1)",
+                pointBackgroundColor: "rgba(213, 0, 249, 1)",
+                pointBorderWidth: 1,
+                data: _values.ozon8H,
+                hidden: true
+            }, {
+                yAxisID: "y-axis-10",
+                label: "benzen",
+                borderColor: "rgba(66, 165, 245, 0.8)",
+                backgroundColor: "rgba(66, 165, 245, 0.2)",
+                pointBorderColor: "rgba(66, 165, 245, 1)",
+                pointBackgroundColor: "rgba(66, 165, 245, 1)",
+                pointBorderWidth: 1,
+                data: _values.benzen,
+                hidden: true
+            }, {
+                yAxisID: "y-axis-11",
+                label: "dwutlenekSiarki",
+                borderColor: "rgba(128, 203, 196, 0.8)",
+                backgroundColor: "rgba(128, 203, 196, 0.2)",
+                pointBorderColor: "rgba(128, 203, 196, 1)",
+                pointBackgroundColor: "rgba(128, 203, 196, 1)",
+                pointBorderWidth: 1,
+                data: _values.dwutlenekSiarki,
+                hidden: true
+            }, {
+                yAxisID: "y-axis-1",
+                label: "dwutlenekAzotuNORMA",
+                borderColor: "rgba(255, 23, 68, 1)",
+                backgroundColor: "rgba(255, 23, 68, 0)",
+                pointBorderColor: "rgba(255, 23, 68, 0)",
+                pointBackgroundColor: "rgba(255, 23, 68, 0)",
+                pointBorderWidth: 1,
+                data: [40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40],
+                hidden: true
+            }, {
+                yAxisID: "y-axis-2",
+                label: "tlenekAzotuNORMA",
+                borderColor: "rgba(101, 31, 255, 1)",
+                backgroundColor: "rgba(101, 31, 255, 0)",
+                pointBorderColor: "rgba(101, 31, 255, 0)",
+                pointBackgroundColor: "rgba(101, 31, 255, 0)",
+                pointBorderWidth: 1,
+                data: [30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],
+                hidden: true
+            }, {
+                yAxisID: "y-axis-3",
+                label: "tlenkiAzotuNORMA",
+                borderColor: "rgba(0, 176, 255, 1)",
+                backgroundColor: "rgba(0, 176, 255, 0)",
+                pointBorderColor: "rgba(0, 176, 255, 0)",
+                pointBackgroundColor: "rgba(0, 176, 255, 0)",
+                pointBorderWidth: 1,
+                data: [30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],
+                hidden: true
+            }, {
+                yAxisID: "y-axis-4",
+                label: "pylZawieszonyPm10NORMA",
+                borderColor: "rgba(0, 230, 118, 1)",
+                backgroundColor: "rgba(0, 230, 118, 0)",
+                pointBorderColor: "rgba(0, 230, 118, 0)",
+                pointBackgroundColor: "rgba(0, 230, 118, 0)",
+                pointBorderWidth: 1,
+                data: [40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40],
+                hidden: true
+            }, {
+                yAxisID: "y-axis-5",
+                label: "pylZawieszonyPm25NORMA",
+                borderColor: "rgba(255, 234, 0, 1)",
+                backgroundColor: "rgba(255, 234, 0, 0)",
+                pointBorderColor: "rgba(255, 234, 0, 0)",
+                pointBackgroundColor: "rgba(255, 234, 0, 0)",
+                pointBorderWidth: 1,
+                data: [20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20],
+                hidden: true
+            }, {
+                yAxisID: "y-axis-6",
+                label: "tlenekWeglaNORMA",
+                borderColor: "rgba(255, 61, 0, 1)",
+                backgroundColor: "rgba(255, 61, 0, 0)",
+                pointBorderColor: "rgba(255, 61, 0, 0)",
+                pointBackgroundColor: "rgba(255, 61, 0, 0)",
+                pointBorderWidth: 1,
+                data: [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000],
+                hidden: true
+            }, {
+                yAxisID: "y-axis-7",
+                label: "tlenekWegla8HNORMA",
+                borderColor: "rgba(78, 52, 46, 1)",
+                backgroundColor: "rgba(78, 52, 46, 0)",
+                pointBorderColor: "rgba(78, 52, 46, 0)",
+                pointBackgroundColor: "rgba(78, 52, 46, 0)",
+                pointBorderWidth: 1,
+                data: [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000],
+                hidden: true
+            }, {
+                yAxisID: "y-axis-8",
+                label: "ozonNORMA",
+                borderColor: "rgba(236, 64, 122, 1)",
+                backgroundColor: "rgba(236, 64, 122, 0)",
+                pointBorderColor: "rgba(236, 64, 122, 0)",
+                pointBackgroundColor: "rgba(236, 64, 122, 0)",
+                pointBorderWidth: 1,
+                data: [120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120],
+                hidden: true
+            }, {
+                yAxisID: "y-axis-9",
+                label: "ozon8HNORMA",
+                borderColor: "rgba(213, 0, 249, 1)",
+                backgroundColor: "rgba(213, 0, 249, 0)",
+                pointBorderColor: "rgba(213, 0, 249, 0)",
+                pointBackgroundColor: "rgba(213, 0, 249, 0)",
+                pointBorderWidth: 1,
+                data: [120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120],
+                hidden: true
+            }, {
+                yAxisID: "y-axis-10",
+                label: "benzenNORMA",
+                borderColor: "rgba(66, 165, 245, 1)",
+                backgroundColor: "rgba(66, 165, 245, 0)",
+                pointBorderColor: "rgba(66, 165, 245, 0)",
+                pointBackgroundColor: "rgba(66, 165, 245, 0)",
+                pointBorderWidth: 1,
+                data: [5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5],
+                hidden: true
+            }, {
+                yAxisID: "y-axis-11",
+                label: "dwutlenekSiarki",
+                borderColor: "rgba(128, 203, 196, 1)",
+                backgroundColor: "rgba(128, 203, 196, 0)",
+                pointBorderColor: "rgba(128, 203, 196, 0)",
+                pointBackgroundColor: "rgba(128, 203, 196, 0)",
+                pointBorderWidth: 1,
+                data: [125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125,125],
+                hidden: true
+            }]
     };
     var options = _options;
     Chart.defaults.global.legend = false;
@@ -343,6 +366,22 @@ function updateAllCharts(){
             smogChart.data.datasets[dic[i].number+11].hidden = true;
         }
         smogChart.update();
+    }
+}
+
+function updatePredictionCharts(){
+    for(var i in dic2){
+        console.log(i);
+        if($("#" + dic2[i].name).is(':checked')) {
+            smogChartPrediction.data.datasets[dic2[i].number].hidden = false;
+            smogChartPrediction.options.scales.yAxes[dic2[i].number].display = true;
+            smogChartPrediction.data.datasets[dic2[i].number+11].hidden = true;
+        } else {
+            smogChartPrediction.data.datasets[dic2[i].number].hidden = true;
+            smogChartPrediction.options.scales.yAxes[dic2[i].number].display = false;
+            smogChartPrediction.data.datasets[dic2[i].number+11].hidden = true;
+        }
+        smogChartPrediction.update();
     }
 }
 
