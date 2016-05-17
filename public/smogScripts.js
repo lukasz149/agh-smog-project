@@ -58,8 +58,8 @@ var dic2 = [{name: "dwutlenekAzotuSwitch2", number:0},
 
 $(document).ready(function() {
     var valuesPrediction = [];
-    var from = new Date('2016-04-06');
-    var to = new Date('2016-04-06');
+    var from = new Date('2016-04-05');
+    var to = new Date('2016-04-05');
     from.setDate(from.getDate()-1);
     from = (from.getYear() + 1900) + "-" + zfill((from.getMonth() + 1).toString(), 2) + "-" + zfill(from.getDate().toString(), 2);
     to = (to.getYear() + 1900) + "-" + zfill((to.getMonth() + 1).toString(), 2) + "-" + zfill(to.getDate().toString(), 2);
