@@ -517,16 +517,24 @@
 
         <script>
             $( "#prev" ).on( "click", function() {
-                if(document.getElementById('date').style.visibility == 'hidden')
+                if(document.getElementById('date').style.visibility == 'hidden') {
+                    console.log("COMP-PREV");
                     updateDateComp("prev");
-                else
+                }
+                else{
+                    console.log("NORMAL-PREV");
                     updateDate("prev");
+                }
             });
             $( "#next" ).on( "click", function() {
-                if(document.getElementById('date').style.visibility == 'hidden')
+                if(document.getElementById('date').style.visibility == 'hidden'){
+                    console.log("COMP-NEXT");
                     updateDateComp("next");
-                else
+                }
+                else{
+                    console.log("NORMAL-NEXT");
                     updateDate("next");
+                }
             });
 
             $( "#range" ).on( "change", function() {
@@ -718,8 +726,8 @@
                 updateDay(beginDate, endDate, direction);
                 begin.innerHTML = formatDate(beginDate);
                 end.innerHTML = formatDate(endDate);
-                dateValues[0].innerHTML = formatDate(beginDate);
-                dateValues[0].innerHTML = formatDate(endDate);
+                dateValuesComp[0].innerHTML = formatDate(beginDate);
+                dateValuesComp[0].innerHTML = formatDate(endDate);
                 rangeSlider.noUiSlider.set(timestamp(beginDate.toString()));
                 updateWeatherData();
                 updateSmogData();
@@ -743,6 +751,8 @@
 //                selectYears: 15, // Creates a dropdown of 15 years to control year
 //                format: 'yyyy-mm-dd'
 //            });
+
+            var dateValuesComp = [];
             var rangeSlider = document.getElementById('dateComp');
 
             var dateValues = [];
@@ -773,6 +783,7 @@
                     document.getElementById('from-date'),
                     document.getElementById('to-date')
                 ];
+
                 dateSlider.noUiSlider.on('update', function( values, handle ) {
                     dateValues[handle].innerHTML = formatDate(values[handle]);
                 });
@@ -785,6 +796,19 @@
 //                var connectBar = document.createElement('div'),
 //                    connectBase = dateSlider.querySelector('.noUi-base');
 //
+                noUiSlider.create(rangeSlider, {
+                    start: [ timestamp(new Date().toString()) ],
+                    range: {
+                        min: timestamp('2014-01-01'),
+                        max: timestamp('2016-04-06')
+                    },
+                });
+
+                dateValuesComp = [
+                    document.getElementById('from-date'),
+                    document.getElementById('to-date')
+                ];
+                
                 $('ul.tabs li:eq(0)').on('click', 'a', function(e) {
                     document.getElementById('date-time').style.visibility = 'visible';
                     document.getElementById('date').style.visibility = 'visible';
@@ -806,16 +830,11 @@
                     document.getElementById('dateComp').style.visibility = 'visible';
 
 
-                    noUiSlider.create(rangeSlider, {
-                        start: [ timestamp(new Date().toString()) ],
-                        range: {
-                            min: timestamp('2014-01-01'),
-                            max: timestamp('2016-04-06')
-                        },
-                    });
+
+
                     rangeSlider.noUiSlider.on('update', function( values, handle ) {
-                        dateValues[0].innerHTML = formatDate(values[0]);
-                        dateValues[1].innerHTML = formatDate(values[0]);
+                        dateValuesComp[0].innerHTML = formatDate(values[0]);
+                        dateValuesComp[1].innerHTML = formatDate(values[0]);
                     });
                 });
 
