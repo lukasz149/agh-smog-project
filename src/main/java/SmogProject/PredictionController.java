@@ -19,17 +19,17 @@ public class PredictionController {
                                 @RequestParam(value = "station", defaultValue = "7") String station) throws ParseException {
 
             String query = "select " + "P.godzina || ':00'" + ", " +
-                    "P.pylZawieszonyPm10, " +
-                    "P.tlenekWegla, " +
-                    "P.dwutlenekAzotu, " +
-                    "P.tlenekAzotu, " +
-                    "P.tlenkiAzotu, " +
-                    "P.pylZawieszonyPm25, " +
-                    "P.tlenekWegla8H, " +
-                    "P.benzen, " +
-                    "P.dwutlenekSiarki, " +
-                    "P.ozon, " +
-                    "P.ozon8H " +
+                    "floor(P.pylZawieszonyPm10*100+0.5)/100.0, " +
+                    "floor(P.tlenekWegla*100+0.5)/100.0, " +
+                    "floor(P.dwutlenekAzotu*100+0.5)/100.0, " +
+                    "floor(P.tlenekAzotu*100+0.5)/100.0, " +
+                    "floor(P.tlenkiAzotu*100+0.5)/100.0, " +
+                    "floor(P.pylZawieszonyPm25*100+0.5)/100.0, " +
+                    "floor(P.tlenekWegla8H*100+0.5)/100.0, " +
+                    "floor(P.benzen*100+0.5)/100.0, " +
+                    "floor(P.dwutlenekSiarki*100+0.5)/100.0, " +
+                    "floor(P.ozon*100+0.5)/100.0, " +
+                    "floor(P.ozon8H*100+0.5)/100.0 " +
                     "from PrognozyEntity as P " +
                     String.format("where Data = '%s' and Stacja = %s ", my_date, station) +
                     "order by Data, Godzina";

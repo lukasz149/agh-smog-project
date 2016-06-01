@@ -110,6 +110,8 @@
                                 <!--</div>-->
                             <!--</div>-->
                         </div>
+                        <div id="dateComp" class="noUi-target noUi-ltr noUi-horizontal noUi-background" style ="visibility: hidden" >
+                        </div>
                         <span>Od</span>
                         <span id="from-date"></span>
                         <span>do</span>
@@ -119,7 +121,7 @@
                         <a class="btn-floating btn waves-effect waves-light red" id="next">+</a>
                     </div>
 
-                    <div class="input-field col s2 center-align">
+                    <div class="input-field col s2 center-align" id="date-time">
                         <select id="range">
                             <option value="" disabled>Wybierz przedział</option>
                             <option selected value="day">Dzień</option>
@@ -152,13 +154,26 @@
             <div class="row">
                 <div class="col s12">
                     <ul class="tabs">
-                        <li class="tab col s4"><a class="active" href="#weather_smog" style="color: #00c853">Pogoda i smog</a></li>
-                        <li class="tab col s4"><a href="#heatmap" style="color: #00c853 ">Heatmap</a></li>
-                        <li class="tab col s4"><a href="#prediction" style="color: #00c853 ">Przewidywania</a></li>
+                        <li class="tab col s3"><a class="active" href="#weather_smog" style="color: #00c853">Pogoda i smog</a></li>
+                        <li class="tab col s3"><a href="#heatmap" style="color: #00c853 ">Heatmap</a></li>
+                        <li class="tab col s3"><a href="#prediction" style="color: #00c853 ">Przewidywania</a></li>
+                        <li class="tab col s3"><a href="#comparison" style="color: #00c853 ">Porównanie</a></li>
                         <div class="indicator green accent-4" style="z-index:1"></div>
                     </ul>
                 </div>
             </div>
+
+            <div id="comparison">
+                <div class="row">
+                    <div class="col s9">
+                        <h5>Porównanie wyników</h5>
+                        <canvas id="smogChartComparison" width="950%" height="350"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+
             <div id="heatmap">
 
             </div>
@@ -430,10 +445,16 @@
 
         <script>
             $( "#prev" ).on( "click", function() {
-                updateDate("prev");
+                if(document.getElementById('date').style.visibility == 'hidden')
+                    updateDateComp("prev");
+                else
+                    updateDate("prev");
             });
             $( "#next" ).on( "click", function() {
-                updateDate("next");
+                if(document.getElementById('date').style.visibility == 'hidden')
+                    updateDateComp("next");
+                else
+                    updateDate("next");
             });
 
             $( "#range" ).on( "change", function() {
@@ -611,12 +632,27 @@
                 dateValues[0].innerHTML = formatDate(beginDate);
                 dateValues[1].innerHTML = formatDate(endDate);
                 dateSlider.noUiSlider.set([timestamp(beginDate.toString()),timestamp(endDate.toString())]);
-
                 updateWeatherData();
                 updateSmogData();
                 updateHeatMap();
             }
 
+            function updateDateComp(direction) {
+                var begin = document.getElementById('from-date');
+                var end = document.getElementById('to-date');
+
+                var beginDate = new Date(begin.innerHTML);
+                var endDate = new Date(end.innerHTML);
+                updateDay(beginDate, endDate, direction);
+                begin.innerHTML = formatDate(beginDate);
+                end.innerHTML = formatDate(endDate);
+                dateValues[0].innerHTML = formatDate(beginDate);
+                dateValues[0].innerHTML = formatDate(endDate);
+                rangeSlider.noUiSlider.set(timestamp(beginDate.toString()));
+                updateWeatherData();
+                updateSmogData();
+                updateHeatMap();
+            }
             function timestamp(str) {
                 return new Date(str).getTime();
             }
@@ -635,6 +671,8 @@
 //                selectYears: 15, // Creates a dropdown of 15 years to control year
 //                format: 'yyyy-mm-dd'
 //            });
+            var rangeSlider = document.getElementById('dateComp');
+
             var dateValues = [];
             var dateSlider = document.getElementById("date");
             $(document).ready(function() {
@@ -663,9 +701,7 @@
                     document.getElementById('from-date'),
                     document.getElementById('to-date')
                 ];
-
                 dateSlider.noUiSlider.on('update', function( values, handle ) {
-
                     dateValues[handle].innerHTML = formatDate(values[handle]);
                 });
 
@@ -674,10 +710,39 @@
                     updateSmogData();
                     updateHeatMap();
                 });
-
 //                var connectBar = document.createElement('div'),
 //                    connectBase = dateSlider.querySelector('.noUi-base');
 //
+                $('ul.tabs li:eq(0)').on('click', 'a', function(e) {
+                    document.getElementById('date-time').style.visibility = 'visible';
+                });
+                $('ul.tabs li:eq(1)').on('click', 'a', function(e) {
+                    document.getElementById('date-time').style.visibility = 'visible';
+                });
+                $('ul.tabs li:eq(2)').on('click', 'a', function(e) {
+                    document.getElementById('date-time').style.visibility = 'visible';
+                });
+                $('ul.tabs li:eq(3)').on('click', 'a', function(e) {
+                    document.getElementById('date-time').style.visibility = 'hidden';
+
+                    document.getElementById('date').style.visibility = 'hidden';
+                    document.getElementById('dateComp').style.visibility = 'visible';
+
+
+                    noUiSlider.create(rangeSlider, {
+                        start: [ timestamp(new Date().toString()) ],
+                        range: {
+                            min: timestamp('2014-01-01'),
+                            max: timestamp('2016-04-06')
+                        },
+                    });
+                    rangeSlider.noUiSlider.on('update', function( values, handle ) {
+                        dateValues[0].innerHTML = formatDate(values[0]);
+                        dateValues[1].innerHTML = formatDate(values[0]);
+                    });
+                });
+
+
 //                // Give the bar a class for styling and add it to the slider.
 //                connectBar.className += 'connect';
 //                connectBase.appendChild(connectBar);

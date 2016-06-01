@@ -46,17 +46,17 @@ public class SmogController {
             }
 
             String query = "select " + label + ", " +
-                    "avg(P.pylZawieszonyPm10), " +
-                    "avg(P.tlenekWegla), " +
-                    "avg(P.dwutlenekAzotu), " +
-                    "avg(P.tlenekAzotu), " +
-                    "avg(P.tlenkiAzotu), " +
-                    "avg(P.pylZawieszonyPm25), " +
-                    "avg(P.tlenekWegla8H), " +
-                    "avg(P.benzen), " +
-                    "avg(P.dwutlenekSiarki), " +
-                    "avg(P.ozon), " +
-                    "avg(P.ozon8H) " +
+                    "floor(avg(P.pylZawieszonyPm10)*100+0.5)/100.0, " +
+                    "floor(avg(P.tlenekWegla)*100+0.5)/100.0, " +
+                    "floor(avg(P.dwutlenekAzotu)*100+0.5)/100.0, " +
+                    "floor(avg(P.tlenekAzotu)*100+0.5)/100.0, " +
+                    "floor(avg(P.tlenkiAzotu)*100+0.5)/100.0, " +
+                    "floor(avg(P.pylZawieszonyPm25)*100+0.5)/100.0, " +
+                    "floor(avg(P.tlenekWegla8H)*100+0.5)/100.0, " +
+                    "floor(avg(P.benzen)*100+0.5)/100.0, " +
+                    "floor(avg(P.dwutlenekSiarki)*100+0.5)/100.0, " +
+                    "floor(avg(P.ozon)*100+0.5)/100.0, " +
+                    "floor(avg(P.ozon8H)*100+0.5)/100.0 " +
                     "from SmogEntity as P " +
                     String.format("where Data between '%s' and '%s' and Stacja = %s ", from, to, station) +
                     String.format("group by (strftime('%%s', Data) + 3600 * Godzina) / %d", secs) +
