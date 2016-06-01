@@ -1,7 +1,7 @@
 /**
  * Created by lukas on 12.03.2016.
  */
-document.getElementById("date").addEventListener("change", updateComparisonData);
+document.getElementById("dateComp").addEventListener("change", updateComparisonData);
 //document.getElementById("station").addEventListener("change", updateSmogData);
 document.getElementById("dwutlenekAzotuSwitch").addEventListener("change", updateSmogCharts);
 document.getElementById("tlenekAzotuSwitch").addEventListener("change", updateSmogCharts);
@@ -110,15 +110,7 @@ $(document).ready(function() {
         });
     });
 
-    var values = {
-        "label": [],
-        "pylZawieszonyPm10": [],
-        "model1": [],
-        "model2": [],
-        "model3": [],
-        "model4": [],
-        "model5": []
-    };
+    var values = {};
 
     $.ajax({
         url: "/smog"
@@ -227,8 +219,8 @@ function updatePredictionCharts() {
 }
 
 function updateComparisonCharts() {
+    updateComparisonData();
     for(var i in smogComparisonSwtiches){
-        console.log(i);
         if($("#" + smogComparisonSwtiches[i].name).is(':checked')) {
             smogChartComparison.data.datasets[smogComparisonSwtiches[i].number].hidden = false;
             //chart.data.datasets[switches[i].number+11].hidden = false;
@@ -242,7 +234,6 @@ function updateComparisonCharts() {
 
 function updateAllCharts(chart, switches){
     for(var i in switches){
-        console.log(i);
         if($("#" + switches[i].name).is(':checked')) {
             chart.data.datasets[switches[i].number].hidden = false;
             chart.options.scales.yAxes[switches[i].number].display = true;
@@ -260,7 +251,6 @@ function updateComparisonData() {
     var fromdate = document.getElementById("from-date").innerHTML;
     var todate = document.getElementById("to-date").innerHTML;
     var station = document.getElementById("station").value;
-
     $.ajax({
         url: "/smog?from=" + fromdate + "&to=" + todate + "&station=" + station
     }).then(function(data) {
@@ -269,46 +259,47 @@ function updateComparisonData() {
             return;
         }
 
-        var values = {
-            "label": [],
-            "pylZawieszonyPm10": [],
-            "model_1": [],
-            "model_2": [],
-            "model_3": [],
-            "model_4": [],
-            "model_5": [],
-        };
+        var values = {};
         values["label"] = getSmogData(data).label;
         values["pylZawieszonyPm10"] = getSmogData(data).pylZawieszonyPm10;
-        for(var n = 1; n<6; n++) {
-            $.ajax({
-                url: "/prediction?from=" + fromdate + "&to=" + todate + "&model=" + n
-            }).then(function (data) {
-                values["model_"+n] = getSmogData(data).pylZawieszonyPm10;
-                alert(values["model_"+n]);
-            });
-        }
-        datasets = [];
-
-        if (values.label.length != smogChart.data.datasets[0].data.length) {
-            smogChartComparison.destroy();
-            smogChartComparison = createSmogChart(values.label, values, "smogChartComparison", optionsSmogChartComparison);
-            updateSmogCharts();
-        } else {
-            smogChartComparison.data.label = values.label.slice();
-
-            for (var v = 0; v < values.label.length; ++v) {
-                var i = 0;
-                for (var key in values) {
-                    if(values.hasOwnProperty(key) && key != 'label') {
-                        smogChartComparison.data.datasets[i].data[v] = values[key][v];
-                        i++;
+        downloadPrediction(fromdate, values, 1, function (prediction) {
+            if (prediction.label.length != smogChart.data.datasets[0].data.length) {
+                smogChartComparison.destroy();
+                smogChartComparison = createSmogChart(prediction.label, prediction, "smogChartComparison", optionsSmogChartComparison);
+                updateSmogCharts();
+            } else {
+                smogChartComparison.data.label = prediction.label.slice();
+                console.log(smogChartComparison);
+                console.log(prediction);
+                for (var v = 0; v < prediction.label.length; ++v) {
+                    var i = 0;
+                    for (var key in prediction) {
+                        if(prediction.hasOwnProperty(key) && key != 'label') {
+                            smogChartComparison.data.datasets[i].data[v] = prediction[key][v];
+                            i++;
+                        }
                     }
                 }
+                smogChartComparison.update();
             }
-            smogChartComparison.update();
-        }
+        });
     });
+}
+
+function downloadPrediction(date, values, model, finishedDownloading) {
+    if (model <= 5) {
+        console.log("/prediction?date=" + date + "&model=" + (model - 1));
+        $.ajax({
+            url: "/prediction?date=" + date + "&model=" + (model - 1)
+        }).then(function (data) {
+            console.log(data);
+            values["model_"+model] = getSmogData(data).pylZawieszonyPm10;
+            // alert(values["model_"+model]);
+            downloadPrediction(date, values, model + 1, finishedDownloading);
+        });
+    } else {
+        finishedDownloading(values);
+    }
 }
 
 function updateSmogData() {

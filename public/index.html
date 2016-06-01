@@ -553,7 +553,7 @@
             var flagDayMin = false;
             function updateDay(beginDate, endDate, direction) {
                 var minDate = new Date('2014-01-01');
-                var maxDate = new Date('2016-04-06');
+                var maxDate = new Date('2016-04-05');
 
                 if(direction === "prev") {
                     if (endDate.toString() === maxDate.toString() && flagDayMax == true) {
@@ -589,7 +589,7 @@
             var flagWeekMin = false;
             function updateWeek(beginDate, endDate, direction) {
                 var minDate = new Date('2014-01-01');
-                var maxDate = new Date('2016-04-06');
+                var maxDate = new Date('2016-04-05');
 
                 if(direction === "prev") {
                     if (endDate.toString() === maxDate.toString() && flagWeekMax == true) {
@@ -624,7 +624,7 @@
             var flagMonthMin = false;
             function updateMonth(beginDate, endDate, direction) {
                 var minDate = new Date('2014-01-01');
-                var maxDate = new Date('2016-04-06');
+                var maxDate = new Date('2016-04-05');
 
                 if(direction === "prev") {
                     if (endDate.toString() === maxDate.toString() && flagMonthMax == true) {
@@ -659,7 +659,7 @@
             var flagYearMin = false;
             function updateYear(beginDate, endDate, direction) {
                 var minDate = new Date('2014-01-01');
-                var maxDate = new Date('2016-04-06');
+                var maxDate = new Date('2016-04-05');
 
                 if(direction === "prev") {
                     if (endDate.toString() === maxDate.toString() && flagYearMax == true) {
@@ -764,7 +764,7 @@
                 noUiSlider.create(dateSlider, {
                     range: {
                         min: timestamp('2014-01-01'),
-                        max: timestamp('2016-04-06')
+                        max: timestamp('2016-04-05')
                     },
 
                     steps: 1000 * 60 * 60, // hours
@@ -801,7 +801,7 @@
                     start: [ timestamp(new Date().toString()) ],
                     range: {
                         min: timestamp('2014-01-01'),
-                        max: timestamp('2016-04-06')
+                        max: timestamp('2016-04-05')
                     },
                 });
 
@@ -836,6 +836,7 @@
                     rangeSlider.noUiSlider.on('update', function( values, handle ) {
                         dateValuesComp[0].innerHTML = formatDate(values[0]);
                         dateValuesComp[1].innerHTML = formatDate(values[0]);
+                        updateComparisonCharts();
                     });
                 });
 
