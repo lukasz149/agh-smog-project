@@ -16,7 +16,8 @@ public class PredictionController {
     @RequestMapping("/prediction")
     public @ResponseBody
     List<SmogEntity> prediction(@RequestParam(value="date", defaultValue="2016-04-05") String my_date,
-                                @RequestParam(value = "station", defaultValue = "7") String station) throws ParseException {
+                                @RequestParam(value = "station", defaultValue = "7") String station,
+                                @RequestParam(value = "model", defaultValue = "1") String model) throws ParseException {
 
             String query = "select " + "P.godzina || ':00'" + ", " +
                     "floor(P.pylZawieszonyPm10*100+0.5)/100.0, " +
@@ -31,7 +32,7 @@ public class PredictionController {
                     "floor(P.ozon*100+0.5)/100.0, " +
                     "floor(P.ozon8H*100+0.5)/100.0 " +
                     "from PrognozyEntity as P " +
-                    String.format("where Data = '%s' and Stacja = %s ", my_date, station) +
+                    String.format("where Data = '%s' and Stacja = %s and Model = %s ", my_date, station, model) +
                     "order by Data, Godzina";
 
 
