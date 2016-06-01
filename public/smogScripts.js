@@ -556,6 +556,16 @@ function createSmogComparisonDatasets(_values) {
         }, {
             yAxisID: "y-axis-0",
             label: "model1",
+            borderColor: "rgba(255, 61, 0, 0.8)",
+            backgroundColor: "rgba(255, 61, 0, 0.2)",
+            pointBorderColor: "rgba(255, 61, 0, 1)",
+            pointBackgroundColor: "rgba(255, 61, 0, 1)",
+            pointBorderWidth: 1,
+            data: _values.model1,
+            hidden: true
+        }, {
+            yAxisID: "y-axis-0",
+            label: "model2",
             borderColor: "rgba(101, 31, 255, 0.8)",
             backgroundColor: "rgba(101, 31, 255, 0.2)",
             pointBorderColor: "rgba(101, 31, 255, 1)",
@@ -565,41 +575,31 @@ function createSmogComparisonDatasets(_values) {
             hidden: true
         }, {
             yAxisID: "y-axis-0",
-            label: "model2",
-            borderColor: "rgba(0, 176, 255, 0.8)",
-            backgroundColor: "rgba(0, 176, 255, 0.2)",
-            pointBorderColor: "rgba(0, 176, 255, 1)",
-            pointBackgroundColor: "rgba(0, 176, 255, 1)",
-            pointBorderWidth: 1,
-            data: _values.model2,
-            hidden: true
-        }, {
-            yAxisID: "y-axis-0",
             label: "model3",
-            borderColor: "rgba(0, 230, 118, 0.8)",
-            backgroundColor: "rgba(0, 230, 118, 0.2)",
-            pointBorderColor: "rgba(0, 230, 118, 1)",
-            pointBackgroundColor: "rgba(0, 230, 118, 1)",
+            borderColor: "rgba(78, 52, 46, 0.8)",
+            backgroundColor: "rgba(78, 52, 46, 0.2)",
+            pointBorderColor: "rgba(78, 52, 46,, 1)",
+            pointBackgroundColor: "rgba(78, 52, 46, 1)",
             pointBorderWidth: 1,
             data: _values.model3,
             hidden: false
         }, {
             yAxisID: "y-axis-0",
             label: "model4",
-            borderColor: "rgba(255, 234, 0, 0.2)",
-            backgroundColor: "rgba(255, 234, 0, 0.2)",
-            pointBorderColor: "rgba(255, 234, 0, 1)",
-            pointBackgroundColor: "rgba(255, 234, 0, 1)",
+            borderColor: "rgba(0, 176, 255, 0.2)",
+            backgroundColor: "rgba(0, 176, 255, 0.2)",
+            pointBorderColor: "rgba(0, 176, 255, 1)",
+            pointBackgroundColor: "rgba(0, 176, 255, 1)",
             pointBorderWidth: 1,
             data: _values.model4,
             hidden: true
         }, {
             yAxisID: "y-axis-0",
             label: "model5",
-            borderColor: "rgba(255, 61, 0, 0.8)",
-            backgroundColor: "rgba(255, 61, 0, 0.2)",
-            pointBorderColor: "rgba(255, 61, 0, 1)",
-            pointBackgroundColor: "rgba(255, 61, 0, 1)",
+            borderColor: "rgba(236, 64, 122, 0.8)",
+            backgroundColor: "rgba(236, 64, 122, 0.2)",
+            pointBorderColor: "rgba(236, 64, 122, 1)",
+            pointBackgroundColor: "rgba(236, 64, 122, 1)",
             pointBorderWidth: 1,
             data: _values.model5,
             hidden: true
