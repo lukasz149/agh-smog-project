@@ -1,7 +1,7 @@
 /**
  * Created by lukas on 12.03.2016.
  */
-//document.getElementById("date").addEventListener("change", updateSmogData);
+document.getElementById("date").addEventListener("change", updateComparisonData);
 //document.getElementById("station").addEventListener("change", updateSmogData);
 document.getElementById("dwutlenekAzotuSwitch").addEventListener("change", updateSmogCharts);
 document.getElementById("tlenekAzotuSwitch").addEventListener("change", updateSmogCharts);
@@ -27,12 +27,30 @@ document.getElementById("ozon8HSwitch2").addEventListener("change", updatePredic
 document.getElementById("benzenSwitch2").addEventListener("change", updatePredictionCharts);
 document.getElementById("dwutlenekSiarkiSwitch2").addEventListener("change", updatePredictionCharts);
 
+document.getElementById("Pm10Switch").addEventListener("change", updateComparisonCharts);
+document.getElementById("model_1").addEventListener("change", updateComparisonCharts);
+document.getElementById("model_2").addEventListener("change", updateComparisonCharts);
+document.getElementById("model_3").addEventListener("change", updateComparisonCharts);
+document.getElementById("model_4").addEventListener("change", updateComparisonCharts);
+document.getElementById("model_5").addEventListener("change", updateComparisonCharts);
+
 var smogChart;
 var smogChartPrediction;
+var smogChartComparison;
 
 var datasets = [];
 
-var smogSwitches = [{name: "dwutlenekAzotuSwitch", number:0},
+var smogComparisonSwtiches = [
+    {name: "Pm10Switch", number:0},
+    {name: "model_1", number:1},
+    {name: "model_2", number:2},
+    {name: "model_3", number:3},
+    {name: "model_4", number:4},
+    {name: "model_5", number:5},
+];
+
+var smogSwitches = [
+    {name: "dwutlenekAzotuSwitch", number:0},
     {name: "tlenekAzotuSwitch", number:1},
     {name: "tlenkiAzotuSwitch", number:2},
     {name: "pylZawieszonyPm10Switch", number:3},
@@ -42,9 +60,11 @@ var smogSwitches = [{name: "dwutlenekAzotuSwitch", number:0},
     {name: "ozonSwitch", number:7},
     {name: "ozon8HSwitch", number:8},
     {name: "benzenSwitch", number:9},
-    {name: "dwutlenekSiarkiSwitch", number:10}];
+    {name: "dwutlenekSiarkiSwitch", number:10}
+];
 
-var smogPredictionSwtiches = [{name: "dwutlenekAzotuSwitch2", number:0},
+var smogPredictionSwtiches = [
+    {name: "dwutlenekAzotuSwitch2", number:0},
     {name: "tlenekAzotuSwitch2", number:1},
     {name: "tlenkiAzotuSwitch2", number:2},
     {name: "pylZawieszonyPm10Switch2", number:3},
@@ -54,7 +74,8 @@ var smogPredictionSwtiches = [{name: "dwutlenekAzotuSwitch2", number:0},
     {name: "ozonSwitch2", number:7},
     {name: "ozon8HSwitch2", number:8},
     {name: "benzenSwitch2", number:9},
-    {name: "dwutlenekSiarkiSwitch2", number:10}];
+    {name: "dwutlenekSiarkiSwitch2", number:10}
+];
 
 $(document).ready(function() {
     $.ajax({
@@ -88,40 +109,108 @@ $(document).ready(function() {
             updatePredictionCharts();
         });
     });
+
+    var values = {
+        "label": [],
+        "pylZawieszonyPm10": [],
+        "model1": [],
+        "model2": [],
+        "model3": [],
+        "model4": [],
+        "model5": []
+    };
+
+    $.ajax({
+        url: "/smog"
+    }).then(function(data) {
+        values["pylZawieszonyPm10"] = getSmogData(data).pylZawieszonyPm10;
+        values["label"] = getSmogData(data).label;
+
+        var from = new Date('2016-04-05');
+        var to = new Date('2016-04-05');
+
+        from.setDate(from.getDate()-1);
+
+        from = (from.getYear() + 1900) + "-" + zfill((from.getMonth() + 1).toString(), 2) + "-" + zfill(from.getDate().toString(), 2);
+        to = (to.getYear() + 1900) + "-" + zfill((to.getMonth() + 1).toString(), 2) + "-" + zfill(to.getDate().toString(), 2);
+        $.ajax({
+            url: "/prediction?from=" + from + "&to=" + to + "&model=0"
+        }).then(function (data) {
+            values["model1"] = getSmogData(data).pylZawieszonyPm10;
+            console.log("MODEL1");
+            console.log(values["model1"]);
+        });
+        $.ajax({
+            url: "/prediction?from=" + from + "&to=" + to + "&model=1"
+        }).then(function (data) {
+            values["model2"] = getSmogData(data).pylZawieszonyPm10;
+        });
+        $.ajax({
+            url: "/prediction?from=" + from + "&to=" + to + "&model=2"
+        }).then(function (data) {
+            values["model3"] = getSmogData(data).pylZawieszonyPm10;
+        });
+        $.ajax({
+            url: "/prediction?from=" + from + "&to=" + to + "&model=3"
+        }).then(function (data) {
+            values["model4"] = getSmogData(data).pylZawieszonyPm10;
+        });
+        $.ajax({
+            url: "/prediction?from=" + from + "&to=" + to + "&model=4"
+        }).then(function (data) {
+            values["model5"] = getSmogData(data).pylZawieszonyPm10;
+        });
+
+        smogChartComparison = createSmogChart(values.label, values, "smogChartComparison", optionsSmogChartComparison);
+        updateComparisonCharts();
+    });
+
 });
 
+
+
+
 function createSmogChart(_labels, _values, _name, _options) {
-    var data = {
-        labels: _labels,
-        datasets: createSmogDatasets(_values)
-    };
+    var data = {};
+    if(_name === "smogChartComparison") {
+        console.log("COMARISON");
+        data = {
+            labels: _labels,
+            datasets: createSmogComparisonDatasets(_values)
+        };
+    } else {
+        data = {
+            labels: _labels,
+            datasets: createSmogDatasets(_values)
+        };
+    }
 
     Chart.defaults.global.legend = false;
     var ctx = document.getElementById(_name).getContext("2d");
 
-    var originalLineDraw = Chart.controllers.line.prototype.draw;
-    Chart.helpers.extend(Chart.controllers.line.prototype, {
-        draw: function() {
-            originalLineDraw.apply(this, arguments);
-
-            var chart = this.chart;
-            var ctx = chart.chart.ctx;
-
-            var index = 24;
-            if (index) {
-                var xaxis = chart.scales['x-axis-0'];
-                var yaxis = chart.scales['y-axis-3'];
-
-                ctx.save();
-                ctx.beginPath();
-                ctx.moveTo(xaxis.getPixelForValue(undefined, index), yaxis.top);
-                ctx.strokeStyle = 'grey';
-                ctx.lineTo(xaxis.getPixelForValue(undefined, index), yaxis.bottom);
-                ctx.stroke();
-                ctx.restore();
-            }
-        }
-    });
+    //var originalLineDraw = Chart.controllers.line.prototype.draw;
+    //Chart.helpers.extend(Chart.controllers.line.prototype, {
+    //    draw: function() {
+    //        originalLineDraw.apply(this, arguments);
+    //
+    //        var chart = this.chart;
+    //        var ctx = chart.chart.ctx;
+    //
+    //        var index = 24;
+    //        if (index) {
+    //            var xaxis = chart.scales['x-axis-0'];
+    //            var yaxis = chart.scales['y-axis-3'];
+    //
+    //            ctx.save();
+    //            ctx.beginPath();
+    //            ctx.moveTo(xaxis.getPixelForValue(undefined, index), yaxis.top);
+    //            ctx.strokeStyle = 'grey';
+    //            ctx.lineTo(xaxis.getPixelForValue(undefined, index), yaxis.bottom);
+    //            ctx.stroke();
+    //            ctx.restore();
+    //        }
+    //    }
+    //});
 
 
     return new Chart.Line(ctx, {
@@ -137,6 +226,20 @@ function updateSmogCharts() {
 
 function updatePredictionCharts() {
     updateAllCharts(smogChartPrediction, smogPredictionSwtiches)
+}
+
+function updateComparisonCharts() {
+    for(var i in smogComparisonSwtiches){
+        console.log(i);
+        if($("#" + smogComparisonSwtiches[i].name).is(':checked')) {
+            smogChartComparison.data.datasets[smogComparisonSwtiches[i].number].hidden = false;
+            //chart.data.datasets[switches[i].number+11].hidden = false;
+        } else {
+            smogChartComparison.data.datasets[smogComparisonSwtiches[i].number].hidden = true;
+            //chart.data.datasets[switches[i].number+11].hidden = true;
+        }
+        smogChartComparison.update();
+    }
 }
 
 function updateAllCharts(chart, switches){
@@ -155,6 +258,60 @@ function updateAllCharts(chart, switches){
     }
 }
 
+function updateComparisonData() {
+    var fromdate = document.getElementById("from-date").innerHTML;
+    var todate = document.getElementById("to-date").innerHTML;
+    var station = document.getElementById("station").value;
+
+    $.ajax({
+        url: "/smog?from=" + fromdate + "&to=" + todate + "&station=" + station
+    }).then(function(data) {
+        if (data == "") {
+            Materialize.toast("Brak danych o smogu", 1000);
+            return;
+        }
+
+        var values = {
+            "label": [],
+            "pylZawieszonyPm10": [],
+            "model_1": [],
+            "model_2": [],
+            "model_3": [],
+            "model_4": [],
+            "model_5": [],
+        };
+        values["label"] = getSmogData(data).label;
+        values["pylZawieszonyPm10"] = getSmogData(data).pylZawieszonyPm10;
+        for(var n = 1; n<6; n++) {
+            $.ajax({
+                url: "/prediction?from=" + fromdate + "&to=" + todate + "&model=" + n
+            }).then(function (data) {
+                values["model_"+n] = getSmogData(data).pylZawieszonyPm10;
+                alert(values["model_"+n]);
+            });
+        }
+        datasets = [];
+
+        if (values.label.length != smogChart.data.datasets[0].data.length) {
+            smogChartComparison.destroy();
+            smogChartComparison = createSmogChart(values.label, values, "smogChartComparison", optionsSmogChartComparison);
+            updateSmogCharts();
+        } else {
+            smogChartComparison.data.label = values.label.slice();
+
+            for (var v = 0; v < values.label.length; ++v) {
+                var i = 0;
+                for (var key in values) {
+                    if(values.hasOwnProperty(key) && key != 'label') {
+                        smogChartComparison.data.datasets[i].data[v] = values[key][v];
+                        i++;
+                    }
+                }
+            }
+            smogChartComparison.update();
+        }
+    });
+}
 
 function updateSmogData() {
     var fromdate = document.getElementById("from-date").innerHTML;
@@ -390,6 +547,72 @@ function createSmogDatasets(_values) {
             pointBackgroundColor: "rgba(128, 203, 196, 1)",
             pointBorderWidth: 1,
             data: _values.dwutlenekSiarki,
+            hidden: true
+        }];
+}
+
+
+function createSmogComparisonDatasets(_values) {
+    return [
+        {
+            yAxisID: "y-axis-0",
+            label: "pylZawieszonyPm10",
+            borderColor: "rgba(255, 23, 68, 0.8)",
+            backgroundColor: "rgba(255, 23, 68, 0.2)",
+            pointBorderColor: "rgba(255, 23, 68, 1)",
+            pointBackgroundColor: "rgba(255, 23, 68, 1)",
+            pointBorderWidth: 1,
+            data: _values.pylZawieszonyPm10,
+            hidden: true
+        }, {
+            yAxisID: "y-axis-0",
+            label: "model1",
+            borderColor: "rgba(101, 31, 255, 0.8)",
+            backgroundColor: "rgba(101, 31, 255, 0.2)",
+            pointBorderColor: "rgba(101, 31, 255, 1)",
+            pointBackgroundColor: "rgba(101, 31, 255, 1)",
+            pointBorderWidth: 1,
+            data: _values.model2,
+            hidden: true
+        }, {
+            yAxisID: "y-axis-0",
+            label: "model2",
+            borderColor: "rgba(0, 176, 255, 0.8)",
+            backgroundColor: "rgba(0, 176, 255, 0.2)",
+            pointBorderColor: "rgba(0, 176, 255, 1)",
+            pointBackgroundColor: "rgba(0, 176, 255, 1)",
+            pointBorderWidth: 1,
+            data: _values.model2,
+            hidden: true
+        }, {
+            yAxisID: "y-axis-0",
+            label: "model3",
+            borderColor: "rgba(0, 230, 118, 0.8)",
+            backgroundColor: "rgba(0, 230, 118, 0.2)",
+            pointBorderColor: "rgba(0, 230, 118, 1)",
+            pointBackgroundColor: "rgba(0, 230, 118, 1)",
+            pointBorderWidth: 1,
+            data: _values.model3,
+            hidden: false
+        }, {
+            yAxisID: "y-axis-0",
+            label: "model4",
+            borderColor: "rgba(255, 234, 0, 0.2)",
+            backgroundColor: "rgba(255, 234, 0, 0.2)",
+            pointBorderColor: "rgba(255, 234, 0, 1)",
+            pointBackgroundColor: "rgba(255, 234, 0, 1)",
+            pointBorderWidth: 1,
+            data: _values.model4,
+            hidden: true
+        }, {
+            yAxisID: "y-axis-0",
+            label: "model5",
+            borderColor: "rgba(255, 61, 0, 0.8)",
+            backgroundColor: "rgba(255, 61, 0, 0.2)",
+            pointBorderColor: "rgba(255, 61, 0, 1)",
+            pointBackgroundColor: "rgba(255, 61, 0, 1)",
+            pointBorderWidth: 1,
+            data: _values.model5,
             hidden: true
         }];
 }
@@ -630,3 +853,43 @@ var optionsSmogChart = {
 //
 //};
 
+var optionsSmogChartComparison = {
+    responsive: false,
+    hoverMode: 'label',
+    stacked: true,
+    lineAtIndex: 2,
+    scales: {
+        xAxes: [{
+            id: "x-axis-0",
+            display: true,
+            gridLines: {
+                offsetGridLines: false
+            }
+        }],
+        yAxes: [{
+            id: "y-axis-0",
+            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+            display: true,
+            position: "left",
+            ticks: {
+                fontColor: "rgba(255, 23, 68, 1)",
+                beginAtZero: true
+            },
+            gridLines: {
+                drawOnChartArea: true
+            }
+        }]
+    },
+    annotation: {
+        annotations: [
+            {
+                type: 'line',
+                mode: 'horizontal',
+                scaleID: 'y-axis-0',
+                value: '40',
+                borderColor: 'rgba(255, 23, 68, 1)',
+                borderWidth: 1
+            }
+        ]
+    }
+};
