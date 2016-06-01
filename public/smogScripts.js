@@ -139,32 +139,30 @@ $(document).ready(function() {
             values["model1"] = getSmogData(data).pylZawieszonyPm10;
             console.log("MODEL1");
             console.log(values["model1"]);
+            $.ajax({
+                url: "/prediction?from=" + from + "&to=" + to + "&model=1"
+            }).then(function (data) {
+                values["model2"] = getSmogData(data).pylZawieszonyPm10;
+                $.ajax({
+                    url: "/prediction?from=" + from + "&to=" + to + "&model=2"
+                }).then(function (data) {
+                    values["model3"] = getSmogData(data).pylZawieszonyPm10;
+                    $.ajax({
+                        url: "/prediction?from=" + from + "&to=" + to + "&model=3"
+                    }).then(function (data) {
+                        values["model4"] = getSmogData(data).pylZawieszonyPm10;
+                        $.ajax({
+                            url: "/prediction?from=" + from + "&to=" + to + "&model=4"
+                        }).then(function (data) {
+                            values["model5"] = getSmogData(data).pylZawieszonyPm10;
+                            smogChartComparison = createSmogChart(values.label, values, "smogChartComparison", optionsSmogChartComparison);
+                            updateComparisonCharts();
+                        });
+                    });
+                });
+            });
         });
-        $.ajax({
-            url: "/prediction?from=" + from + "&to=" + to + "&model=1"
-        }).then(function (data) {
-            values["model2"] = getSmogData(data).pylZawieszonyPm10;
-        });
-        $.ajax({
-            url: "/prediction?from=" + from + "&to=" + to + "&model=2"
-        }).then(function (data) {
-            values["model3"] = getSmogData(data).pylZawieszonyPm10;
-        });
-        $.ajax({
-            url: "/prediction?from=" + from + "&to=" + to + "&model=3"
-        }).then(function (data) {
-            values["model4"] = getSmogData(data).pylZawieszonyPm10;
-        });
-        $.ajax({
-            url: "/prediction?from=" + from + "&to=" + to + "&model=4"
-        }).then(function (data) {
-            values["model5"] = getSmogData(data).pylZawieszonyPm10;
-        });
-
-        smogChartComparison = createSmogChart(values.label, values, "smogChartComparison", optionsSmogChartComparison);
-        updateComparisonCharts();
     });
-
 });
 
 
