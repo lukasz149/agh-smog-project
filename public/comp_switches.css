@@ -70,22 +70,22 @@
 }
 
 
-/*#d500f9 purple accent-3/rgba(213, 0, 249, 1)*/
-.switch label input[type=checkbox]#model_7:checked + .lever {
-    background-color: rgba(213, 0, 249, 0.5);
-}
-.switch label input[type=checkbox]#model_7:checked + .lever:after {
-    background-color: rgba(213, 0, 249, 1);
-}
+/*!*#d500f9 purple accent-3/rgba(213, 0, 249, 1)*!*/
+/*.switch label input[type=checkbox]#model_7:checked + .lever {*/
+    /*background-color: rgba(213, 0, 249, 0.5);*/
+/*}*/
+/*.switch label input[type=checkbox]#model_7:checked + .lever:after {*/
+    /*background-color: rgba(213, 0, 249, 1);*/
+/*}*/
 
 
-/*#42a5f5 blue lighten-1/rgba(66, 165, 245, 1)*/
-.switch label input[type=checkbox]#model_9:checked + .lever {
-    background-color: rgba(66, 165, 245, 0.5);
-}
-.switch label input[type=checkbox]#model_9:checked + .lever:after {
-    background-color: rgba(66, 165, 245, 1);
-}
+/*!*#42a5f5 blue lighten-1/rgba(66, 165, 245, 1)*!*/
+/*.switch label input[type=checkbox]#model_9:checked + .lever {*/
+    /*background-color: rgba(66, 165, 245, 0.5);*/
+/*}*/
+/*.switch label input[type=checkbox]#model_9:checked + .lever:after {*/
+    /*background-color: rgba(66, 165, 245, 1);*/
+/*}*/
 
 
 
